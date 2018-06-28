@@ -4,7 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-// Як правильно розбить ці ф-ції у DAL i IDAL ?
+// Як правильно розбить ці ф-ції у Dal i IDAL ?
 namespace DAL
 {
     public interface IDAL
@@ -16,10 +16,10 @@ namespace DAL
     }
 
 
-    public class DAL : IDAL
+    public class Dal : IDAL
     {
         DbContext context;
-        public DAL(DbContext _context)
+        public Dal(DbContext _context)
         {
             context = _context;
         }

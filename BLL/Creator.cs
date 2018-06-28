@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-
+using DAL;
 namespace BLL
 {
-    public static class CreatorPerson
+    public static class GenericParams
     {
         public static string SetName(string Name)
         {
@@ -32,6 +32,7 @@ namespace BLL
                 throw new FormatException();
             }
         }
+
         public static string SetPassword(string password)
         {
             if (password == null || password.Length == 0)
