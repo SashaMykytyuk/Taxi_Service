@@ -15,6 +15,8 @@ namespace DAL
         public ClassesOfCar ClassOfCar { get; set; }
         public Driver Driver { get; set; }
         public string Comment { get; set; }
-        public bool Done { get; set; } //?
+        public bool Done { get; set; } 
+        public int KM { get; set; }
+        public int Money { get; set; }
     }
 }

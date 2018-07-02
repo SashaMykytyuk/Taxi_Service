@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using DAL;
 using System.Net.Mail;
-// Щось не те з update
 namespace BLL
 {
     public abstract class Bll
@@ -44,6 +43,7 @@ namespace BLL
     }
 
     
+    public enum Changes { FirstName, SecondName, Password, Email};
 
     public class BLLClient : Bll
     {
@@ -118,17 +118,99 @@ namespace BLL
                 return "Create order";
             if (order.LocationFrom == null || order.LocationTo == null)
                 return "Select your route";
+            if (order.Money <= 0)
+                return "Wrong price";
+            if (order.KM <= 0)
+                return "Wrong distance";
+
             order.Done = false;
+            order.Client = client;
+
             List<Driver> drivers = _dal.Get<Driver>().Where(elem => elem.Location != null && order.ClassOfCar == elem.Car.ClassOfCar).ToList();
-            if (drivers == null)
+            if (drivers == null || drivers.Count == 0)
             {
                 drivers = _dal.Get<Driver>().Where(elem => elem.Location != null).ToList();
             }
-            order.Driver = drivers[0];
-            order.Client = client;
-            _dal.Create<Order>(order);
+            if (drivers != null && drivers.Count > 0)
+            {
+                order.Driver = drivers[0];
+                drivers[0].Location = null;
+                _dal.ChangeDriver(drivers[0].Id, drivers[0]);
+            }
+            else
+                order.Driver = null;
+           
+            try
+            {
+                _dal.Create<Order>(order);
+            }
+            catch(Exception ex)
+            {
+                return ex.Message;
+            }
             return "";
-        } 
+        }  //
+        public string ChangeInfo(Client client, Changes change,  string param)
+        {
+            if (client == null)
+                return "Authorization!!!";
+            switch(change)
+            {
+                case Changes.Email:
+                    try
+                    {
+                        client.Email = GenericParams.SetEmail(param);
+                    }
+                    catch (ArgumentNullException)
+                    {
+                        return "Input email";
+                    }
+                    break;
+                case Changes.FirstName:
+                    try
+                    {
+                        client.FirstName = GenericParams.SetName(param);
+                    }
+                    catch (ArgumentNullException)
+                    {
+                        return "Input First name";
+                    }
+                    break;
+                case Changes.SecondName:
+                    try
+                    {
+                        client.SecondName = GenericParams.SetName(param);
+                    }
+                    catch (ArgumentNullException)
+                    {
+                        return "Input Second name";
+                    }
+                    break;
+                case Changes.Password:
+                    try
+                    {
+                        client.Password = GenericParams.SetPassword(param);
+                    }
+                    catch (ArgumentNullException)
+                    {
+                        return "Input password";
+                    }
+                    catch (FormatException)
+                    {
+                        return "Your password must contain as least 8 symvols, digits and big letters";
+                    }
+                    break;
+            }
+            try
+            {
+                _dal.ChangeClient(client.Id, client);
+                return "";
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+        }
     }
 
     public class BLLDriver : Bll
@@ -157,22 +239,21 @@ namespace BLL
             try
             {
                 _dal.Create<Report>(report);
-
-                _dal.Update<Driver>(driver);
+                _dal.ChangeDriver(driver.Id, driver);
+                return "";
             }
             catch (Exception ex)
             {
                 return ex.Message;
             }
 
-            return "";
         }
         public string SetLocation(Driver driver, Location location)
         {
             driver.Location = location;
             try
             {
-                _dal.Update(driver);
+                _dal.ChangeDriverLocation(driver.Id, driver);
                 return "";
             }
             catch (Exception ex)
@@ -197,19 +278,19 @@ namespace BLL
             try
             {
                 _dal.Create<Car>(car);
+                return "";
             }
             catch (Exception ex)
             {
                 return ex.Message;
             }
-            return "";
         }
         public string ChangeCar(Driver driver, Car car)
         {
             try
             {
                 driver.Car = car;
-                _dal.Update<Driver>(driver);
+                _dal.ChangeDriver(driver.Id, driver);
                 return "";
             }
             catch(Exception ex)
@@ -221,13 +302,83 @@ namespace BLL
         {
             return _dal.Get<Order>().Where(elem => elem.Driver == driver).ToList();
         }
-      
+        public ICollection<Report> GetReports(Report report)
+        {
+            return _dal.Get<Report>().Where(elem => elem == report).ToList();
+        }
+        public string ChangeInfo(Driver driver, Changes change, string param)
+        {
+            if (driver == null)
+                return "Authorization!!!";
+            switch (change)
+            {
+                case Changes.Email:
+                    try
+                    {
+                        driver.Email = GenericParams.SetEmail(param);
+                    }
+                    catch (ArgumentNullException)
+                    {
+                        return "Input email";
+                    }
+                    break;
+                case Changes.FirstName:
+                    try
+                    {
+                        driver.FirstName = GenericParams.SetName(param);
+                    }
+                    catch (ArgumentNullException)
+                    {
+                        return "Input First name";
+                    }
+                    break;
+                case Changes.SecondName:
+                    try
+                    {
+                        driver.SecondName = GenericParams.SetName(param);
+                    }
+                    catch (ArgumentNullException)
+                    {
+                        return "Input Second name";
+                    }
+                    break;
+                case Changes.Password:
+                    try
+                    {
+                        driver.Password = GenericParams.SetPassword(param);
+                    }
+                    catch (ArgumentNullException)
+                    {
+                        return "Input password";
+                    }
+                    catch (FormatException)
+                    {
+                        return "Your password must contain as least 8 symvols, digits and big letters";
+                    }
+                    break;
+            }
+            try
+            {
+                _dal.ChangeDriver(driver.Id, driver);
+                return "";
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+        }
     }
     public class BLLDispatcher : Bll
     {
         public BLLDispatcher(IDAL dal) : base(dal) { }
+        public Dispatcher Authorization(string email, string password)
+        {
+            return _dal.Get<Dispatcher>().FirstOrDefault(elem => elem.Email == email && elem.Password == password);
+        }
         public string CreateDriver(Driver driver, Car car)
         {
+            if (car == null)
+                return "Choose car for driver";
             try
             {
                 driver.FirstName = GenericParams.SetName(driver.FirstName);
@@ -274,12 +425,12 @@ namespace BLL
             try
             {
                 _dal.Create<Driver>(driver);
+                return "";
             }
             catch (Exception ex)
             {
                 return ex.Message;
             }
-            return "";
         }
         public string CreateDispatcher(Dispatcher dispatcher)
         {
@@ -353,10 +504,53 @@ namespace BLL
         {
             return _dal.Get<Order>();
         }
-        public bool OrderDone(Order order)
+        public string ChangeDriverForOrder(Order order, Driver driver)
         {
-            if(order.Done == true)
-                //
+            if (order == null)
+                return "Choose order";
+            if (driver == null)
+                return "Choose driver";
+            order.Driver = driver;
+            driver.Location = null;
+            try
+            {
+                _dal.ChangeOrder(order.Id, order);
+                _dal.ChangeDriver(driver.Id, driver);
+                return "";
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+        }
+        public string OrderDone(Order order)
+        {
+            if (order == null)
+                return "Choose order";
+            if (order.Done == true)
+                return "";
+            if(order.Driver == null)
+            {
+                order.Done = true;
+                return "";
+            }
+
+            order.Driver.KM += order.KM;
+            order.Driver.Money += order.Money;
+
+            order.Done = true;
+
+            try
+            {
+                _dal.ChangeDriver(order.Driver.Id, order.Driver);
+                _dal.ChangeOrder(order.Id, order);
+                return "";
+            }
+
+            catch(Exception ex)
+            {
+                return ex.Message;
+            }
         }
         public string CreateCar(Car car)
         {
@@ -386,11 +580,76 @@ namespace BLL
         {
             try
             {
-                _dal.Update<Order>(order);
+                _dal.ChangeOrder(order.Id, order);
                 return true;
             }
             catch { return false; }
         }
-
+        public string ChangeInfo(Dispatcher dispatcher, Changes change, string param)
+        {
+            if (dispatcher == null)
+                return "Authorization!!!";
+            switch (change)
+            {
+                case Changes.Email:
+                    try
+                    {
+                        dispatcher.Email = GenericParams.SetEmail(param);
+                    }
+                    catch (ArgumentNullException)
+                    {
+                        return "Input email";
+                    }
+                    break;
+                case Changes.FirstName:
+                    try
+                    {
+                        dispatcher.FirstName = GenericParams.SetName(param);
+                    }
+                    catch (ArgumentNullException)
+                    {
+                        return "Input First name";
+                    }
+                    break;
+                case Changes.SecondName:
+                    try
+                    {
+                        dispatcher.SecondName = GenericParams.SetName(param);
+                    }
+                    catch (ArgumentNullException)
+                    {
+                        return "Input Second name";
+                    }
+                    break;
+                case Changes.Password:
+                    try
+                    {
+                        dispatcher.Password = GenericParams.SetPassword(param);
+                    }
+                    catch (ArgumentNullException)
+                    {
+                        return "Input password";
+                    }
+                    catch (FormatException)
+                    {
+                        return "Your password must contain as least 8 symvols, digits and big letters";
+                    }
+                    break;
+            }
+            try
+            {
+                _dal.ChangeDispatcher(dispatcher.Id, dispatcher);
+                return "";
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+        }
+        public void Clear()
+        {
+            foreach (var elem in _dal.Get<Location>().Where(elem => elem.Drivers == null))
+                _dal.Delete<Location>(elem);
+        }
     }
 }

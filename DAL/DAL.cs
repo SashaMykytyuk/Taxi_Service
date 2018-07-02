@@ -4,7 +4,6 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-// Як правильно розбить ці ф-ції у Dal i IDAL ?
 namespace DAL
 {
     public interface IDAL
@@ -13,6 +12,12 @@ namespace DAL
         void Delete<T>(T _element) where T: class;
         ICollection<T> Get<T>() where T : class;
         void Update<T>(T item) where T : class;
+        void ChangeCar(int IdCar, Car car);
+        void ChangeDriver(int IdDriver, Driver driver);
+        void ChangeOrder(int IdOrder, Order order);
+        void ChangeDispatcher(int IdDispatcher, Dispatcher dispatcher);
+        void ChangeClient(int IdClient, Client client);
+        void ChangeDriverLocation(int IdDriver, Driver driver);
     }
 
 
@@ -44,6 +49,57 @@ namespace DAL
         public void Update<T>(T item) where T:class
         {
             context.Entry(item).State = EntityState.Modified;
+            context.SaveChanges();
+        }
+
+        public void ChangeCar(int IdCar, Car car)
+        {
+            (context as TaxiContext).Cars.First(elem => elem.Id == IdCar).Age = car.Age;
+            (context as TaxiContext).Cars.First(elem => elem.Id == IdCar).ClassOfCar = car.ClassOfCar;
+            (context as TaxiContext).Cars.First(elem => elem.Id == IdCar).Marka = car.Marka;
+            (context as TaxiContext).Cars.First(elem => elem.Id == IdCar).Volume = car.Volume;
+            context.SaveChanges();
+        }
+
+        public void ChangeClient(int IdClient, Client client)
+        {
+            (context as TaxiContext).Clients.First(elem => elem.Id == IdClient).Email = client.Email;
+            (context as TaxiContext).Clients.First(elem => elem.Id == IdClient).FirstName = client.FirstName;
+            (context as TaxiContext).Clients.First(elem => elem.Id == IdClient).Password = client.Password;
+            (context as TaxiContext).Clients.First(elem => elem.Id == IdClient).SecondName = client.SecondName;
+            context.SaveChanges();
+        }
+
+        public void ChangeDriver(int IdDriver, Driver driver)
+        {
+            (context as TaxiContext).Drivers.First(elem => elem.Id == IdDriver).Email = driver.Email;
+            (context as TaxiContext).Drivers.First(elem => elem.Id == IdDriver).FirstName = driver.FirstName;
+            (context as TaxiContext).Drivers.First(elem => elem.Id == IdDriver).Password = driver.Password;
+            (context as TaxiContext).Drivers.First(elem => elem.Id == IdDriver).SecondName = driver.SecondName;
+            (context as TaxiContext).Drivers.First(elem => elem.Id == IdDriver).Location = driver.Location;
+            context.SaveChanges();
+        }
+
+        public void ChangeDriverLocation(int IdDriver, Driver driver)
+        {
+            (context as TaxiContext).Drivers.First(elem => elem.Id == IdDriver).Location = driver.Location;
+            context.SaveChanges();
+        }
+
+        public void ChangeOrder(int IdOrder, Order order)
+        {
+            (context as TaxiContext).Orders.First(elem => elem.Id == IdOrder).ClassOfCar = order.ClassOfCar;
+            (context as TaxiContext).Orders.First(elem => elem.Id == IdOrder).Done = order.Done;
+            (context as TaxiContext).Orders.First(elem => elem.Id == IdOrder).Driver = order.Driver;
+            context.SaveChanges();
+        }
+
+        public void ChangeDispatcher(int IdDispatcher, Dispatcher dispatcher)
+        {
+            (context as TaxiContext).Dispatchers.First(elem => elem.Email == dispatcher.Email).Email = dispatcher.Email;
+            (context as TaxiContext).Dispatchers.First(elem => elem.Email == dispatcher.Email).FirstName = dispatcher.FirstName;
+            (context as TaxiContext).Dispatchers.First(elem => elem.Email == dispatcher.Email).Password = dispatcher.Password;
+            (context as TaxiContext).Dispatchers.First(elem => elem.Email == dispatcher.Email).SecondName = dispatcher.SecondName;
             context.SaveChanges();
         }
     }

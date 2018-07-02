@@ -11,7 +11,6 @@ namespace DAL
         public double Lat { get; set; }
         public double Lng { get; set; }
 
-        public virtual ICollection<Client> Clients { get; set; }
         public virtual ICollection<Driver> Drivers { get; set; }
     }
 }
