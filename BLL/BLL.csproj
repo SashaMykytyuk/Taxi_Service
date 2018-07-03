@@ -40,7 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BLL.cs" />
+    <Compile Include="BLL\BLLDispatcher.cs" />
+    <Compile Include="BLL\AbstractBLL.cs" />
+    <Compile Include="BLL\BLLClient.cs" />
+    <Compile Include="BLL\BLLDriver.cs" />
     <Compile Include="Creator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
