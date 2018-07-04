@@ -5,8 +5,38 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfAppDispatcher"
         mc:Ignorable="d"
-        Title="AllPersonsWindow" Height="300" Width="300">
+        Title="AllPersonsWindow" Height="391.272" Width="658.354">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <StackPanel>
+            <Label Content="Sort by:" FontSize="18" FontWeight="Medium" />
+            <RadioButton Content="First Name" FontSize="18" />
+            <RadioButton Content="Second Name"  FontSize="18" />
+            <Label Content="Filter: " FontSize="18" FontWeight="Medium"/>
+        </StackPanel>
+        <StackPanel Grid.Column="1" Margin="5">
+            <Label Content="First Name:" FontSize="20" FontWeight="Medium"/>
+            <TextBox x:Name="FirstName" IsEnabled="False" FontSize="20"/>
+            <Label Content="Second Name:" FontSize="20" FontWeight="Medium"/>
+            <TextBox x:Name="SecondName" IsEnabled="False" FontSize="20"/>
+            <Label Content="Email: " FontSize="20" FontWeight="Medium"/>
+            <TextBox x:Name="Email" IsEnabled="False" FontSize="20"/>
+            <Grid Margin="5,50,5,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Button Content="Previous" Margin="5" FontSize="20" FontWeight="Black"/>
+                <Button Grid.Column="1" Content="Next"  Margin="5" FontSize="20" FontWeight="Black"/>
+            </Grid>
+            <Menu FontSize="15" Margin="2,5">
+                <MenuItem Header="Show orders" />
+            </Menu>
+        </StackPanel>
+        <ListBox x:Name="MyList" Grid.Column="2" FontSize="18" />
     </Grid>
 </Window>

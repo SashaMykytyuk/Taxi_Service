@@ -1,0 +1,43 @@
+﻿<Window x:Class="WpfAppDispatcher.AllReportsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfAppDispatcher"
+        mc:Ignorable="d"
+        Title="AllReportsWindow" Height="488.155" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="3*" />
+        </Grid.ColumnDefinitions>
+        <StackPanel>
+            <Label Content="Sort by:" FontSize="13" FontWeight="Medium"/>
+            <RadioButton Content="Driver"  FontSize="13" FontWeight="Medium"/>
+            <RadioButton Content="Money" FontSize="13" FontWeight="Medium" />
+            <RadioButton Content="KM"  FontSize="13" FontWeight="Medium"/>
+            <Calendar Margin="15" />
+            <Expander Header="Drivers" FontSize="13" FontWeight="Medium">
+                <StackPanel x:Name="Drivers">
+
+                </StackPanel>
+            </Expander>
+        </StackPanel>
+        <StackPanel Grid.Column="1" Margin="10">
+            <Label Content="Driver:" FontSize="15" FontWeight="Black" />
+            <TextBox x:Name="Driver"/>
+            <Label Content="KM: " FontSize="15" FontWeight="Black" />
+            <TextBox x:Name="KM" />
+            <Label Content="Money" FontSize="15" FontWeight="Black" />
+            <TextBox x:Name="Money" />
+            <Grid Margin="10,50">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Button Content="Previous" Margin="10" FontSize="25" FontWeight="Black" />
+                <Button Grid.Column="1" Content="Next" Margin="10"  FontSize="25" FontWeight="Black" />
+            </Grid>
+        </StackPanel>
+    </Grid>
+</Window>

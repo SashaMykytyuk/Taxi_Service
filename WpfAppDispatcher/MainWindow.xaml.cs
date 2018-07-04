@@ -24,5 +24,20 @@ namespace WpfAppDispatcher
         {
             InitializeComponent();
         }
+
+        private void Enter_Click(object sender, RoutedEventArgs e)
+        {
+            MenuWindow window = new MenuWindow();
+            window.ShowDialog();
+
+            Email.Text = "";
+            Password.Password = "";
+        }
+
+        private void Registration_Click(object sender, RoutedEventArgs e)
+        {
+            Registration window = new Registration();
+            window.ShowDialog();
+        }
     }
 }
