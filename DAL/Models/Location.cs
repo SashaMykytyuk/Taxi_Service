@@ -6,7 +6,7 @@ namespace DAL
         public int Id { get; set; }
         public double Lat { get; set; }
         public double Lng { get; set; }
-
+        public string Place { get; set; }
         public virtual ICollection<Driver> Drivers { get; set; }
     }
 }

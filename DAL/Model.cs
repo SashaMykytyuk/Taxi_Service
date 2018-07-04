@@ -19,5 +19,6 @@ namespace DAL
         public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<Car> Cars { get; set; }
         public virtual DbSet<Report> Reports { get; set; }
+        public virtual DbSet<Price> Prices { get; set; }
     }
 }

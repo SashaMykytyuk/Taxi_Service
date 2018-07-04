@@ -66,12 +66,13 @@ namespace BLL
         {
             return _dal.Get<Client>().FirstOrDefault(elem => elem.Email == email && elem.Password == password);
         }
-        public ICollection<Order> GetOrders(Client client)
+        public ICollection<Order> GetOrders(int idClient)
         {
-            return _dal.Get<Order>().Where(elem => elem.Client == client).ToList();
+            return _dal.Get<Order>().Where(elem => elem.Client.Id == idClient).ToList();
         }
-        public string CreateOrder(Client client, Order order)
+        public string CreateOrder(int idClient, Order order)
         {
+            Client client = _dal.Get<Client>().FirstOrDefault(elem => elem.Id == idClient);
             if (client == null)
                 return "Authorization!!!";
             if (order == null)
@@ -110,13 +111,16 @@ namespace BLL
             }
             return "";
         }  //
-        public string ChangeInfo(Client client, Changes change, string param)
+        public string ChangeInfo(int idClient, Changes change, string param)
         {
+            Client client = _dal.Get<Client>().FirstOrDefault(elem => elem.Id == idClient);
             if (client == null)
                 return "Authorization!!!";
             switch (change)
             {
                 case Changes.Email:
+                    if (_dal.Get<Client>().FirstOrDefault(elem => elem.Email == param) != null)
+                        return "This email is in db";
                     try
                     {
                         client.Email = GenericParams.SetEmail(param);
@@ -171,5 +175,21 @@ namespace BLL
                 return ex.Message;
             }
         }
+        public bool SendMessageToDispatcher(Client client, string Title, string Message)
+        {
+            bool isSend;
+            foreach(var elem in _dal.Get<Dispatcher>().ToList())
+            {
+                isSend =SendMessage(client, elem.Email, Title, Message);
+                if (isSend == true)
+                    return true;
+            }
+            return false;
+        }
+        public double GetPrice(double km, ClassesOfCar classes)
+        {
+            return _dal.Get<Price>().FirstOrDefault(elem => elem.ClassOfCar == classes).Money * km;
+        }
+
     }
 }

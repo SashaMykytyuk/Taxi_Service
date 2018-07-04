@@ -26,7 +26,7 @@ namespace WpfAppClient
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            //
+            MessageBox.Show(MainWindow.client.SendMessageToDispatcher(Theme.Text, Message.Text));
             this.Close();
         }
     }

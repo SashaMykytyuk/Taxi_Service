@@ -16,8 +16,11 @@ namespace BLL
         {
             return _dal.Get<Car>();
         }
-        public string CreateReport(Driver driver)
+        public string CreateReport(int idDriver)
         {
+            Driver driver = _dal.Get<Driver>().FirstOrDefault(elem => elem.Id == idDriver);
+            if (driver == null)
+                return "Choose driver";
             if (driver.Money == 0)
                 return "You don't need crete report. Your salary today is zero";
             Report report = new Report();
@@ -40,8 +43,12 @@ namespace BLL
             }
 
         }
-        public string SetLocation(Driver driver, Location location)
+        public string SetLocation(int idDriver, Location location)
         {
+            Driver driver = _dal.Get<Driver>().FirstOrDefault(elem => elem.Id == idDriver);
+
+            if (driver == null)
+                return "Choose driver";
             driver.Location = location;
             try
             {
@@ -77,10 +84,12 @@ namespace BLL
                 return ex.Message;
             }
         }
-        public string ChangeCar(Driver driver, Car car)
+        public string ChangeCar(int idDriver, int idCar)
         {
             try
             {
+                Driver driver = _dal.Get<Driver>().FirstOrDefault(elem => elem.Id == idDriver);
+                Car car = _dal.Get<Car>().FirstOrDefault(elem => elem.Id == idCar);
                 driver.Car = car;
                 _dal.ChangeDriver(driver.Id, driver);
                 return "";
@@ -90,18 +99,19 @@ namespace BLL
                 return ex.Message;
             }
         }
-        public ICollection<Order> GetOrders(Driver driver)
+        public ICollection<Order> GetOrders(int idDriver)
         {
-            return _dal.Get<Order>().Where(elem => elem.Driver == driver).ToList();
+            return _dal.Get<Order>().Where(elem => elem.Driver.Id == idDriver).ToList();
         }
-        public ICollection<Report> GetReports(Report report)
+        public ICollection<Report> GetReports(int idDriver)
         {
-            return _dal.Get<Report>().Where(elem => elem == report).ToList();
+            return _dal.Get<Report>().Where(elem => elem.Driver.Id == idDriver).ToList();
         }
-        public string ChangeInfo(Driver driver, Changes change, string param)
+        public string ChangeInfo(int idDriver, Changes change, string param)
         {
+            Driver driver = _dal.Get<Driver>().FirstOrDefault(elem => elem.Id == idDriver);
             if (driver == null)
-                return "Authorization!!!";
+                return "Wrong person!!!";
             switch (change)
             {
                 case Changes.Email:

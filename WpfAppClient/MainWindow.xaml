@@ -5,13 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfAppClient"
         mc:Ignorable="d"
-        Title="Client" Height="289" Width="525">
+        Title="Client" Height="315.714" Width="589.357">
     <Grid>
         <StackPanel>
             <Label Content="Email" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Center" />
-            <TextBox x:Name="Email" />
+            <TextBox x:Name="Email" HorizontalContentAlignment="Center" FontSize="20"/>
             <Label Content="Password" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Center"  />
-            <PasswordBox x:Name="Password" />
+            <PasswordBox x:Name="Password"  HorizontalContentAlignment="Center" FontSize="20"/>
             <Button Content="Enter" FontSize="25" FontWeight="Bold" HorizontalContentAlignment="Center" Margin="70,20" Click="Enter_Click"  />
             <Button Content="Registration"  FontSize="15" FontWeight="Bold" HorizontalContentAlignment="Center" Margin="100,10" Click="Registration_Click"  />
         </StackPanel>

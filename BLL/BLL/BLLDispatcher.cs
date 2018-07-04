@@ -11,8 +11,9 @@ namespace BLL
         {
             return _dal.Get<Dispatcher>().FirstOrDefault(elem => elem.Email == email && elem.Password == password);
         }
-        public string CreateDriver(Driver driver, Car car)
+        public string CreateDriver(Driver driver, int idCar)
         {
+            Car car = _dal.Get<Car>().FirstOrDefault(elem => elem.Id == idCar);
             if (car == null)
                 return "Choose car for driver";
             try
@@ -140,10 +141,14 @@ namespace BLL
         {
             return _dal.Get<Order>();
         }
-        public string ChangeDriverForOrder(Order order, Driver driver)
+        public string ChangeDriverForOrder(int idOrder, int idDriver)
         {
+            Order order = _dal.Get<Order>().FirstOrDefault(elem => elem.Id == idOrder);
             if (order == null)
                 return "Choose order";
+            if (order.Done == true)
+                return "You can't change driver for order, Order is done";
+            Driver driver = _dal.Get<Driver>().FirstOrDefault(elem => elem.Id == idDriver);
             if (driver == null)
                 return "Choose driver";
             order.Driver = driver;
@@ -159,8 +164,11 @@ namespace BLL
                 return ex.Message;
             }
         }
-        public string OrderDone(Order order)
+        public string OrderDone(int  IdOrder)
         {
+            Order order = _dal.Get<Order>().FirstOrDefault(elem => elem.Id == IdOrder);
+            if (order == null)
+                return "Wrong order";
             if (order == null)
                 return "Choose order";
             if (order.Done == true)
@@ -221,10 +229,11 @@ namespace BLL
             }
             catch { return false; }
         }
-        public string ChangeInfo(Dispatcher dispatcher, Changes change, string param)
+        public string ChangeInfo(int idDispatcher, Changes change, string param)
         {
+            Dispatcher dispatcher = _dal.Get<Dispatcher>().FirstOrDefault(elem => elem.Id == idDispatcher);
             if (dispatcher == null)
-                return "Authorization!!!";
+                return "Something wrong!!!";
             switch (change)
             {
                 case Changes.Email:
@@ -282,10 +291,9 @@ namespace BLL
                 return ex.Message;
             }
         }
-        public void Clear()
+        public void ChangePrice(ClassesOfCar classOfCar, double newPrice)
         {
-            foreach (var elem in _dal.Get<Location>().Where(elem => elem.Drivers == null))
-                _dal.Delete<Location>(elem);
+            //_dal.ChangePrice()
         }
     }
 }

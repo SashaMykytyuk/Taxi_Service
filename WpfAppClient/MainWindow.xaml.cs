@@ -12,14 +12,16 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using WpfAppClient.ServiceReference;
 namespace WpfAppClient
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
+    
     public partial class MainWindow : Window
     {
+        public static Service1Client client = new Service1Client();
         public MainWindow()
         {
             InitializeComponent();
@@ -27,10 +29,13 @@ namespace WpfAppClient
 
         private void Enter_Click(object sender, RoutedEventArgs e)
         {
-            MenuWindow window = new MenuWindow();
-            window.ShowDialog();
-
-
+            string str = client.Authorization(Email.Text, Password.Password);
+            if (str == "")
+            {
+                MenuWindow window = new MenuWindow();
+                window.ShowDialog();
+            }
+            else MessageBox.Show(str);
             Email.Text = "";
             Password.Password = "";
         }

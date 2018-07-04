@@ -10,7 +10,7 @@
         public virtual Driver Driver { get; set; }
         public string Comment { get; set; }
         public bool Done { get; set; } 
-        public int KM { get; set; }
-        public int Money { get; set; }
+        public double KM { get; set; }
+        public double Money { get; set; }
     }
 }

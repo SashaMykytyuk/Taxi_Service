@@ -13,12 +13,12 @@ namespace BLL
         {
             _dal = dal;
         }
-        public bool SendMessage(AbstractPerson personFrom, AbstractPerson personWho, string Title, string Message)
+        public bool SendMessage(AbstractPerson personFrom, string personTo, string Title, string Message)
         {
             Task.Run(() =>
             {
 
-                MailMessage m = new MailMessage(new MailAddress(personFrom.Email, personFrom.SecondName), new MailAddress(personWho.Email));
+                MailMessage m = new MailMessage(new MailAddress(personFrom.Email, personFrom.SecondName), new MailAddress(personTo));
                 m.Subject = Title;
                 m.Body = Message;
 

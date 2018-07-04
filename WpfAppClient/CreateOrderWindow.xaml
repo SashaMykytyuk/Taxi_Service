@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfAppClient"
         mc:Ignorable="d"
-        Title="CreateOrderWindow" Height="389.748" Width="690.757">
+        Title="CreateOrderWindow" Height="480.099" Width="834.255">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
@@ -13,9 +13,11 @@
         </Grid.ColumnDefinitions>
         <StackPanel>
             <Label Content="From: " FontSize="18" FontWeight="Medium" />
-            <TextBox x:Name="From"  FontSize="18"  />
+            <TextBox x:Name="From"  FontSize="18" KeyDown="KeyDown" />
             <Label Content="To"  FontSize="18" FontWeight="Medium" />
-            <TextBox x:Name="To" FontSize="18" />
+            <TextBox x:Name="To" FontSize="18"  KeyDown="KeyDown"/>
+            <Label Content="Class of car: " FontSize="18" FontWeight="Medium"/>
+            <ComboBox x:Name="ClassOfCar" FontSize="18"  />
             <Label Content="KM: " Margin="0,20,0,0" FontSize="18" FontWeight="Medium" />
             <TextBox IsEnabled="False" x:Name="KM" FontSize="18" />
             <Label Content="Price" FontSize="18" FontWeight="Medium"  />

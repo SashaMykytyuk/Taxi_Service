@@ -102,5 +102,11 @@ namespace DAL
             (context as TaxiContext).Dispatchers.First(elem => elem.Email == dispatcher.Email).SecondName = dispatcher.SecondName;
             context.SaveChanges();
         }
+
+        public void ChangePrice(ClassesOfCar classOfCar, double newPrice)
+        {
+            (context as TaxiContext).Prices.FirstOrDefault(elem => elem.ClassOfCar == classOfCar).Money = newPrice;
+            context.SaveChanges();
+        }
     }
 }
