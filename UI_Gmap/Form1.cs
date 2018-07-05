@@ -34,12 +34,15 @@ namespace UI_Gmap
             map.Zoom = 14;
         }
 
+      
+
         private void clearPoint_Click(object sender, EventArgs e)
         {
             _points.Clear();
             map.Overlays.Clear();
-            map.Update();
-            
+            double tempZoom = map.Zoom;
+            map.Zoom = tempZoom + 1;
+            map.Zoom = tempZoom;
         }
 
         private void getRoute_Click(object sender, EventArgs e)
@@ -48,23 +51,28 @@ namespace UI_Gmap
                 .GetRoute(_points[0], _points[1], false, false, 14);
             var r = new GMapRoute(route.Points, "MyRoute")
             {
-                Stroke = new Pen(Color.Red, 5)
+                Stroke = new Pen(Color.Green, 3)
             };
             var routes = new GMapOverlay("routes");
             routes.Routes.Add(r);
             map.Overlays.Add(routes);
             this.Text = route.Distance.ToString();
-            map.Update();
-            map.Refresh();
-            map.ReloadMap();
-            map.Invalidate();
-            
+            double tempZoom = map.Zoom;
+            map.Zoom = tempZoom + 1;
+            map.Zoom = tempZoom;
         }
 
         private void buttonFind_Click(object sender, EventArgs e)
         {
-            map.SetPositionByKeywords(findByKeyText.Text);
-            geoCodeAsync(findByKeyText.Text);
+            try
+            {
+                map.SetPositionByKeywords(findByKeyText.Text);
+                geoCodeAsync(findByKeyText.Text);
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message);
+            }
         }
         private void geoCodeAsync(string address)
         {
