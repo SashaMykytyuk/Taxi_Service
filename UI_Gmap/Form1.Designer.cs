@@ -31,11 +31,9 @@
             this.map = new GMap.NET.WindowsForms.GMapControl();
             this.clearPoint = new System.Windows.Forms.Button();
             this.getRoute = new System.Windows.Forms.Button();
-            this.mapSize = new System.Windows.Forms.TrackBar();
             this.findByKeyText = new System.Windows.Forms.TextBox();
             this.buttonFind = new System.Windows.Forms.Button();
             this.splitter1 = new System.Windows.Forms.Splitter();
-            ((System.ComponentModel.ISupportInitialize)(this.mapSize)).BeginInit();
             this.SuspendLayout();
             // 
             // map
@@ -74,7 +72,7 @@
             this.clearPoint.Name = "clearPoint";
             this.clearPoint.Size = new System.Drawing.Size(63, 23);
             this.clearPoint.TabIndex = 5;
-            this.clearPoint.Text = "Clear";
+            this.clearPoint.Text = "Clear All";
             this.clearPoint.UseVisualStyleBackColor = true;
             this.clearPoint.Click += new System.EventHandler(this.clearPoint_Click);
             // 
@@ -87,18 +85,6 @@
             this.getRoute.Text = "Get Route";
             this.getRoute.UseVisualStyleBackColor = true;
             this.getRoute.Click += new System.EventHandler(this.getRoute_Click);
-            // 
-            // mapSize
-            // 
-            this.mapSize.Location = new System.Drawing.Point(12, 131);
-            this.mapSize.Maximum = 20;
-            this.mapSize.Minimum = 1;
-            this.mapSize.Name = "mapSize";
-            this.mapSize.Orientation = System.Windows.Forms.Orientation.Vertical;
-            this.mapSize.Size = new System.Drawing.Size(45, 293);
-            this.mapSize.TabIndex = 8;
-            this.mapSize.Value = 13;
-            this.mapSize.Scroll += new System.EventHandler(this.trackBar1_Scroll);
             // 
             // findByKeyText
             // 
@@ -133,14 +119,12 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.buttonFind);
             this.Controls.Add(this.findByKeyText);
-            this.Controls.Add(this.mapSize);
             this.Controls.Add(this.getRoute);
             this.Controls.Add(this.clearPoint);
             this.Controls.Add(this.map);
             this.Controls.Add(this.splitter1);
             this.Name = "Form1";
             this.Text = "Form1";
-            ((System.ComponentModel.ISupportInitialize)(this.mapSize)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -150,7 +134,6 @@
         private GMap.NET.WindowsForms.GMapControl map;
         private System.Windows.Forms.Button clearPoint;
         private System.Windows.Forms.Button getRoute;
-        private System.Windows.Forms.TrackBar mapSize;
         private System.Windows.Forms.TextBox findByKeyText;
         private System.Windows.Forms.Button buttonFind;
         private System.Windows.Forms.Splitter splitter1;

@@ -21,7 +21,6 @@ namespace UI_Gmap
     public partial class Form1 : Form
     {
         private List<PointLatLng> _points;
-
         public Form1()
         {
             InitializeComponent();
@@ -32,13 +31,15 @@ namespace UI_Gmap
             map.SetPositionByKeywords("rovno ukrainian");
             map.MinZoom = 1;
             map.MaxZoom = 20;
-            map.Zoom = 13;
-
+            map.Zoom = 14;
         }
 
         private void clearPoint_Click(object sender, EventArgs e)
         {
             _points.Clear();
+            map.Overlays.Clear();
+            map.Update();
+            
         }
 
         private void getRoute_Click(object sender, EventArgs e)
@@ -52,13 +53,12 @@ namespace UI_Gmap
             var routes = new GMapOverlay("routes");
             routes.Routes.Add(r);
             map.Overlays.Add(routes);
-            this.Update();
             this.Text = route.Distance.ToString();
-        }
-
-        private void trackBar1_Scroll(object sender, EventArgs e)
-        {
-            map.Zoom = (sender as TrackBar).Value;
+            map.Update();
+            map.Refresh();
+            map.ReloadMap();
+            map.Invalidate();
+            
         }
 
         private void buttonFind_Click(object sender, EventArgs e)
@@ -66,12 +66,10 @@ namespace UI_Gmap
             map.SetPositionByKeywords(findByKeyText.Text);
             geoCodeAsync(findByKeyText.Text);
         }
-
         private void geoCodeAsync(string address)
         {
             try
             {
-                //string address = "123 something st, somewhere";
                 string requestUri =
                     string.Format("http://maps.googleapis.com/maps/api/geocode/xml?address={0}&sensor=false",
                         Uri.EscapeDataString(address));
@@ -88,8 +86,6 @@ namespace UI_Gmap
                 pointLatLng.Lat = Double.Parse(lat.Value.Replace('.', ','));
                 pointLatLng.Lng = Double.Parse(lng.Value.Replace('.', ','));
                 MessageBox.Show(pointLatLng.Lat + "   " + pointLatLng.Lng);
-                /////////////////
-
                 GMapOverlay markerOverlay = new GMapOverlay("markers");
                 GMarkerGoogle marker = new GMarkerGoogle(pointLatLng,
                     GMarkerGoogleType.green_pushpin);
@@ -97,46 +93,31 @@ namespace UI_Gmap
                 markerOverlay.Markers.Add(marker);
                 _points.Add(pointLatLng);
                 map.Zoom = 18;
-
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-
         }
 
-        private void map_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            if (e.Button == System.Windows.Forms.MouseButtons.Right)
-            {
-                double lat = map.FromLocalToLatLng(e.X, e.Y).Lat;
-                double lng = map.FromLocalToLatLng(e.X, e.Y).Lng;
-                GMapOverlay markerOverlay = new GMapOverlay("markers");
-                GMarkerGoogle marker = new GMarkerGoogle(new
-                        GMap.NET.PointLatLng(lat, lng),
-                    GMarkerGoogleType.green_pushpin);
-                map.Overlays.Add(markerOverlay);
-                markerOverlay.Markers.Add(marker);
-                MessageBox.Show(lat.ToString() + lng.ToString());
-                _points.Add(new PointLatLng(Convert.ToDouble(lat), Convert.ToDouble(lng)));
-            }
-        }
-
+        
         private void map_MouseDoubleClick(object sender, EventArgs e)
         {
             var x = (e as MouseEventArgs);
-            if (x.Button == System.Windows.Forms.MouseButtons.Left)
+            if (x.Button == MouseButtons.Left)
             {
                 double lat = map.FromLocalToLatLng(x.X, x.Y).Lat;
                 double lng = map.FromLocalToLatLng(x.X, x.Y).Lng;
                 GMapOverlay markerOverlay = new GMapOverlay("markers");
-                GMarkerGoogle marker = new GMarkerGoogle(new
-                        GMap.NET.PointLatLng(lat, lng),
-                    GMarkerGoogleType.green_pushpin);
+                GMarkerGoogle marker = new GMarkerGoogle(new PointLatLng(lat, lng), GMarkerGoogleType.green_pushpin);
+                marker.ToolTipText = "{0},{1}+";
+                marker.ToolTip.Fill = Brushes.Black;
+                marker.ToolTip.Foreground = Brushes.White;
+                marker.ToolTip.Stroke = Pens.Black;
+                marker.ToolTip.TextPadding = new Size(20, 20);
+                marker.ToolTipMode = MarkerTooltipMode.OnMouseOver;
                 map.Overlays.Add(markerOverlay);
                 markerOverlay.Markers.Add(marker);
-                MessageBox.Show(lat.ToString() + lng.ToString());
                 _points.Add(new PointLatLng(Convert.ToDouble(lat), Convert.ToDouble(lng)));
             }
         }
