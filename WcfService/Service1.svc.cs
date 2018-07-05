@@ -19,7 +19,7 @@ namespace WcfService
 
         public Client AboutClient()
         {
-            return new Client() { Email = client.Email ,Password = client.Password, FirstName = client.FirstName, SecondName = client.SecondName };
+            return new Client() { Email = client.Email, Password = client.Password, FirstName = client.FirstName, SecondName = client.SecondName };
         }
 
         public ICollection<Order> AllOrders()
@@ -57,6 +57,11 @@ namespace WcfService
             return Client.CreateClient(client);
         }
 
+        public void LogOut()
+        {
+            client = null;
+        }
+
         public string SendMessageToDispatcher(string Title, string Message)
         {
             if (Client.SendMessageToDispatcher(client, Title, Message) == true)
@@ -64,4 +69,9 @@ namespace WcfService
             else return "Error in send message";
         }
     }
+
+   
+
+   
+
 }

@@ -56,6 +56,12 @@
   <wsdl:message name="IService1_GetPrice_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetPriceResponse" />
   </wsdl:message>
+  <wsdl:message name="IService1_LogOut_InputMessage">
+    <wsdl:part name="parameters" element="tns:LogOut" />
+  </wsdl:message>
+  <wsdl:message name="IService1_LogOut_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LogOutResponse" />
+  </wsdl:message>
   <wsdl:portType name="IService1">
     <wsdl:operation name="Authorization">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/Authorization" message="tns:IService1_Authorization_InputMessage" />
@@ -88,6 +94,10 @@
     <wsdl:operation name="GetPrice">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetPrice" message="tns:IService1_GetPrice_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetPriceResponse" message="tns:IService1_GetPrice_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LogOut">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/LogOut" message="tns:IService1_LogOut_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/LogOutResponse" message="tns:IService1_LogOut_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IService1" type="tns:IService1">
@@ -157,6 +167,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetPrice">
       <soap:operation soapAction="http://tempuri.org/IService1/GetPrice" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LogOut">
+      <soap:operation soapAction="http://tempuri.org/IService1/LogOut" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

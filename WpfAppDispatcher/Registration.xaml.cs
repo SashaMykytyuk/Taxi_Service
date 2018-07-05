@@ -23,5 +23,19 @@ namespace WpfAppDispatcher
         {
             InitializeComponent();
         }
+
+        private void Save_Click(object sender, RoutedEventArgs e)
+        {
+            string str = MainWindow.dispatcher.Registration(new ServiceReference.Dispatcher()
+            {
+                Email = Email.Text,
+                FirstName = FirstName.Text,
+                SecondName = SecondName.Text,
+                Password = Password.Password
+            });
+            if (str == "")
+                this.Close();
+            else MessageBox.Show(str);
+        }
     }
 }

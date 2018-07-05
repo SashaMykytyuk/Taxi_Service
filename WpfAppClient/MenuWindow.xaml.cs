@@ -38,8 +38,15 @@ namespace WpfAppClient
 
         private void AllOrders_Click(object sender, RoutedEventArgs e)
         {
-            AllOrdersWindow window = new AllOrdersWindow();
-            window.ShowDialog();
+            try
+            {
+                AllOrdersWindow window = new AllOrdersWindow();
+                window.ShowDialog();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void WriteEmail_Click(object sender, RoutedEventArgs e)

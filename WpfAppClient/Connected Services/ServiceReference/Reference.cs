@@ -80,6 +80,12 @@ namespace WpfAppClient.ServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetPrice", ReplyAction="http://tempuri.org/IService1/GetPriceResponse")]
         System.Threading.Tasks.Task<double> GetPriceAsync(double km, DAL.ClassesOfCar classes);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/LogOut", ReplyAction="http://tempuri.org/IService1/LogOutResponse")]
+        void LogOut();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/LogOut", ReplyAction="http://tempuri.org/IService1/LogOutResponse")]
+        System.Threading.Tasks.Task LogOutAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -171,6 +177,14 @@ namespace WpfAppClient.ServiceReference {
         
         public System.Threading.Tasks.Task<double> GetPriceAsync(double km, DAL.ClassesOfCar classes) {
             return base.Channel.GetPriceAsync(km, classes);
+        }
+        
+        public void LogOut() {
+            base.Channel.LogOut();
+        }
+        
+        public System.Threading.Tasks.Task LogOutAsync() {
+            return base.Channel.LogOutAsync();
         }
     }
 }

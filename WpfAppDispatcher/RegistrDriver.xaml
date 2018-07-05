@@ -25,7 +25,7 @@
 
         <StackPanel Grid.Column="1" Margin="10">
             <Label Content="Choose car:" Margin="10,0" FontSize="20" FontWeight="Black"/>
-            <ComboBox x:Name="Cars" Margin="10"  FontSize="20" FontWeight="Black"/>
+            <ComboBox x:Name="Cars" Margin="10"  FontSize="20" FontWeight="Black" SelectionChanged="ChooseCar_Changed"/>
             <Label Content="Class of car: " FontSize="15" FontWeight="Medium" />
             <TextBox IsEnabled="False" x:Name="ClassOfCar" FontSize="15" />
             <Label Content="Marka: "  FontSize="15" FontWeight="Medium"/>

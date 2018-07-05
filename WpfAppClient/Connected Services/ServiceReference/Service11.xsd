@@ -114,4 +114,14 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="LogOut">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LogOutResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

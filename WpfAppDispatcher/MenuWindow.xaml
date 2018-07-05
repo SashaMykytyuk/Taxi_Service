@@ -13,8 +13,8 @@
         </Grid.RowDefinitions>
         <Menu FontSize="15" FontWeight="Bold">
             <MenuItem Header="Drivers">
-                <MenuItem Header="Create driver" />
-                <MenuItem Header="All drivers" />
+                <MenuItem Header="Create driver" Click="CreateDriver_Click"/>
+                <MenuItem Header="All drivers" Click="AllDrivers_Click"/>
             </MenuItem>
             <MenuItem Header="Orders and reports" >
                 <MenuItem Header="All orders" />
@@ -23,7 +23,7 @@
             <MenuItem Header="Clients">
                 <MenuItem Header="All clients" />
             </MenuItem>
-            <MenuItem Header="Create car" />
+            <MenuItem Header="Create car" Click="CreateCar_Click"/>
             <MenuItem Header="Change info" />
             <MenuItem Header="Log out"/>
         </Menu>

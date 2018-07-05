@@ -123,7 +123,17 @@ namespace BLL
         }
         public ICollection<Driver> GetAllDrivers()
         {
-            return _dal.Get<Driver>();
+            List<Driver> drivers = new List<Driver>();
+            foreach(var elem in drivers)
+            {
+                drivers.Add(new Driver()
+                {
+                    Email = elem.Email,
+                    FirstName = elem.FirstName,
+                    SecondName = elem.SecondName,
+                });
+            }
+            return drivers;
         }
         public ICollection<Client> GetAllClients()
         {
@@ -131,7 +141,12 @@ namespace BLL
         }
         public ICollection<Car> GetAllCars()
         {
-            return _dal.Get<Car>();
+            List<Car> cars = new List<Car>();
+            foreach(var elem in _dal.Get<Car>())
+            {
+                cars.Add(new Car() { Age = elem.Age, ClassOfCar = elem.ClassOfCar, Marka = elem.Marka, Volume = elem.Volume });
+            }
+            return cars;
         }
         public ICollection<Report> GetAllReports()
         {

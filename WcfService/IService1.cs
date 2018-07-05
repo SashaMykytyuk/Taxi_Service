@@ -28,5 +28,11 @@ namespace WcfService
         string CreateOrder(Order order);
         [OperationContract]
         double GetPrice(double km, ClassesOfCar classes);
-    }  
+        [OperationContract]
+        void LogOut();
+    }
+
+  
+
+
 }

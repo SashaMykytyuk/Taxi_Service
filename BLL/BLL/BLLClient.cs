@@ -68,7 +68,21 @@ namespace BLL
         }
         public ICollection<Order> GetOrders(int idClient)
         {
-            return _dal.Get<Order>().Where(elem => elem.Client.Id == idClient).ToList();
+            List<Order> orders = new List<Order>();
+            foreach(var elem in _dal.Get<Order>().Where(elem => elem.Client.Id == idClient).ToList())
+            {
+                orders.Add(new Order()
+                {
+                    ClassOfCar = elem.ClassOfCar,
+                    KM = elem.KM,
+                    Money = elem.Money,
+                    Comment = elem.Comment,
+                    Done = elem.Done,
+                    LocationTo = new Location() { Place = elem.LocationTo.Place },
+                    LocationFrom = new Location() { Place = elem.LocationFrom.Place }
+                });
+             }
+            return orders;
         }
         public string CreateOrder(int idClient, Order order)
         {

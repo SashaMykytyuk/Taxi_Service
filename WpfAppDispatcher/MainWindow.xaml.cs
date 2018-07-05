@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using WpfAppDispatcher.ServiceReference;
 namespace WpfAppDispatcher
 {
     /// <summary>
@@ -20,18 +20,24 @@ namespace WpfAppDispatcher
     /// </summary>
     public partial class MainWindow : Window
     {
+        public static ServiceDispatcherClient dispatcher;
         public MainWindow()
         {
+            dispatcher = new ServiceDispatcherClient();
             InitializeComponent();
         }
 
         private void Enter_Click(object sender, RoutedEventArgs e)
         {
-            MenuWindow window = new MenuWindow();
-            window.ShowDialog();
-
-            Email.Text = "";
-            Password.Password = "";
+            string str = dispatcher.Authorization(Email.Text, Password.Password);
+            if (str == "")
+            {
+                MenuWindow window = new MenuWindow();
+                window.ShowDialog();
+                Email.Text = "";
+                Password.Password = "";
+            }
+            else MessageBox.Show(str);
         }
 
         private void Registration_Click(object sender, RoutedEventArgs e)

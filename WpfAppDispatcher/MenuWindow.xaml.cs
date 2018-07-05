@@ -23,5 +23,23 @@ namespace WpfAppDispatcher
         {
             InitializeComponent();
         }
+
+        private void CreateDriver_Click(object sender, RoutedEventArgs e)
+        {
+            RegistrDriver window = new RegistrDriver();
+            window.ShowDialog();
+        }
+
+        private void CreateCar_Click(object sender, RoutedEventArgs e)
+        {
+            CreateCarWindow window = new CreateCarWindow();
+            window.ShowDialog();
+        }
+
+        private void AllDrivers_Click(object sender, RoutedEventArgs e)
+        {
+            AllDriversWindow window = new AllDriversWindow();
+            window.ShowDialog();
+        }
     }
 }

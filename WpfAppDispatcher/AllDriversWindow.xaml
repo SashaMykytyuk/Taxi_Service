@@ -32,12 +32,13 @@
                     <ColumnDefinition />
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
-                <Button Content="Previous" Margin="5" FontSize="20" FontWeight="Black"/>
-                <Button Grid.Column="1" Content="Next"  Margin="5" FontSize="20" FontWeight="Black"/>
+                <Button Content="Previous" Margin="5" FontSize="20" FontWeight="Black" Click="Previous_Click"/>
+                <Button Grid.Column="1" Content="Next"  Margin="5" FontSize="20" FontWeight="Black" Click="Next_Click"/>
             </Grid>
             <Menu FontSize="15" Margin="2,5">
                 <MenuItem Header="Show orders" />
                 <MenuItem Header="Show reports" />
+                <MenuItem Header="Show car" />
             </Menu>
         </StackPanel>
         <ListBox x:Name="MyList" Grid.Column="2" FontSize="18" />

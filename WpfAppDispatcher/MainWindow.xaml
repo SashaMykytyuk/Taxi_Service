@@ -9,9 +9,9 @@
     <Grid>
         <StackPanel>
             <Label Content="Email" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Center" />
-            <TextBox x:Name="Email" FontSize="20"/>
+            <TextBox x:Name="Email" FontSize="20" HorizontalContentAlignment="Center"/>
             <Label Content="Password" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Center"  />
-            <PasswordBox x:Name="Password" FontSize="20" />
+            <PasswordBox x:Name="Password" FontSize="20" HorizontalContentAlignment="Center"/>
             <Button Content="Enter" FontSize="25" FontWeight="Bold" HorizontalContentAlignment="Center" Margin="70,20" Click="Enter_Click"  />
             <Button Content="Registration"  FontSize="15" FontWeight="Bold" HorizontalContentAlignment="Center" Margin="100,10" Click="Registration_Click"  />
         </StackPanel>

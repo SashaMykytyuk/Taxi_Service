@@ -10,6 +10,7 @@ namespace DAL
         public TaxiContext()
             : base("name=Model")
         {
+            Database.SetInitializer<TaxiContext>(new CustomInit<TaxiContext>());   
         }
 
         public virtual DbSet<Location> Locations { get; set; }

@@ -46,7 +46,7 @@ namespace WpfAppClient
                 Comment.Text = ListOfOrders[i].Comment;
                 Price.Text = ListOfOrders[i].Money.ToString();
                 KM.Text = ListOfOrders[i].KM.ToString();
-                Title = i + " from " + ListOfOrders.Count;
+                Title = (i+1) + " from " + ListOfOrders.Count;
                 Done.IsChecked = ListOfOrders[i].Done;
             }
             catch (Exception ex)
