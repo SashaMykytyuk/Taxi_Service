@@ -36,25 +36,6 @@ namespace UI_Gmap
 
         }
 
-        //    map.DragButton = MouseButtons.Left;
-        //    map.MapProvider = GMapProviders.GoogleMap;
-        //    double lat = Convert.ToDouble(latitude.Text);
-        //    double longt = Convert.ToDouble(longitude.Text);
-        //    map.Position = new PointLatLng(lat, longt);
-        //    map.MinZoom = 5;
-        //    map.MaxZoom = 100;
-        //    map.Zoom = 10;
-
-
-        //    PointLatLng point = new PointLatLng(lat, longt);
-        //    GMapMarker marker = new GMarkerGoogle(point, GMarkerGoogleType.red_pushpin);
-
-        //    GMapOverlay markers = new GMapOverlay("markers");
-        //    markers.Markers.Add(marker);
-        //    map.Overlays.Add(markers);
-        //}
-
-
         private void clearPoint_Click(object sender, EventArgs e)
         {
             _points.Clear();
@@ -85,26 +66,30 @@ namespace UI_Gmap
             map.SetPositionByKeywords(findByKeyText.Text);
             geoCodeAsync(findByKeyText.Text);
         }
+
         private void geoCodeAsync(string address)
         {
-            //string address = "123 something st, somewhere";
-            string requestUri = string.Format("http://maps.googleapis.com/maps/api/geocode/xml?address={0}&sensor=false", Uri.EscapeDataString(address));
-
-            WebRequest request = WebRequest.Create(requestUri);
-            WebResponse response = request.GetResponse();
-            XDocument xdoc = XDocument.Load(response.GetResponseStream());
-
-            XElement result = xdoc.Element("GeocodeResponse").Element("result");
-            XElement locationElement = result.Element("geometry").Element("location");
-            XElement lat = locationElement.Element("lat");
-            XElement lng = locationElement.Element("lng");
-            PointLatLng pointLatLng = new PointLatLng();
-            pointLatLng.Lat = Double.Parse(lat.Value.Replace('.', ','));
-            pointLatLng.Lng = Double.Parse(lng.Value.Replace('.', ','));
-            MessageBox.Show(pointLatLng.Lat + "   " + pointLatLng.Lng);
-            /////////////////
             try
             {
+                //string address = "123 something st, somewhere";
+                string requestUri =
+                    string.Format("http://maps.googleapis.com/maps/api/geocode/xml?address={0}&sensor=false",
+                        Uri.EscapeDataString(address));
+
+                WebRequest request = WebRequest.Create(requestUri);
+                WebResponse response = request.GetResponse();
+                XDocument xdoc = XDocument.Load(response.GetResponseStream());
+
+                XElement result = xdoc.Element("GeocodeResponse").Element("result");
+                XElement locationElement = result.Element("geometry").Element("location");
+                XElement lat = locationElement.Element("lat");
+                XElement lng = locationElement.Element("lng");
+                PointLatLng pointLatLng = new PointLatLng();
+                pointLatLng.Lat = Double.Parse(lat.Value.Replace('.', ','));
+                pointLatLng.Lng = Double.Parse(lng.Value.Replace('.', ','));
+                MessageBox.Show(pointLatLng.Lat + "   " + pointLatLng.Lng);
+                /////////////////
+
                 GMapOverlay markerOverlay = new GMapOverlay("markers");
                 GMarkerGoogle marker = new GMarkerGoogle(pointLatLng,
                     GMarkerGoogleType.green_pushpin);
@@ -135,7 +120,24 @@ namespace UI_Gmap
                 markerOverlay.Markers.Add(marker);
                 MessageBox.Show(lat.ToString() + lng.ToString());
                 _points.Add(new PointLatLng(Convert.ToDouble(lat), Convert.ToDouble(lng)));
+            }
+        }
 
+        private void map_MouseDoubleClick(object sender, EventArgs e)
+        {
+            var x = (e as MouseEventArgs);
+            if (x.Button == System.Windows.Forms.MouseButtons.Left)
+            {
+                double lat = map.FromLocalToLatLng(x.X, x.Y).Lat;
+                double lng = map.FromLocalToLatLng(x.X, x.Y).Lng;
+                GMapOverlay markerOverlay = new GMapOverlay("markers");
+                GMarkerGoogle marker = new GMarkerGoogle(new
+                        GMap.NET.PointLatLng(lat, lng),
+                    GMarkerGoogleType.green_pushpin);
+                map.Overlays.Add(markerOverlay);
+                markerOverlay.Markers.Add(marker);
+                MessageBox.Show(lat.ToString() + lng.ToString());
+                _points.Add(new PointLatLng(Convert.ToDouble(lat), Convert.ToDouble(lng)));
             }
         }
     }

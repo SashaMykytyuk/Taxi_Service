@@ -40,8 +40,8 @@
             // 
             // map
             // 
-            this.map.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.map.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.map.Bearing = 0F;
             this.map.CanDragMap = true;
@@ -66,6 +66,7 @@
             this.map.Size = new System.Drawing.Size(559, 426);
             this.map.TabIndex = 1;
             this.map.Zoom = 0D;
+            this.map.DoubleClick += new System.EventHandler(this.map_MouseDoubleClick);
             // 
             // clearPoint
             // 
