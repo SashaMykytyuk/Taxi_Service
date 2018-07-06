@@ -14,7 +14,12 @@ namespace BLL
         }
         public ICollection<Car> GetAllCars()
         {
-            return _dal.Get<Car>();
+            List<Car> cars = new List<Car>();
+            foreach(var elem in _dal.Get<Car>())
+            {
+                cars.Add(new Car() { Id = elem.Id, Age = elem.Age, ClassOfCar = elem.ClassOfCar, Marka = elem.Marka, Volume = elem.Volume });
+            }
+            return cars;
         }
         public string CreateReport(int idDriver)
         {
@@ -101,11 +106,32 @@ namespace BLL
         }
         public ICollection<Order> GetOrders(int idDriver)
         {
-            return _dal.Get<Order>().Where(elem => elem.Driver.Id == idDriver).ToList();
+            List<Order> orders = new List<Order>();
+            foreach(var x in _dal.Get<Order>().Where(elem => elem.Driver.Id == idDriver).ToList())
+            {
+                orders.Add(new Order()
+                {
+                    Id = x.Id,
+                    ClassOfCar = x.ClassOfCar,
+                    Comment = x.Comment,
+                    Done = x.Done,
+                    KM = x.KM,
+                    Money = x.Money,
+                    LocationFrom = new Location() { Lat = x.LocationFrom.Lat, Lng = x.LocationFrom.Lng, Place = x.LocationFrom.Place },
+                    LocationTo = new Location() { Place = x.LocationTo.Place, Lng = x.LocationTo.Lng, Lat = x.LocationTo.Lat },
+                    Client = new Client() { FirstName = x.Client.FirstName, SecondName = x.Client.SecondName }
+                });
+            }
+            return orders;
         }
         public ICollection<Report> GetReports(int idDriver)
         {
-            return _dal.Get<Report>().Where(elem => elem.Driver.Id == idDriver).ToList();
+            List<Report> reports = new List<Report>();
+            foreach(var elem in _dal.Get<Report>().Where(elem => elem.Driver.Id == idDriver).ToList())
+            {
+                reports.Add(new Report() { Id= elem.Id, Date = elem.Date, KM = elem.KM, Money = elem.Money });
+            }
+            return reports;
         }
         public string ChangeInfo(int idDriver, Changes change, string param)
         {
@@ -115,6 +141,8 @@ namespace BLL
             switch (change)
             {
                 case Changes.Email:
+                    if (_dal.Get<Driver>().FirstOrDefault(elem => elem.Email == param) != null)
+                        return "This email is in db";
                     try
                     {
                         driver.Email = GenericParams.SetEmail(param);
@@ -168,6 +196,17 @@ namespace BLL
             {
                 return ex.Message;
             }
+        }
+        public bool SendMessageToDispatcher(Driver driver, string Title, string Message)
+        {
+            bool isSend;
+            foreach (var elem in _dal.Get<Dispatcher>().ToList())
+            {
+                isSend = SendMessage(driver, elem.Email, Title, Message);
+                if (isSend == true)
+                    return true;
+            }
+            return false;
         }
     }
 }

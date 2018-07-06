@@ -128,6 +128,7 @@ namespace BLL
             {
                 drivers.Add(new Driver()
                 {
+                    Id = elem.Id,
                     Email = elem.Email,
                     FirstName = elem.FirstName,
                     SecondName = elem.SecondName,
@@ -137,24 +138,51 @@ namespace BLL
         }
         public ICollection<Client> GetAllClients()
         {
-            return _dal.Get<Client>();
+            List<Client> clients = new List<Client>();
+            foreach(var elem in _dal.Get<Client>())
+            {
+                clients.Add(new Client() { Id = elem.Id, Email = elem.Email, FirstName = elem.FirstName, SecondName = elem.SecondName});
+            }
+            return clients;
         }
         public ICollection<Car> GetAllCars()
         {
             List<Car> cars = new List<Car>();
             foreach(var elem in _dal.Get<Car>())
             {
-                cars.Add(new Car() { Age = elem.Age, ClassOfCar = elem.ClassOfCar, Marka = elem.Marka, Volume = elem.Volume });
+                cars.Add(new Car() {Id = elem.Id, Age = elem.Age, ClassOfCar = elem.ClassOfCar, Marka = elem.Marka, Volume = elem.Volume });
             }
             return cars;
         }
         public ICollection<Report> GetAllReports()
         {
-            return _dal.Get<Report>();
+            List<Report> reports = new List<Report>();
+            foreach (var elem in _dal.Get<Report>())
+            {
+                reports.Add(new Report() { Date = elem.Date, Id = elem.Id, KM = elem.KM, Money = elem.Money, Driver = new Driver() { FirstName = elem.Driver.FirstName, SecondName = elem.Driver.SecondName, Id = elem.Id } });
+            }
+            return reports;
         }
         public ICollection<Order> GetOrders()
         {
-            return _dal.Get<Order>();
+            List<Order> orders = new List<Order>();
+            foreach(var elem in _dal.Get<Order>())
+            {
+                orders.Add(new Order()
+                {
+                    ClassOfCar = elem.ClassOfCar,
+                    Comment = elem.Comment,
+                    Done = elem.Done,
+                    KM = elem.KM,
+                    Money = elem.Money,
+                   // Client = new Client() { Id = elem.Id, FirstName = elem.Client.FirstName, SecondName = elem.Client.SecondName },
+                   // Driver = new Driver() { Id = elem.Id, FirstName = elem.Driver.FirstName, SecondName = elem.Driver.SecondName },
+                   // Id = elem.Id,
+                //    LocationFrom = new Location() { Lat = elem.LocationFrom.Lat, Lng = elem.LocationFrom.Lng, Place = elem.LocationFrom.Place },
+                //    LocationTo = new Location() { Lat = elem.LocationTo.Lat, Lng = elem.LocationTo.Lng, Place = elem.LocationTo.Place }
+                });
+            }
+            return orders;
         }
         public string ChangeDriverForOrder(int idOrder, int idDriver)
         {
@@ -166,6 +194,11 @@ namespace BLL
             Driver driver = _dal.Get<Driver>().FirstOrDefault(elem => elem.Id == idDriver);
             if (driver == null)
                 return "Choose driver";
+            if(driver.Car.ClassOfCar != order.ClassOfCar)
+            {
+                order.ClassOfCar = driver.Car.ClassOfCar;
+                order.Money = GetPrice(order.KM, order.ClassOfCar);
+            }
             order.Driver = driver;
             driver.Location = null;
             try
@@ -178,7 +211,7 @@ namespace BLL
             {
                 return ex.Message;
             }
-        }
+        } 
         public string OrderDone(int  IdOrder)
         {
             Order order = _dal.Get<Order>().FirstOrDefault(elem => elem.Id == IdOrder);
@@ -188,11 +221,8 @@ namespace BLL
                 return "Choose order";
             if (order.Done == true)
                 return "";
-            if(order.Driver == null)
-            {
-                order.Done = true;
-                return "";
-            }
+            if(order.Driver == null) 
+                return "Not choose driver";
 
             order.Driver.KM += order.KM;
             order.Driver.Money += order.Money;
@@ -234,15 +264,6 @@ namespace BLL
                 return ex.Message;
             }
             return "";
-        }
-        public bool ChangeOrder(Order order)
-        {
-            try
-            {
-                _dal.ChangeOrder(order.Id, order);
-                return true;
-            }
-            catch { return false; }
         }
         public string ChangeInfo(int idDispatcher, Changes change, string param)
         {
@@ -310,5 +331,10 @@ namespace BLL
         {
             //_dal.ChangePrice()
         }
+        private double GetPrice(double km, ClassesOfCar classes)
+        {
+            return _dal.Get<Price>().FirstOrDefault(elem => elem.ClassOfCar == classes).Money * km;
+        }
+
     }
 }

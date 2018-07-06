@@ -1,92 +1,179 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/DAL" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/DAL" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:complexType name="Dispatcher">
-    <xs:complexContent mixed="false">
-      <xs:extension base="tns:AbstractPerson">
-        <xs:sequence />
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:element name="Dispatcher" nillable="true" type="tns:Dispatcher" />
-  <xs:complexType name="AbstractPerson">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="FirstName" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Id" type="xs:int" />
-      <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="SecondName" nillable="true" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="AbstractPerson" nillable="true" type="tns:AbstractPerson" />
-  <xs:complexType name="Driver">
-    <xs:complexContent mixed="false">
-      <xs:extension base="tns:AbstractPerson">
-        <xs:sequence>
-          <xs:element minOccurs="0" name="Car" nillable="true" type="tns:Car" />
-          <xs:element minOccurs="0" name="KM" type="xs:double" />
-          <xs:element minOccurs="0" name="Location" nillable="true" type="tns:Location" />
-          <xs:element minOccurs="0" name="Money" type="xs:double" />
-          <xs:element minOccurs="0" name="Reports" nillable="true" type="tns:ArrayOfReport" />
-        </xs:sequence>
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:element name="Driver" nillable="true" type="tns:Driver" />
-  <xs:complexType name="Car">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="Age" type="xs:int" />
-      <xs:element minOccurs="0" name="ClassOfCar" type="tns:ClassesOfCar" />
-      <xs:element minOccurs="0" name="Drivers" nillable="true" type="tns:ArrayOfDriver" />
-      <xs:element minOccurs="0" name="Id" type="xs:int" />
-      <xs:element minOccurs="0" name="Marka" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Volume" type="xs:int" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="Car" nillable="true" type="tns:Car" />
-  <xs:simpleType name="ClassesOfCar">
-    <xs:restriction base="xs:string">
-      <xs:enumeration value="For4Person" />
-      <xs:enumeration value="For8Person" />
-      <xs:enumeration value="ForVantazh" />
-    </xs:restriction>
-  </xs:simpleType>
-  <xs:element name="ClassesOfCar" nillable="true" type="tns:ClassesOfCar" />
-  <xs:complexType name="ArrayOfDriver">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Driver" nillable="true" type="tns:Driver" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfDriver" nillable="true" type="tns:ArrayOfDriver" />
-  <xs:complexType name="Location">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="Drivers" nillable="true" type="tns:ArrayOfDriver" />
-      <xs:element minOccurs="0" name="Id" type="xs:int" />
-      <xs:element minOccurs="0" name="Lat" type="xs:double" />
-      <xs:element minOccurs="0" name="Lng" type="xs:double" />
-      <xs:element minOccurs="0" name="Place" nillable="true" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="Location" nillable="true" type="tns:Location" />
-  <xs:complexType name="ArrayOfReport">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Report" nillable="true" type="tns:Report" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfReport" nillable="true" type="tns:ArrayOfReport" />
-  <xs:complexType name="Report">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="Date" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="Driver" nillable="true" type="tns:Driver" />
-      <xs:element minOccurs="0" name="Id" type="xs:int" />
-      <xs:element minOccurs="0" name="KM" type="xs:double" />
-      <xs:element minOccurs="0" name="Money" type="xs:double" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="Report" nillable="true" type="tns:Report" />
-  <xs:complexType name="ArrayOfCar">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Car" nillable="true" type="tns:Car" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfCar" nillable="true" type="tns:ArrayOfCar" />
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:49999/Service3.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/DAL" />
+  <xs:import schemaLocation="http://localhost:49999/Service3.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/BLL" />
+  <xs:element name="Authorization">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AuthorizationResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="AuthorizationResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AboutDispatcher">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AboutDispatcherResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/DAL" minOccurs="0" name="AboutDispatcherResult" nillable="true" type="q1:Dispatcher" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Registration">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/DAL" minOccurs="0" name="dispatcher" nillable="true" type="q2:Dispatcher" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RegistrationResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="RegistrationResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateDriver">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/DAL" minOccurs="0" name="driver" nillable="true" type="q3:Driver" />
+        <xs:element minOccurs="0" name="idCar" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateDriverResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CreateDriverResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateCar">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/DAL" minOccurs="0" name="car" nillable="true" type="q4:Car" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateCarResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CreateCarResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AllCars">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AllCarsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/DAL" minOccurs="0" name="AllCarsResult" nillable="true" type="q5:ArrayOfCar" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AllDrivers">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AllDriversResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/DAL" minOccurs="0" name="AllDriversResult" nillable="true" type="q6:ArrayOfDriver" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AllClients">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AllClientsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/DAL" minOccurs="0" name="AllClientsResult" nillable="true" type="q7:ArrayOfClient" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AllOrders">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AllOrdersResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/DAL" minOccurs="0" name="AllOrdersResult" nillable="true" type="q8:ArrayOfOrder" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="OrderDone">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="idOrder" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="OrderDoneResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="OrderDoneResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ChangeDriver">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="idOrder" type="xs:int" />
+        <xs:element minOccurs="0" name="idDriver" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ChangeDriverResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ChangeDriverResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AllReports">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AllReportsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/DAL" minOccurs="0" name="AllReportsResult" nillable="true" type="q9:ArrayOfReport" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ChangeInfo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/BLL" minOccurs="0" name="changes" type="q10:Changes" />
+        <xs:element minOccurs="0" name="param" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ChangeInfoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ChangeInfoResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

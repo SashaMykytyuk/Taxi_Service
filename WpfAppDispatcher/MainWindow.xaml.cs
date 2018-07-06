@@ -42,7 +42,7 @@ namespace WpfAppDispatcher
 
         private void Registration_Click(object sender, RoutedEventArgs e)
         {
-            Registration window = new Registration();
+            Registration window = new Registration(true);
             window.ShowDialog();
         }
     }

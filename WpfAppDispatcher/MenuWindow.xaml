@@ -17,14 +17,14 @@
                 <MenuItem Header="All drivers" Click="AllDrivers_Click"/>
             </MenuItem>
             <MenuItem Header="Orders and reports" >
-                <MenuItem Header="All orders" />
+                <MenuItem Header="All orders" Click="AllOrders_Click"/>
                 <MenuItem Header="All reports" />
             </MenuItem>
             <MenuItem Header="Clients">
-                <MenuItem Header="All clients" />
+                <MenuItem Header="All clients" Click="AllClients_Click" />
             </MenuItem>
             <MenuItem Header="Create car" Click="CreateCar_Click"/>
-            <MenuItem Header="Change info" />
+            <MenuItem Header="Change info" Click="ChangeInfo_Click" />
             <MenuItem Header="Log out"/>
         </Menu>
     </Grid>

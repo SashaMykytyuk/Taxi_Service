@@ -1,4 +1,5 @@
-﻿using DAL;
+﻿using BLL;
+using DAL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,5 +26,17 @@ namespace WcfService
         ICollection<Car> AllCars();
         [OperationContract]
         ICollection<Driver> AllDrivers();
+        [OperationContract]
+        ICollection<Client> AllClients();
+        [OperationContract]
+        ICollection<Order> AllOrders();
+        [OperationContract]
+        string OrderDone(int idOrder);
+        [OperationContract]
+        string ChangeDriver(int idOrder, int idDriver);
+        [OperationContract]
+        ICollection<Report> AllReports();
+        [OperationContract]
+        string ChangeInfo(Changes changes, string param);
     }
 }

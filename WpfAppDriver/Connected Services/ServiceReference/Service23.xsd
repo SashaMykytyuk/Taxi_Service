@@ -1,23 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/DAL" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/DAL" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:complexType name="Dispatcher">
-    <xs:complexContent mixed="false">
-      <xs:extension base="tns:AbstractPerson">
-        <xs:sequence />
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:element name="Dispatcher" nillable="true" type="tns:Dispatcher" />
-  <xs:complexType name="AbstractPerson">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="FirstName" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Id" type="xs:int" />
-      <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="SecondName" nillable="true" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="AbstractPerson" nillable="true" type="tns:AbstractPerson" />
   <xs:complexType name="Driver">
     <xs:complexContent mixed="false">
       <xs:extension base="tns:AbstractPerson">
@@ -32,6 +14,16 @@
     </xs:complexContent>
   </xs:complexType>
   <xs:element name="Driver" nillable="true" type="tns:Driver" />
+  <xs:complexType name="AbstractPerson">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FirstName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SecondName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AbstractPerson" nillable="true" type="tns:AbstractPerson" />
   <xs:complexType name="Car">
     <xs:sequence>
       <xs:element minOccurs="0" name="Age" type="xs:int" />
@@ -89,20 +81,6 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ArrayOfCar" nillable="true" type="tns:ArrayOfCar" />
-  <xs:complexType name="ArrayOfClient">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Client" nillable="true" type="tns:Client" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfClient" nillable="true" type="tns:ArrayOfClient" />
-  <xs:complexType name="Client">
-    <xs:complexContent mixed="false">
-      <xs:extension base="tns:AbstractPerson">
-        <xs:sequence />
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:element name="Client" nillable="true" type="tns:Client" />
   <xs:complexType name="ArrayOfOrder">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="Order" nillable="true" type="tns:Order" />
@@ -124,4 +102,12 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Order" nillable="true" type="tns:Order" />
+  <xs:complexType name="Client">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:AbstractPerson">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Client" nillable="true" type="tns:Client" />
 </xs:schema>

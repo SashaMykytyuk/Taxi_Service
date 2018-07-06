@@ -41,5 +41,23 @@ namespace WpfAppDispatcher
             AllDriversWindow window = new AllDriversWindow();
             window.ShowDialog();
         }
+
+        private void ChangeInfo_Click(object sender, RoutedEventArgs e)
+        {
+            Registration window = new Registration(false);
+            window.ShowDialog();
+        }
+
+        private void AllClients_Click(object sender, RoutedEventArgs e)
+        {
+            AllPersonsWindow window = new AllPersonsWindow();
+            window.ShowDialog();
+        }
+
+        private void AllOrders_Click(object sender, RoutedEventArgs e)
+        {
+            AllOrdersWindow window = new AllOrdersWindow();
+            window.ShowDialog();
+        }
     }
 }

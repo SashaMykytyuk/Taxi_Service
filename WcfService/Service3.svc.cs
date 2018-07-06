@@ -32,9 +32,24 @@ namespace WcfService
             return DispatcherBll.GetAllCars();
         }
 
+        public ICollection<Client> AllClients()
+        {
+            return DispatcherBll.GetAllClients();
+        }
+
         public ICollection<Driver> AllDrivers()
         {
             return DispatcherBll.GetAllDrivers();
+        }
+
+        public ICollection<Order> AllOrders()
+        {
+            return DispatcherBll.GetOrders();
+        }
+
+        public ICollection<Report> AllReports()
+        {
+            return DispatcherBll.GetAllReports();
         }
 
         public string Authorization(string Email, string Password)
@@ -43,6 +58,16 @@ namespace WcfService
             if (dispatcher == null)
                 return "Wrong email or password";
             else return "";
+        }
+
+        public string ChangeDriver(int idOrder, int idDriver)
+        {
+            return DispatcherBll.ChangeDriverForOrder(idOrder, idDriver);
+        }
+
+        public string ChangeInfo(Changes changes, string param)
+        {
+            return DispatcherBll.ChangeInfo(dispatcher.Id, changes, param);
         }
 
         public string CreateCar(Car car)
@@ -55,6 +80,10 @@ namespace WcfService
             return DispatcherBll.CreateDriver(driver, idCar);
         }
 
+        public string OrderDone(int idOrder)
+        {
+            return DispatcherBll.OrderDone(idOrder);
+        }
 
         public string Registration(Dispatcher dispatcher)
         {

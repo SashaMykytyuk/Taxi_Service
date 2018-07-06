@@ -9,13 +9,13 @@
     <Grid>
         <StackPanel>
             <Label Content="Email: " FontSize="20" FontWeight="Black"/>
-            <TextBox x:Name="Email" FontSize="15" FontWeight="Light"/>
+            <TextBox x:Name="Email" TextChanged="Email_TextChanged" FontSize="15" FontWeight="Light"/>
             <Label Content="First Name: "  FontSize="20" FontWeight="Black"/>
-            <TextBox x:Name="FirstName" FontSize="15" FontWeight="Light" />
+            <TextBox x:Name="FN" TextChanged="FN_TextChanged" FontSize="15" FontWeight="Light" />
             <Label Content="Second Name: "  FontSize="20" FontWeight="Black"/>
-            <TextBox x:Name="SecondName" FontSize="15" FontWeight="Light"/>
+            <TextBox x:Name="SN" TextChanged="SN_TextChanged" FontSize="15" FontWeight="Light"/>
             <Label Content="Password: "  FontSize="20" FontWeight="Black" />
-            <PasswordBox x:Name="Password" FontSize="15" FontWeight="Light"/>
+            <PasswordBox x:Name="Password" PasswordChanged="Password_PasswordChanged" FontSize="15" FontWeight="Light"/>
             <Button Content="Save" Margin="70,30" FontSize="30" FontWeight="Bold" Click="Save_Click" />
         </StackPanel>
     </Grid>

@@ -25,8 +25,22 @@ namespace WpfAppDispatcher
         public AllDriversWindow()
         {
             InitializeComponent();
-            drivers = MainWindow.dispatcher.AllDrivers().ToList();
-            i = 0;
+            try
+            {
+                drivers = MainWindow.dispatcher.AllDrivers().ToList();
+                if (drivers.Count == 0)
+                {
+                    MessageBox.Show("Empty list or drivers");
+                    this.Close();
+                }
+                else
+                {
+                    i = 0;
+                    Show();
+
+                }
+            }
+            catch { }
         }
 
         void Show()

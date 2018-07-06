@@ -22,8 +22,20 @@ namespace WpfAppDriver
         public RegistrationWindow()
         {
             InitializeComponent();
+            Show();
         }
+        void Show()
+        {
+            Email.Text = MainWindow.driver.AboutDriver().Email;
+            FirstName.Text = MainWindow.driver.AboutDriver().FirstName;
+            SecondName.Text = MainWindow.driver.AboutDriver().SecondName;
+            Password.Password = MainWindow.driver.AboutDriver().Password;
 
+            ClassOfCar.Text = MainWindow.driver.AboutDriver().Car.ClassOfCar.ToString();
+            Volume.Text = MainWindow.driver.AboutDriver().Car.Volume.ToString();
+            Age.Text = MainWindow.driver.AboutDriver().Car.Age.ToString();
+            Marka.Text = MainWindow.driver.AboutDriver().Car.Marka;
+        }
         private void Save_Click(object sender, RoutedEventArgs e)
         {
             this.Close();

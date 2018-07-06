@@ -10,9 +10,9 @@
         <Grid>
             <StackPanel>
                 <Label Content="Email" FontSize="30" FontWeight="Bold" HorizontalContentAlignment="Center" />
-                <TextBox x:Name="Email" FontSize="30" />
+                <TextBox x:Name="Email" FontSize="30"  HorizontalContentAlignment="Center"/>
                 <Label Content="Password" FontSize="30" FontWeight="Bold" HorizontalContentAlignment="Center"  />
-                <PasswordBox x:Name="Password" FontSize="30" />
+                <PasswordBox x:Name="Password" FontSize="30" HorizontalContentAlignment="Center" />
                 <Button Content="Enter" FontSize="35" FontWeight="Bold" HorizontalContentAlignment="Center" Margin="70,20" Click="Enter_Click"  />
             </StackPanel>
         </Grid>

@@ -15,6 +15,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfAppClient", "WpfAppClien
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfAppDriver", "WpfAppDriver\WpfAppDriver.csproj", "{38F82074-2AAE-471C-A689-C3BB2594C468}"
+	ProjectSection(ProjectDependencies) = postProject
+		{1A62ADEF-600E-4CBE-AAE1-E54AFD4EDAD3} = {1A62ADEF-600E-4CBE-AAE1-E54AFD4EDAD3}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfAppDispatcher", "WpfAppDispatcher\WpfAppDispatcher.csproj", "{79C7938B-FAE0-450A-A9EC-0A1251B624E4}"
 	ProjectSection(ProjectDependencies) = postProject

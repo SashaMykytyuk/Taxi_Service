@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WpfAppDispatcher.ServiceReference {
+namespace WpfAppDriver.ServiceReference {
     using System.Runtime.Serialization;
     using System;
     
@@ -17,9 +17,8 @@ namespace WpfAppDispatcher.ServiceReference {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="AbstractPerson", Namespace="http://schemas.datacontract.org/2004/07/DAL")]
     [System.SerializableAttribute()]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(WpfAppDispatcher.ServiceReference.Driver))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(WpfAppDispatcher.ServiceReference.Client))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(WpfAppDispatcher.ServiceReference.Dispatcher))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(WpfAppDriver.ServiceReference.Client))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(WpfAppDriver.ServiceReference.Driver))]
     public partial class AbstractPerson : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
@@ -127,27 +126,34 @@ namespace WpfAppDispatcher.ServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Client", Namespace="http://schemas.datacontract.org/2004/07/DAL")]
+    [System.SerializableAttribute()]
+    public partial class Client : WpfAppDriver.ServiceReference.AbstractPerson {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Driver", Namespace="http://schemas.datacontract.org/2004/07/DAL")]
     [System.SerializableAttribute()]
-    public partial class Driver : WpfAppDispatcher.ServiceReference.AbstractPerson {
+    public partial class Driver : WpfAppDriver.ServiceReference.AbstractPerson {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private WpfAppDispatcher.ServiceReference.Car CarField;
+        private WpfAppDriver.ServiceReference.Car CarField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private double KMField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private WpfAppDispatcher.ServiceReference.Location LocationField;
+        private WpfAppDriver.ServiceReference.Location LocationField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private double MoneyField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private WpfAppDispatcher.ServiceReference.Report[] ReportsField;
+        private WpfAppDriver.ServiceReference.Report[] ReportsField;
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public WpfAppDispatcher.ServiceReference.Car Car {
+        public WpfAppDriver.ServiceReference.Car Car {
             get {
                 return this.CarField;
             }
@@ -173,7 +179,7 @@ namespace WpfAppDispatcher.ServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public WpfAppDispatcher.ServiceReference.Location Location {
+        public WpfAppDriver.ServiceReference.Location Location {
             get {
                 return this.LocationField;
             }
@@ -199,7 +205,7 @@ namespace WpfAppDispatcher.ServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public WpfAppDispatcher.ServiceReference.Report[] Reports {
+        public WpfAppDriver.ServiceReference.Report[] Reports {
             get {
                 return this.ReportsField;
             }
@@ -210,20 +216,6 @@ namespace WpfAppDispatcher.ServiceReference {
                 }
             }
         }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Client", Namespace="http://schemas.datacontract.org/2004/07/DAL")]
-    [System.SerializableAttribute()]
-    public partial class Client : WpfAppDispatcher.ServiceReference.AbstractPerson {
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Dispatcher", Namespace="http://schemas.datacontract.org/2004/07/DAL")]
-    [System.SerializableAttribute()]
-    public partial class Dispatcher : WpfAppDispatcher.ServiceReference.AbstractPerson {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -239,10 +231,10 @@ namespace WpfAppDispatcher.ServiceReference {
         private int AgeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private WpfAppDispatcher.ServiceReference.ClassesOfCar ClassOfCarField;
+        private WpfAppDriver.ServiceReference.ClassesOfCar ClassOfCarField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private WpfAppDispatcher.ServiceReference.Driver[] DriversField;
+        private WpfAppDriver.ServiceReference.Driver[] DriversField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int IdField;
@@ -277,7 +269,7 @@ namespace WpfAppDispatcher.ServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public WpfAppDispatcher.ServiceReference.ClassesOfCar ClassOfCar {
+        public WpfAppDriver.ServiceReference.ClassesOfCar ClassOfCar {
             get {
                 return this.ClassOfCarField;
             }
@@ -290,7 +282,7 @@ namespace WpfAppDispatcher.ServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public WpfAppDispatcher.ServiceReference.Driver[] Drivers {
+        public WpfAppDriver.ServiceReference.Driver[] Drivers {
             get {
                 return this.DriversField;
             }
@@ -361,7 +353,7 @@ namespace WpfAppDispatcher.ServiceReference {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private WpfAppDispatcher.ServiceReference.Driver[] DriversField;
+        private WpfAppDriver.ServiceReference.Driver[] DriversField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int IdField;
@@ -386,7 +378,7 @@ namespace WpfAppDispatcher.ServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public WpfAppDispatcher.ServiceReference.Driver[] Drivers {
+        public WpfAppDriver.ServiceReference.Driver[] Drivers {
             get {
                 return this.DriversField;
             }
@@ -473,7 +465,7 @@ namespace WpfAppDispatcher.ServiceReference {
         private System.DateTime DateField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private WpfAppDispatcher.ServiceReference.Driver DriverField;
+        private WpfAppDriver.ServiceReference.Driver DriverField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int IdField;
@@ -508,7 +500,7 @@ namespace WpfAppDispatcher.ServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public WpfAppDispatcher.ServiceReference.Driver Driver {
+        public WpfAppDriver.ServiceReference.Driver Driver {
             get {
                 return this.DriverField;
             }
@@ -593,10 +585,10 @@ namespace WpfAppDispatcher.ServiceReference {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private WpfAppDispatcher.ServiceReference.ClassesOfCar ClassOfCarField;
+        private WpfAppDriver.ServiceReference.ClassesOfCar ClassOfCarField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private WpfAppDispatcher.ServiceReference.Client ClientField;
+        private WpfAppDriver.ServiceReference.Client ClientField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string CommentField;
@@ -605,7 +597,7 @@ namespace WpfAppDispatcher.ServiceReference {
         private bool DoneField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private WpfAppDispatcher.ServiceReference.Driver DriverField;
+        private WpfAppDriver.ServiceReference.Driver DriverField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int IdField;
@@ -614,10 +606,10 @@ namespace WpfAppDispatcher.ServiceReference {
         private double KMField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private WpfAppDispatcher.ServiceReference.Location LocationFromField;
+        private WpfAppDriver.ServiceReference.Location LocationFromField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private WpfAppDispatcher.ServiceReference.Location LocationToField;
+        private WpfAppDriver.ServiceReference.Location LocationToField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private double MoneyField;
@@ -633,7 +625,7 @@ namespace WpfAppDispatcher.ServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public WpfAppDispatcher.ServiceReference.ClassesOfCar ClassOfCar {
+        public WpfAppDriver.ServiceReference.ClassesOfCar ClassOfCar {
             get {
                 return this.ClassOfCarField;
             }
@@ -646,7 +638,7 @@ namespace WpfAppDispatcher.ServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public WpfAppDispatcher.ServiceReference.Client Client {
+        public WpfAppDriver.ServiceReference.Client Client {
             get {
                 return this.ClientField;
             }
@@ -685,7 +677,7 @@ namespace WpfAppDispatcher.ServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public WpfAppDispatcher.ServiceReference.Driver Driver {
+        public WpfAppDriver.ServiceReference.Driver Driver {
             get {
                 return this.DriverField;
             }
@@ -724,7 +716,7 @@ namespace WpfAppDispatcher.ServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public WpfAppDispatcher.ServiceReference.Location LocationFrom {
+        public WpfAppDriver.ServiceReference.Location LocationFrom {
             get {
                 return this.LocationFromField;
             }
@@ -737,7 +729,7 @@ namespace WpfAppDispatcher.ServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public WpfAppDispatcher.ServiceReference.Location LocationTo {
+        public WpfAppDriver.ServiceReference.Location LocationTo {
             get {
                 return this.LocationToField;
             }
@@ -790,112 +782,76 @@ namespace WpfAppDispatcher.ServiceReference {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference.IServiceDispatcher")]
-    public interface IServiceDispatcher {
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference.IServiceDriver")]
+    public interface IServiceDriver {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceDispatcher/Authorization", ReplyAction="http://tempuri.org/IServiceDispatcher/AuthorizationResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceDriver/Authorization", ReplyAction="http://tempuri.org/IServiceDriver/AuthorizationResponse")]
         string Authorization(string Email, string Password);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceDispatcher/Authorization", ReplyAction="http://tempuri.org/IServiceDispatcher/AuthorizationResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceDriver/Authorization", ReplyAction="http://tempuri.org/IServiceDriver/AuthorizationResponse")]
         System.Threading.Tasks.Task<string> AuthorizationAsync(string Email, string Password);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceDispatcher/AboutDispatcher", ReplyAction="http://tempuri.org/IServiceDispatcher/AboutDispatcherResponse")]
-        WpfAppDispatcher.ServiceReference.Dispatcher AboutDispatcher();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceDriver/AboutDriver", ReplyAction="http://tempuri.org/IServiceDriver/AboutDriverResponse")]
+        WpfAppDriver.ServiceReference.Driver AboutDriver();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceDispatcher/AboutDispatcher", ReplyAction="http://tempuri.org/IServiceDispatcher/AboutDispatcherResponse")]
-        System.Threading.Tasks.Task<WpfAppDispatcher.ServiceReference.Dispatcher> AboutDispatcherAsync();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceDriver/AboutDriver", ReplyAction="http://tempuri.org/IServiceDriver/AboutDriverResponse")]
+        System.Threading.Tasks.Task<WpfAppDriver.ServiceReference.Driver> AboutDriverAsync();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceDispatcher/Registration", ReplyAction="http://tempuri.org/IServiceDispatcher/RegistrationResponse")]
-        string Registration(WpfAppDispatcher.ServiceReference.Dispatcher dispatcher);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceDriver/AllCars", ReplyAction="http://tempuri.org/IServiceDriver/AllCarsResponse")]
+        WpfAppDriver.ServiceReference.Car[] AllCars();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceDispatcher/Registration", ReplyAction="http://tempuri.org/IServiceDispatcher/RegistrationResponse")]
-        System.Threading.Tasks.Task<string> RegistrationAsync(WpfAppDispatcher.ServiceReference.Dispatcher dispatcher);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceDriver/AllCars", ReplyAction="http://tempuri.org/IServiceDriver/AllCarsResponse")]
+        System.Threading.Tasks.Task<WpfAppDriver.ServiceReference.Car[]> AllCarsAsync();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceDispatcher/CreateDriver", ReplyAction="http://tempuri.org/IServiceDispatcher/CreateDriverResponse")]
-        string CreateDriver(WpfAppDispatcher.ServiceReference.Driver driver, int idCar);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceDriver/AllOrders", ReplyAction="http://tempuri.org/IServiceDriver/AllOrdersResponse")]
+        WpfAppDriver.ServiceReference.Order[] AllOrders();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceDispatcher/CreateDriver", ReplyAction="http://tempuri.org/IServiceDispatcher/CreateDriverResponse")]
-        System.Threading.Tasks.Task<string> CreateDriverAsync(WpfAppDispatcher.ServiceReference.Driver driver, int idCar);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceDriver/AllOrders", ReplyAction="http://tempuri.org/IServiceDriver/AllOrdersResponse")]
+        System.Threading.Tasks.Task<WpfAppDriver.ServiceReference.Order[]> AllOrdersAsync();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceDispatcher/CreateCar", ReplyAction="http://tempuri.org/IServiceDispatcher/CreateCarResponse")]
-        string CreateCar(WpfAppDispatcher.ServiceReference.Car car);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceDriver/AllReports", ReplyAction="http://tempuri.org/IServiceDriver/AllReportsResponse")]
+        WpfAppDriver.ServiceReference.Report[] AllReports();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceDispatcher/CreateCar", ReplyAction="http://tempuri.org/IServiceDispatcher/CreateCarResponse")]
-        System.Threading.Tasks.Task<string> CreateCarAsync(WpfAppDispatcher.ServiceReference.Car car);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceDriver/AllReports", ReplyAction="http://tempuri.org/IServiceDriver/AllReportsResponse")]
+        System.Threading.Tasks.Task<WpfAppDriver.ServiceReference.Report[]> AllReportsAsync();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceDispatcher/AllCars", ReplyAction="http://tempuri.org/IServiceDispatcher/AllCarsResponse")]
-        WpfAppDispatcher.ServiceReference.Car[] AllCars();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceDriver/ChangeInfo", ReplyAction="http://tempuri.org/IServiceDriver/ChangeInfoResponse")]
+        string ChangeInfo(WpfAppDriver.ServiceReference.Changes changes, string param);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceDispatcher/AllCars", ReplyAction="http://tempuri.org/IServiceDispatcher/AllCarsResponse")]
-        System.Threading.Tasks.Task<WpfAppDispatcher.ServiceReference.Car[]> AllCarsAsync();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceDriver/ChangeInfo", ReplyAction="http://tempuri.org/IServiceDriver/ChangeInfoResponse")]
+        System.Threading.Tasks.Task<string> ChangeInfoAsync(WpfAppDriver.ServiceReference.Changes changes, string param);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceDispatcher/AllDrivers", ReplyAction="http://tempuri.org/IServiceDispatcher/AllDriversResponse")]
-        WpfAppDispatcher.ServiceReference.Driver[] AllDrivers();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceDriver/WriteToDispatcher", ReplyAction="http://tempuri.org/IServiceDriver/WriteToDispatcherResponse")]
+        string WriteToDispatcher(string Title, string Message);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceDispatcher/AllDrivers", ReplyAction="http://tempuri.org/IServiceDispatcher/AllDriversResponse")]
-        System.Threading.Tasks.Task<WpfAppDispatcher.ServiceReference.Driver[]> AllDriversAsync();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceDispatcher/AllClients", ReplyAction="http://tempuri.org/IServiceDispatcher/AllClientsResponse")]
-        WpfAppDispatcher.ServiceReference.Client[] AllClients();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceDispatcher/AllClients", ReplyAction="http://tempuri.org/IServiceDispatcher/AllClientsResponse")]
-        System.Threading.Tasks.Task<WpfAppDispatcher.ServiceReference.Client[]> AllClientsAsync();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceDispatcher/AllOrders", ReplyAction="http://tempuri.org/IServiceDispatcher/AllOrdersResponse")]
-        WpfAppDispatcher.ServiceReference.Order[] AllOrders();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceDispatcher/AllOrders", ReplyAction="http://tempuri.org/IServiceDispatcher/AllOrdersResponse")]
-        System.Threading.Tasks.Task<WpfAppDispatcher.ServiceReference.Order[]> AllOrdersAsync();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceDispatcher/OrderDone", ReplyAction="http://tempuri.org/IServiceDispatcher/OrderDoneResponse")]
-        string OrderDone(int idOrder);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceDispatcher/OrderDone", ReplyAction="http://tempuri.org/IServiceDispatcher/OrderDoneResponse")]
-        System.Threading.Tasks.Task<string> OrderDoneAsync(int idOrder);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceDispatcher/ChangeDriver", ReplyAction="http://tempuri.org/IServiceDispatcher/ChangeDriverResponse")]
-        string ChangeDriver(int idOrder, int idDriver);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceDispatcher/ChangeDriver", ReplyAction="http://tempuri.org/IServiceDispatcher/ChangeDriverResponse")]
-        System.Threading.Tasks.Task<string> ChangeDriverAsync(int idOrder, int idDriver);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceDispatcher/AllReports", ReplyAction="http://tempuri.org/IServiceDispatcher/AllReportsResponse")]
-        WpfAppDispatcher.ServiceReference.Report[] AllReports();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceDispatcher/AllReports", ReplyAction="http://tempuri.org/IServiceDispatcher/AllReportsResponse")]
-        System.Threading.Tasks.Task<WpfAppDispatcher.ServiceReference.Report[]> AllReportsAsync();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceDispatcher/ChangeInfo", ReplyAction="http://tempuri.org/IServiceDispatcher/ChangeInfoResponse")]
-        string ChangeInfo(WpfAppDispatcher.ServiceReference.Changes changes, string param);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceDispatcher/ChangeInfo", ReplyAction="http://tempuri.org/IServiceDispatcher/ChangeInfoResponse")]
-        System.Threading.Tasks.Task<string> ChangeInfoAsync(WpfAppDispatcher.ServiceReference.Changes changes, string param);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceDriver/WriteToDispatcher", ReplyAction="http://tempuri.org/IServiceDriver/WriteToDispatcherResponse")]
+        System.Threading.Tasks.Task<string> WriteToDispatcherAsync(string Title, string Message);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IServiceDispatcherChannel : WpfAppDispatcher.ServiceReference.IServiceDispatcher, System.ServiceModel.IClientChannel {
+    public interface IServiceDriverChannel : WpfAppDriver.ServiceReference.IServiceDriver, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class ServiceDispatcherClient : System.ServiceModel.ClientBase<WpfAppDispatcher.ServiceReference.IServiceDispatcher>, WpfAppDispatcher.ServiceReference.IServiceDispatcher {
+    public partial class ServiceDriverClient : System.ServiceModel.ClientBase<WpfAppDriver.ServiceReference.IServiceDriver>, WpfAppDriver.ServiceReference.IServiceDriver {
         
-        public ServiceDispatcherClient() {
+        public ServiceDriverClient() {
         }
         
-        public ServiceDispatcherClient(string endpointConfigurationName) : 
+        public ServiceDriverClient(string endpointConfigurationName) : 
                 base(endpointConfigurationName) {
         }
         
-        public ServiceDispatcherClient(string endpointConfigurationName, string remoteAddress) : 
+        public ServiceDriverClient(string endpointConfigurationName, string remoteAddress) : 
                 base(endpointConfigurationName, remoteAddress) {
         }
         
-        public ServiceDispatcherClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+        public ServiceDriverClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(endpointConfigurationName, remoteAddress) {
         }
         
-        public ServiceDispatcherClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+        public ServiceDriverClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
         }
         
@@ -907,100 +863,52 @@ namespace WpfAppDispatcher.ServiceReference {
             return base.Channel.AuthorizationAsync(Email, Password);
         }
         
-        public WpfAppDispatcher.ServiceReference.Dispatcher AboutDispatcher() {
-            return base.Channel.AboutDispatcher();
+        public WpfAppDriver.ServiceReference.Driver AboutDriver() {
+            return base.Channel.AboutDriver();
         }
         
-        public System.Threading.Tasks.Task<WpfAppDispatcher.ServiceReference.Dispatcher> AboutDispatcherAsync() {
-            return base.Channel.AboutDispatcherAsync();
+        public System.Threading.Tasks.Task<WpfAppDriver.ServiceReference.Driver> AboutDriverAsync() {
+            return base.Channel.AboutDriverAsync();
         }
         
-        public string Registration(WpfAppDispatcher.ServiceReference.Dispatcher dispatcher) {
-            return base.Channel.Registration(dispatcher);
-        }
-        
-        public System.Threading.Tasks.Task<string> RegistrationAsync(WpfAppDispatcher.ServiceReference.Dispatcher dispatcher) {
-            return base.Channel.RegistrationAsync(dispatcher);
-        }
-        
-        public string CreateDriver(WpfAppDispatcher.ServiceReference.Driver driver, int idCar) {
-            return base.Channel.CreateDriver(driver, idCar);
-        }
-        
-        public System.Threading.Tasks.Task<string> CreateDriverAsync(WpfAppDispatcher.ServiceReference.Driver driver, int idCar) {
-            return base.Channel.CreateDriverAsync(driver, idCar);
-        }
-        
-        public string CreateCar(WpfAppDispatcher.ServiceReference.Car car) {
-            return base.Channel.CreateCar(car);
-        }
-        
-        public System.Threading.Tasks.Task<string> CreateCarAsync(WpfAppDispatcher.ServiceReference.Car car) {
-            return base.Channel.CreateCarAsync(car);
-        }
-        
-        public WpfAppDispatcher.ServiceReference.Car[] AllCars() {
+        public WpfAppDriver.ServiceReference.Car[] AllCars() {
             return base.Channel.AllCars();
         }
         
-        public System.Threading.Tasks.Task<WpfAppDispatcher.ServiceReference.Car[]> AllCarsAsync() {
+        public System.Threading.Tasks.Task<WpfAppDriver.ServiceReference.Car[]> AllCarsAsync() {
             return base.Channel.AllCarsAsync();
         }
         
-        public WpfAppDispatcher.ServiceReference.Driver[] AllDrivers() {
-            return base.Channel.AllDrivers();
-        }
-        
-        public System.Threading.Tasks.Task<WpfAppDispatcher.ServiceReference.Driver[]> AllDriversAsync() {
-            return base.Channel.AllDriversAsync();
-        }
-        
-        public WpfAppDispatcher.ServiceReference.Client[] AllClients() {
-            return base.Channel.AllClients();
-        }
-        
-        public System.Threading.Tasks.Task<WpfAppDispatcher.ServiceReference.Client[]> AllClientsAsync() {
-            return base.Channel.AllClientsAsync();
-        }
-        
-        public WpfAppDispatcher.ServiceReference.Order[] AllOrders() {
+        public WpfAppDriver.ServiceReference.Order[] AllOrders() {
             return base.Channel.AllOrders();
         }
         
-        public System.Threading.Tasks.Task<WpfAppDispatcher.ServiceReference.Order[]> AllOrdersAsync() {
+        public System.Threading.Tasks.Task<WpfAppDriver.ServiceReference.Order[]> AllOrdersAsync() {
             return base.Channel.AllOrdersAsync();
         }
         
-        public string OrderDone(int idOrder) {
-            return base.Channel.OrderDone(idOrder);
-        }
-        
-        public System.Threading.Tasks.Task<string> OrderDoneAsync(int idOrder) {
-            return base.Channel.OrderDoneAsync(idOrder);
-        }
-        
-        public string ChangeDriver(int idOrder, int idDriver) {
-            return base.Channel.ChangeDriver(idOrder, idDriver);
-        }
-        
-        public System.Threading.Tasks.Task<string> ChangeDriverAsync(int idOrder, int idDriver) {
-            return base.Channel.ChangeDriverAsync(idOrder, idDriver);
-        }
-        
-        public WpfAppDispatcher.ServiceReference.Report[] AllReports() {
+        public WpfAppDriver.ServiceReference.Report[] AllReports() {
             return base.Channel.AllReports();
         }
         
-        public System.Threading.Tasks.Task<WpfAppDispatcher.ServiceReference.Report[]> AllReportsAsync() {
+        public System.Threading.Tasks.Task<WpfAppDriver.ServiceReference.Report[]> AllReportsAsync() {
             return base.Channel.AllReportsAsync();
         }
         
-        public string ChangeInfo(WpfAppDispatcher.ServiceReference.Changes changes, string param) {
+        public string ChangeInfo(WpfAppDriver.ServiceReference.Changes changes, string param) {
             return base.Channel.ChangeInfo(changes, param);
         }
         
-        public System.Threading.Tasks.Task<string> ChangeInfoAsync(WpfAppDispatcher.ServiceReference.Changes changes, string param) {
+        public System.Threading.Tasks.Task<string> ChangeInfoAsync(WpfAppDriver.ServiceReference.Changes changes, string param) {
             return base.Channel.ChangeInfoAsync(changes, param);
+        }
+        
+        public string WriteToDispatcher(string Title, string Message) {
+            return base.Channel.WriteToDispatcher(Title, Message);
+        }
+        
+        public System.Threading.Tasks.Task<string> WriteToDispatcherAsync(string Title, string Message) {
+            return base.Channel.WriteToDispatcherAsync(Title, Message);
         }
     }
 }

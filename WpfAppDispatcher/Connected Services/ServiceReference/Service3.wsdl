@@ -2,9 +2,10 @@
 <wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Service3" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <wsdl:types>
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
-      <xsd:import schemaLocation="http://localhost:49296/Service3.svc?xsd=xsd0" namespace="http://tempuri.org/" />
-      <xsd:import schemaLocation="http://localhost:49296/Service3.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
-      <xsd:import schemaLocation="http://localhost:49296/Service3.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/DAL" />
+      <xsd:import schemaLocation="http://localhost:49999/Service3.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:49999/Service3.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:49999/Service3.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/DAL" />
+      <xsd:import schemaLocation="http://localhost:49999/Service3.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/BLL" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IServiceDispatcher_Authorization_InputMessage">
@@ -49,6 +50,42 @@
   <wsdl:message name="IServiceDispatcher_AllDrivers_OutputMessage">
     <wsdl:part name="parameters" element="tns:AllDriversResponse" />
   </wsdl:message>
+  <wsdl:message name="IServiceDispatcher_AllClients_InputMessage">
+    <wsdl:part name="parameters" element="tns:AllClients" />
+  </wsdl:message>
+  <wsdl:message name="IServiceDispatcher_AllClients_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AllClientsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceDispatcher_AllOrders_InputMessage">
+    <wsdl:part name="parameters" element="tns:AllOrders" />
+  </wsdl:message>
+  <wsdl:message name="IServiceDispatcher_AllOrders_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AllOrdersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceDispatcher_OrderDone_InputMessage">
+    <wsdl:part name="parameters" element="tns:OrderDone" />
+  </wsdl:message>
+  <wsdl:message name="IServiceDispatcher_OrderDone_OutputMessage">
+    <wsdl:part name="parameters" element="tns:OrderDoneResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceDispatcher_ChangeDriver_InputMessage">
+    <wsdl:part name="parameters" element="tns:ChangeDriver" />
+  </wsdl:message>
+  <wsdl:message name="IServiceDispatcher_ChangeDriver_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ChangeDriverResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceDispatcher_AllReports_InputMessage">
+    <wsdl:part name="parameters" element="tns:AllReports" />
+  </wsdl:message>
+  <wsdl:message name="IServiceDispatcher_AllReports_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AllReportsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceDispatcher_ChangeInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:ChangeInfo" />
+  </wsdl:message>
+  <wsdl:message name="IServiceDispatcher_ChangeInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ChangeInfoResponse" />
+  </wsdl:message>
   <wsdl:portType name="IServiceDispatcher">
     <wsdl:operation name="Authorization">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceDispatcher/Authorization" message="tns:IServiceDispatcher_Authorization_InputMessage" />
@@ -77,6 +114,30 @@
     <wsdl:operation name="AllDrivers">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceDispatcher/AllDrivers" message="tns:IServiceDispatcher_AllDrivers_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServiceDispatcher/AllDriversResponse" message="tns:IServiceDispatcher_AllDrivers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AllClients">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceDispatcher/AllClients" message="tns:IServiceDispatcher_AllClients_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceDispatcher/AllClientsResponse" message="tns:IServiceDispatcher_AllClients_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AllOrders">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceDispatcher/AllOrders" message="tns:IServiceDispatcher_AllOrders_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceDispatcher/AllOrdersResponse" message="tns:IServiceDispatcher_AllOrders_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="OrderDone">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceDispatcher/OrderDone" message="tns:IServiceDispatcher_OrderDone_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceDispatcher/OrderDoneResponse" message="tns:IServiceDispatcher_OrderDone_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangeDriver">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceDispatcher/ChangeDriver" message="tns:IServiceDispatcher_ChangeDriver_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceDispatcher/ChangeDriverResponse" message="tns:IServiceDispatcher_ChangeDriver_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AllReports">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceDispatcher/AllReports" message="tns:IServiceDispatcher_AllReports_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceDispatcher/AllReportsResponse" message="tns:IServiceDispatcher_AllReports_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangeInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceDispatcher/ChangeInfo" message="tns:IServiceDispatcher_ChangeInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceDispatcher/ChangeInfoResponse" message="tns:IServiceDispatcher_ChangeInfo_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IServiceDispatcher" type="tns:IServiceDispatcher">
@@ -144,10 +205,64 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="AllClients">
+      <soap:operation soapAction="http://tempuri.org/IServiceDispatcher/AllClients" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AllOrders">
+      <soap:operation soapAction="http://tempuri.org/IServiceDispatcher/AllOrders" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OrderDone">
+      <soap:operation soapAction="http://tempuri.org/IServiceDispatcher/OrderDone" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeDriver">
+      <soap:operation soapAction="http://tempuri.org/IServiceDispatcher/ChangeDriver" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AllReports">
+      <soap:operation soapAction="http://tempuri.org/IServiceDispatcher/AllReports" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeInfo">
+      <soap:operation soapAction="http://tempuri.org/IServiceDispatcher/ChangeInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="Service3">
     <wsdl:port name="BasicHttpBinding_IServiceDispatcher" binding="tns:BasicHttpBinding_IServiceDispatcher">
-      <soap:address location="http://localhost:49296/Service3.svc" />
+      <soap:address location="http://localhost:49999/Service3.svc" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

@@ -73,6 +73,7 @@ namespace BLL
             {
                 orders.Add(new Order()
                 {
+                    Id = elem.Id,
                     ClassOfCar = elem.ClassOfCar,
                     KM = elem.KM,
                     Money = elem.Money,

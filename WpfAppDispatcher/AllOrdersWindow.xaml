@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfAppDispatcher"
         mc:Ignorable="d"
-        Title="AllOrdersWindow" Height="450" Width="800">
+        Title="AllOrdersWindow" Height="558.409" Width="904.318">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
@@ -31,6 +31,14 @@
             <TextBox IsEnabled="False" x:Name="KM"  FontSize="15" FontWeight="Regular" />
             <CheckBox Content="Done" Margin="10" x:Name="Done" FontSize="15"/>
             <Button Content="Change order" FontSize="20" FontWeight="Bold" Margin="50,10"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Button Content="Previous" Click="Previous_Click" FontSize="23" Margin="5" />
+                <Button Content="Next" Click="Next_Click" Grid.Column="1" FontSize="23" Margin="5"/>
+            </Grid>
         </StackPanel>
         <ListBox x:Name="MyList" Grid.Column="2" FontSize="18" />
     </Grid>

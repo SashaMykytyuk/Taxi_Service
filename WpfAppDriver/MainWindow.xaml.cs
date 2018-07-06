@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using WpfAppDriver.ServiceReference;
 namespace WpfAppDriver
 {
     /// <summary>
@@ -20,15 +20,25 @@ namespace WpfAppDriver
     /// </summary>
     public partial class MainWindow : Window
     {
+        public static ServiceDriverClient driver;
         public MainWindow()
         {
             InitializeComponent();
+            driver = new ServiceDriverClient();
         }
 
         private void Enter_Click(object sender, RoutedEventArgs e)
         {
-            MenuWindow window = new MenuWindow();
-            window.ShowDialog();
+            string str = driver.Authorization(Email.Text, Password.Password);
+            if(str == "")
+            {
+                MenuWindow window = new MenuWindow();
+                window.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show(str);
+            }
             Email.Text = "";
             Password.Password = "";
         }

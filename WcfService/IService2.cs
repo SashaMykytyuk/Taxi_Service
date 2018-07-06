@@ -1,4 +1,5 @@
-﻿using DAL;
+﻿using BLL;
+using DAL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,5 +17,15 @@ namespace WcfService
         string Authorization(string Email, string Password);
         [OperationContract]
         Driver AboutDriver();
+        [OperationContract]
+        ICollection<Car> AllCars();
+        [OperationContract]
+        ICollection<Order> AllOrders();
+        [OperationContract]
+        ICollection<Report> AllReports();
+        [OperationContract]
+        string ChangeInfo(Changes changes, string param);
+        [OperationContract]
+        string WriteToDispatcher(string Title, string Message);
     }
 }

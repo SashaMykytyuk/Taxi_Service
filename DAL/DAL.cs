@@ -90,6 +90,7 @@ namespace DAL
         {
             (context as TaxiContext).Orders.First(elem => elem.Id == IdOrder).ClassOfCar = order.ClassOfCar;
             (context as TaxiContext).Orders.First(elem => elem.Id == IdOrder).Done = order.Done;
+            (context as TaxiContext).Orders.First(elem => elem.Id == IdOrder).Money = order.Money;
             (context as TaxiContext).Orders.First(elem => elem.Id == IdOrder).Driver = order.Driver;
             context.SaveChanges();
         }
