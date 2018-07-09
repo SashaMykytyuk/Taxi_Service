@@ -124,7 +124,7 @@ namespace BLL
         public ICollection<Driver> GetAllDrivers()
         {
             List<Driver> drivers = new List<Driver>();
-            foreach(var elem in drivers)
+            foreach(var elem in _dal.Get<Driver>().ToList())
             {
                 drivers.Add(new Driver()
                 {
@@ -132,6 +132,7 @@ namespace BLL
                     Email = elem.Email,
                     FirstName = elem.FirstName,
                     SecondName = elem.SecondName,
+                    Car = new Car() {  Id = elem.Car.Id}
                 });
             }
             return drivers;
@@ -177,7 +178,7 @@ namespace BLL
                     Money = elem.Money,
                    // Client = new Client() { Id = elem.Id, FirstName = elem.Client.FirstName, SecondName = elem.Client.SecondName },
                    // Driver = new Driver() { Id = elem.Id, FirstName = elem.Driver.FirstName, SecondName = elem.Driver.SecondName },
-                   // Id = elem.Id,
+                    Id = elem.Id,
                 //    LocationFrom = new Location() { Lat = elem.LocationFrom.Lat, Lng = elem.LocationFrom.Lng, Place = elem.LocationFrom.Place },
                 //    LocationTo = new Location() { Lat = elem.LocationTo.Lat, Lng = elem.LocationTo.Lng, Place = elem.LocationTo.Place }
                 });

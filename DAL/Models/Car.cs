@@ -6,6 +6,10 @@ namespace DAL
 
     public class Car
     {
+        public Car()
+        {
+            Drivers = new List<Driver>();
+        }
         public int Id { get; set; }
         public ClassesOfCar ClassOfCar { get; set; }
         public string Marka { get; set; }

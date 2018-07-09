@@ -11,7 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
+using WpfAppDriver.ServiceReference;
 namespace WpfAppDriver
 {
     /// <summary>
@@ -19,23 +19,39 @@ namespace WpfAppDriver
     /// </summary>
     public partial class AllOrdersWindow : Window
     {
+        List<Order> orders;
         int i = 0;
         public AllOrdersWindow()
         {
-            InitializeComponent();
-            Title = i + " from " + i;
+            try
+            {
+                InitializeComponent();
+                orders = MainWindow.driver.AllOrders().ToList();
+                Title = i + " from " + orders.Count;
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
-
+        void Show()
+        {
+            Comment.Text = orders[i].Comment;
+            Price.Text = orders[i].Money.ToString();
+            KM.Text = orders[i].KM.ToString();
+        }
         private void Previous_Click(object sender, RoutedEventArgs e)
         {
             if (i - 1 >= 0)
                 i--;
+            Show();
         }
 
         private void Next_Click(object sender, RoutedEventArgs e)
         {
-            //if(i+1<)
-            i++;
+            if(i<orders.Count)
+                i++;
+            Show();
         }
     }
 }

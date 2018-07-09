@@ -26,7 +26,10 @@ namespace WpfAppDriver
 
         private void Send_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            string send = MainWindow.driver.WriteToDispatcher(Theme.Text, Message.Text);
+            MessageBox.Show(send);
+            if(send == "Message is send")
+                this.Close();
         }
     }
 }

@@ -20,7 +20,7 @@ namespace WpfAppDispatcher
     /// </summary>
     public partial class AllDriversWindow : Window
     {
-        public List<Driver> drivers;
+        List<Driver> drivers;
         int i;
         public AllDriversWindow()
         {
@@ -31,7 +31,6 @@ namespace WpfAppDispatcher
                 if (drivers.Count == 0)
                 {
                     MessageBox.Show("Empty list or drivers");
-                    this.Close();
                 }
                 else
                 {
@@ -40,7 +39,7 @@ namespace WpfAppDispatcher
 
                 }
             }
-            catch { }
+            catch(Exception  ex) { MessageBox.Show(ex.Message); }
         }
 
         void Show()
@@ -63,6 +62,19 @@ namespace WpfAppDispatcher
             if (i + 1 < drivers.Count)
                 i++;
             Show();
+        }
+
+        private void ShowOrders_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show(drivers[i].Id.ToString());
+            AllOrdersWindow window = new AllOrdersWindow(drivers[i].Id);
+            window.Show();
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            CreateCarWindow window = new CreateCarWindow(drivers[i].Car.Id);
+            window.ShowDialog();
         }
     }
 }

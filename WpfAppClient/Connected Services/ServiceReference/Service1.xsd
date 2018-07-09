@@ -3,7 +3,9 @@
   <xs:complexType name="Client">
     <xs:complexContent mixed="false">
       <xs:extension base="tns:AbstractPerson">
-        <xs:sequence />
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Orders" nillable="true" type="tns:ArrayOfOrder" />
+        </xs:sequence>
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
@@ -55,6 +57,7 @@
           <xs:element minOccurs="0" name="KM" type="xs:double" />
           <xs:element minOccurs="0" name="Location" nillable="true" type="tns:Location" />
           <xs:element minOccurs="0" name="Money" type="xs:double" />
+          <xs:element minOccurs="0" name="Orders" nillable="true" type="tns:ArrayOfOrder" />
           <xs:element minOccurs="0" name="Reports" nillable="true" type="tns:ArrayOfReport" />
         </xs:sequence>
       </xs:extension>

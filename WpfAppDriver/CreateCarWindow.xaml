@@ -9,7 +9,7 @@
     <Grid>
         <StackPanel>
             <Label Content="Class of car: " FontSize="15" FontWeight="Medium" />
-            <TextBox x:Name="ClassOfCar" FontSize="15" />
+            <ComboBox x:Name="ClassOfCar" FontSize="15" />
             <Label Content="Marka: "  FontSize="15" FontWeight="Medium"/>
             <TextBox x:Name="Marka" FontSize="15"/>
             <Label Content="Volume: " FontSize="15" FontWeight="Medium"/>

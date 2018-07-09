@@ -1,7 +1,12 @@
-﻿namespace DAL
+﻿using System.Collections.Generic;
+namespace DAL
 {
     public class Client : AbstractPerson
     {
-      //  public Location Location { get; set; }
+        public Client()
+        {
+            Orders = new List<Order>();
+        }
+        public ICollection<Order> Orders { get; set; }
     }
 }

@@ -11,7 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
+using WpfAppDriver.ServiceReference;
 namespace WpfAppDriver
 {
     /// <summary>
@@ -22,6 +22,10 @@ namespace WpfAppDriver
         public RegistrationWindow()
         {
             InitializeComponent();
+            foreach(var elem in MainWindow.driver.AllCars())
+            {
+                Cars.Items.Add(elem.ClassOfCar + "\t" + elem.Marka);
+            }
             Show();
         }
         void Show()

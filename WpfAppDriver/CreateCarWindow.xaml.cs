@@ -11,7 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
+using WpfAppDriver.ServiceReference;
 namespace WpfAppDriver
 {
     /// <summary>
@@ -22,11 +22,23 @@ namespace WpfAppDriver
         public CreateCarWindow()
         {
             InitializeComponent();
+            ClassOfCar.Items.Add(ClassesOfCar.For4Person.ToString());
+            ClassOfCar.Items.Add(ClassesOfCar.For8Person.ToString());
+            ClassOfCar.Items.Add(ClassesOfCar.ForVantazh.ToString());
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            Car car = new Car();
+            car.Age = Int32.Parse(Age.Text);
+            car.ClassOfCar = ClassOfCar.SelectedItem.ToString() == "For4Person" ? ClassesOfCar.For4Person : ClassOfCar.SelectedItem.ToString() == "For8Person" ? ClassesOfCar.For8Person : ClassesOfCar.ForVantazh;
+            car.Marka = Marka.Text;
+            car.Volume = Int32.Parse(Volume.Text);
+
+            string str = MainWindow.driver.CreateCar(car);
+            if (str == "")
+                this.Close();
+            else MessageBox.Show(str);
         }
     }
 }

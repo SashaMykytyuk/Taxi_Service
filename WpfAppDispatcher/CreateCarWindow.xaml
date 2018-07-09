@@ -16,7 +16,7 @@
             <TextBox x:Name="Volume" FontSize="15"/>
             <Label Content="Age: " FontSize="15" FontWeight="Medium" />
             <TextBox  x:Name="Age" FontSize="15"/>
-            <Button Margin="15" Content="Create car" FontSize="20" FontWeight="Black" FontStyle="Italic" Click="Button_Click"/>
+            <Button x:Name="CreateCarButton" Margin="15" Content="Create car" FontSize="20" FontWeight="Black" FontStyle="Italic" Click="Button_Click"/>
         </StackPanel>
     </Grid>
 </Window>

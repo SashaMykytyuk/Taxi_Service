@@ -38,8 +38,15 @@ namespace WpfAppDispatcher
 
         private void AllDrivers_Click(object sender, RoutedEventArgs e)
         {
-            AllDriversWindow window = new AllDriversWindow();
-            window.ShowDialog();
+            try
+            {
+                AllDriversWindow window = new AllDriversWindow();
+                window.ShowDialog();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void ChangeInfo_Click(object sender, RoutedEventArgs e)

@@ -9,6 +9,7 @@ using DAL;
 
 namespace WcfService
 {
+    [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
     public class Service2 : IServiceDriver
     {
         public BLLDriver DriverBll = new BLLDriver(new Dal(new TaxiContext()));

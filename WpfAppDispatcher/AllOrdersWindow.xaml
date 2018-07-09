@@ -20,7 +20,7 @@
         </StackPanel>
         <StackPanel Grid.Column="1" Margin="10">
             <Label Content="Driver" FontSize="18" FontWeight="Medium" />
-            <ComboBox x:Name="Drivers" FontSize="15" FontWeight="Regular" />
+            <ComboBox x:Name="Drivers" FontSize="15" FontWeight="Regular" SelectionChanged="Drivers_SelectionChanged" />
             <Label Content="Class of car:" FontSize="18" FontWeight="Medium" />
             <TextBox IsEnabled="False" x:Name="ClassOfCar" FontSize="15" FontWeight="Regular" />
             <Label Content="Comment: "  FontSize="18" FontWeight="Medium" />

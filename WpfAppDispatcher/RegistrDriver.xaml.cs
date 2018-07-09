@@ -40,7 +40,7 @@ namespace WpfAppDispatcher
                 FirstName = FirstName.Text,
                 Password = Password.Password,
                 SecondName = SecondName.Text,
-            }, ListCars[Cars.SelectedIndex].Id+1);
+            }, ListCars[Cars.SelectedIndex].Id);
             if (str == "")
                 this.Close();
             else MessageBox.Show(str);

@@ -27,6 +27,15 @@ namespace WpfAppDispatcher
             ClassOfCar.Items.Add("For8Person");
             ClassOfCar.Items.Add("ForVantazh");
         }
+        public CreateCarWindow(int idCar) : this()
+        {
+            CreateCarButton.Visibility = Visibility.Hidden;
+            Car car = MainWindow.dispatcher.AllCars().FirstOrDefault(elem => elem.Id == idCar);
+            Age.Text = car.Age.ToString();
+            ClassOfCar.SelectedItem = car.ClassOfCar.ToString();
+            Marka.Text = car.Marka;
+            Volume.Text = car.Volume.ToString();
+        }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
