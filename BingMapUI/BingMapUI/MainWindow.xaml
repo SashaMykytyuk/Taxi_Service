@@ -16,6 +16,7 @@
                Center="50.620972, 26.243343" ZoomLevel="13" />
         <StackPanel>
             <Button Content="GetRoud" Click="MapGetRoud" Width="50" Height="25" Margin="10" HorizontalAlignment="Left"></Button>
-        </StackPanel>
+            <Button Content="Clear" Click="ClearMap" Width="50" Height="25" Margin="10" HorizontalAlignment="Left"></Button>
+            </StackPanel>
         </Grid>
 </Window>
