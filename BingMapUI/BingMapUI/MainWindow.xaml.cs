@@ -26,12 +26,13 @@ namespace BingMapUI
         private DragPin EndPin;
         private MapLayer RouteLayer;
         private string SessionKey;
+        private bool state = true;
 
         public MainWindow()
         {
             InitializeComponent();
 
-            MyMap.Loaded += MyMap_Loaded;
+            //MyMap.Loaded += MyMap_Loaded;
         }
 
         private void MyMap_Loaded(object sender, RoutedEventArgs e)
@@ -144,6 +145,85 @@ namespace BingMapUI
             icon.EndInit();
 
             return icon;
+        }
+
+        private void MyMap_OnMouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            // Disables the default mouse double-click action.
+            e.Handled = true;
+
+            // Determin the location to place the pushpin at on the map.
+
+            //Get the mouse click coordinates
+            Point mousePosition = e.GetPosition(MyMap);
+            //Convert the mouse coordinates to a locatoin on the map
+            Location pinLocation = MyMap.ViewportPointToLocation(mousePosition);
+
+            if (state)
+            {
+                StartPin = new DragPin(this.MyMap)
+                {
+                    Location = new Location(pinLocation),
+                    ImageSource = GetImageSource("/Assets/green_pin.png")
+                };
+                MessageBox.Show("Pin_1 Location: " +StartPin.Location );
+                state = !state;
+            }
+
+            else
+            {
+                EndPin = new DragPin(this.MyMap)
+                {
+                    Location = new Location(pinLocation),
+                    ImageSource = GetImageSource("/Assets/red_pin.png")
+                };
+                MessageBox.Show("Pin_2 Location: " +EndPin.Location);
+                state = !state;
+            }
+
+            // The pushpin to add to the map.
+            Pushpin pin = new Pushpin();
+            pin.Location = pinLocation;
+
+            // Adds the pushpin to the map.
+            MyMap.Children.Add(pin);
+
+        }
+
+        private void MapGetRoud(object sender, RoutedEventArgs e)
+        {
+            MyMap.CredentialsProvider.GetCredentials((c) =>
+            {
+                SessionKey = c.ApplicationId;
+
+                //Create a layer for Route data.
+                RouteLayer = new MapLayer();
+                MyMap.Children.Add(RouteLayer);
+
+                //Create two draggable pushpins to between.
+
+                //Create the start pushpin.
+                
+
+                //Add a drag event to the start pushpin.
+                StartPin.DragEnd += UpdateRoute;
+
+                //Add the start pushpin to the map.
+                //MyMap.Children.Add(StartPin);
+
+                //Create the end pushpin.
+               
+                //Add a drag event to the end pushpin.
+                EndPin.DragEnd += UpdateRoute;
+
+                //Add the end pushpin to the map.
+                //MyMap.Children.Add(EndPin);
+
+                //Calculate the initial route between the two pins.
+                UpdateRoute(null);
+            });
+            
+
         }
     }
 }

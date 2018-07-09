@@ -12,7 +12,10 @@
             <ColumnDefinition Width="0.3*"></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <wpf:Map Grid.Column="1" Name="MyMap" CredentialsProvider="Asf63QojxGRORzyVIbsUtSn6DxVR42K_FbNb-Gbsjtc34OWQBx9byU3WkCXtgqsC"
+        <wpf:Map Grid.Column="1" MouseDoubleClick="MyMap_OnMouseDoubleClick" Name="MyMap" CredentialsProvider="Asf63QojxGRORzyVIbsUtSn6DxVR42K_FbNb-Gbsjtc34OWQBx9byU3WkCXtgqsC"
                Center="50.620972, 26.243343" ZoomLevel="13" />
-    </Grid>
+        <StackPanel>
+            <Button Content="GetRoud" Click="MapGetRoud" Width="50" Height="25" Margin="10" HorizontalAlignment="Left"></Button>
+        </StackPanel>
+        </Grid>
 </Window>
