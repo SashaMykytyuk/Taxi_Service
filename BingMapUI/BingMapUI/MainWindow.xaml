@@ -32,7 +32,7 @@
                 <MenuItem Header="Exit"></MenuItem>
             </MenuItem>
             <MenuItem Header="Search by">
-                <RadioButton Name="RadioButtonPoint" Content="Point" IsChecked="True" Checked="MenuItemPointOrAdress"></RadioButton>
+                <RadioButton Name="RadioButtonPoint" Content="Point" Checked="MenuItemPointOrAdress"></RadioButton>
                 <RadioButton Name="RadioButtonAdress" Content="Adress" Checked="MenuItemPointOrAdress"></RadioButton>
             </MenuItem>
             <MenuItem Header="Send mess">
@@ -59,7 +59,7 @@
                     <Button Content="Clear" Click="ClearMap" Width="50" Height="25" Margin="10" HorizontalAlignment="Left"></Button>
                 </StackPanel>
             </GroupBox>
-            <GroupBox Name="GroupBoxByAdress"  Header="Search by adress" Margin="5">
+            <GroupBox Name="GroupBoxByAdress" IsEnabled="False"  Header="Search by adress" Margin="5">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="0.3*"></ColumnDefinition>

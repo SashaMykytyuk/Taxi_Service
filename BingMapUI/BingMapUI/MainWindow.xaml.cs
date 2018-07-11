@@ -38,6 +38,7 @@ namespace BingMapUI
 
             Pins = new List<DragPin>();
             searchByAdress = new SearchByAdress(SessionKey);
+            RadioButtonPoint.IsChecked = true;
         }
         private async void UpdateRoute(Location loc, DragPin StartPin, DragPin EndPin)
         {
@@ -149,18 +150,18 @@ namespace BingMapUI
             {
                 if (RadioButtonPoint.IsChecked == true)
                 {
-                    GroupBoxByAdress.Visibility = Visibility.Collapsed;
-                    GroupBoxByPoint.Visibility = Visibility.Visible;
+                    GroupBoxByAdress.IsEnabled = false;
+                    GroupBoxByPoint.IsEnabled = true;
                 }
                 if (RadioButtonAdress.IsChecked == true)
                 {
-                    GroupBoxByPoint.Visibility = Visibility.Collapsed;
-                    GroupBoxByAdress.Visibility = Visibility.Visible;
+                    GroupBoxByPoint.IsEnabled = false;
+                    GroupBoxByAdress.IsEnabled = true;
                 }
             }
             catch (Exception exception)
             {
-                MessageBox.Show(exception.Message);
+                MessageBox.Show(exception.ToString());
             }
             
         }

@@ -18,7 +18,7 @@ namespace BingMapUI
 
         public SearchByAdress(string keySessionKey)
         {
-                sessionKey = keySessionKey;
+                sessionKey = "Asf63QojxGRORzyVIbsUtSn6DxVR42K_FbNb-Gbsjtc34OWQBx9byU3WkCXtgqsC";
         }
 
         public async void CalculateAndShowOnMap(Map MyMap, string StartTbx, string EndTbx)
