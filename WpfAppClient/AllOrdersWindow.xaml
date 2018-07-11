@@ -1,0 +1,35 @@
+﻿<Window x:Class="WpfAppClient.AllOrdersWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfAppClient"
+        mc:Ignorable="d"
+        Title="AllOrdersWindow" Height="414.706" Width="529.412">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5*"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <StackPanel>
+            <Label Content="Class of car:" FontSize="18" FontWeight="Medium" />
+            <TextBox IsEnabled="False" x:Name="ClassOfCar" FontSize="15" FontWeight="Regular" />
+            <Label Content="Comment: "  FontSize="18" FontWeight="Medium" />
+            <TextBlock IsEnabled="False" x:Name="Comment"  FontSize="15" FontWeight="Regular" />
+            <Label Content="Price: "  FontSize="18" FontWeight="Medium"  />
+            <TextBox IsEnabled="False" x:Name="Price"  FontSize="15" FontWeight="Regular" />
+            <Label Content="KM: "  FontSize="18" FontWeight="Medium" />
+            <TextBox IsEnabled="False" x:Name="KM"  FontSize="15" FontWeight="Regular" />
+            <CheckBox Content="Done" Margin="10" x:Name="Done" FontSize="15"/>
+        </StackPanel>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <Button Margin="10" Content="Previous" FontSize="25" FontWeight="Bold" FontStyle="Italic" Click="Previous_Click"/>
+            <Button Grid.Column="1" Margin="10" Content="Next" FontSize="25" FontWeight="Bold" FontStyle="Italic" Click="Next_Click" />
+        </Grid>
+    </Grid>
+</Window>

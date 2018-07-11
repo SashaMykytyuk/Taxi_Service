@@ -1,0 +1,23 @@
+﻿<Window x:Class="WpfAppDriver.MenuWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfAppDriver"
+        mc:Ignorable="d"
+        Title="MenuWindow" Height="413.445" Width="765.126">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Menu FontSize="15" FontWeight="Black">
+            <MenuItem Header="Change info" Click="ChangeInfo_Click"/>
+            <MenuItem Header="Generate report for today" Click="GenerateReport_Click"/>
+            <MenuItem Header="My orders" Click="AllOrders" />
+            <MenuItem Header="Write to dispatcher" Click="WriteEmail_Click" />
+            <MenuItem Header="Add car in base" Click="CreateCar_Click" />
+            <MenuItem Header="Log out" Click="LogOut_Click" />
+        </Menu>
+    </Grid>
+</Window>

@@ -1,0 +1,39 @@
+﻿<Window x:Class="WpfAppDispatcher.RegistrDriver"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfAppDispatcher"
+        mc:Ignorable="d"
+        Title="RegistrDriver" Height="437.395" Width="669.328">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <StackPanel Margin="10">
+            <Label Content="Email: " FontSize="20" FontWeight="Black"/>
+            <TextBox x:Name="Email" FontSize="15" FontWeight="Light"/>
+            <Label Content="First Name: "  FontSize="20" FontWeight="Black"/>
+            <TextBox x:Name="FirstName" FontSize="15" FontWeight="Light" />
+            <Label Content="Second Name: "  FontSize="20" FontWeight="Black"/>
+            <TextBox x:Name="SecondName" FontSize="15" FontWeight="Light"/>
+            <Label Content="Password: "  FontSize="20" FontWeight="Black" />
+            <PasswordBox x:Name="Password" FontSize="15" FontWeight="Light"/>
+            <Button Content="Save" Margin="70,30" FontSize="30" FontWeight="Bold" Click="Save_Click" />
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Margin="10">
+            <Label Content="Choose car:" Margin="10,0" FontSize="20" FontWeight="Black"/>
+            <ComboBox x:Name="Cars" Margin="10"  FontSize="20" FontWeight="Black" SelectionChanged="ChooseCar_Changed"/>
+            <Label Content="Class of car: " FontSize="15" FontWeight="Medium" />
+            <TextBox IsEnabled="False" x:Name="ClassOfCar" FontSize="15" />
+            <Label Content="Marka: "  FontSize="15" FontWeight="Medium"/>
+            <TextBox IsEnabled="False" x:Name="Marka" FontSize="15"/>
+            <Label Content="Volume: " FontSize="15" FontWeight="Medium"/>
+            <TextBox IsEnabled="False" x:Name="Volume" FontSize="15"/>
+            <Label Content="Age: " FontSize="15" FontWeight="Medium" />
+            <TextBox IsEnabled="False" x:Name="Age" FontSize="15"/>
+        </StackPanel>
+    </Grid>
+</Window>
