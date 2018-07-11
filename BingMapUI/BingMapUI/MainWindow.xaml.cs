@@ -19,18 +19,25 @@ namespace BingMapUI
     /// </summary>
     public partial class MainWindow : Window
     {
+        private SearchByAdress searchByAdress;
+
+
         private List<DragPin> Pins;
-        //private DragPin StartPin;
-        //private DragPin EndPin;
+
         private MapLayer RouteLayer;
-        private string SessionKey;
-        private bool state = true;
+        public string SessionKey;
+        private double distance;
 
         public MainWindow()
         {
             InitializeComponent();
+            MyMap.CredentialsProvider.GetCredentials((c) =>
+            {
+                SessionKey = c.ApplicationId;
+            });
+
             Pins = new List<DragPin>();
-            //MyMap.Loaded += MyMap_Loaded;
+            searchByAdress = new SearchByAdress(SessionKey);
         }
         private async void UpdateRoute(Location loc, DragPin StartPin, DragPin EndPin)
         {
@@ -74,7 +81,8 @@ namespace BingMapUI
                     StrokeThickness = 3
                 };
                 RouteLayer.Children.Add(routeLine);
-                MessageBox.Show(route.TravelDistance.ToString());
+                distance += route.TravelDistance;
+                this.Title = distance.ToString();
             }
         }
 
@@ -89,12 +97,13 @@ namespace BingMapUI
             icon.BeginInit();
             icon.UriSource = new Uri(imageSource, UriKind.Relative);
             icon.EndInit();
-
             return icon;
         }
 
         private void MyMap_OnMouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
+            if(RadioButtonPoint.IsChecked == false)
+                return;
             e.Handled = true;
             Point mousePosition = e.GetPosition(MyMap);
             Location pinLocation = MyMap.ViewportPointToLocation(mousePosition);
@@ -102,7 +111,6 @@ namespace BingMapUI
             {
                 Location = new Location(pinLocation),
                 ImageSource = GetImageSource("/Assets/green_pin.png")
-               
             });
             Pushpin pin = new Pushpin();
             pin.Tag = "BK7475AO";
@@ -112,8 +120,6 @@ namespace BingMapUI
             pin.Location = pinLocation;
             MyMap.Children.Add(pin);
         }
-
-      
 
         private void MapGetRoud(object sender, RoutedEventArgs e)
         {
@@ -133,6 +139,35 @@ namespace BingMapUI
         {
             Pins.Clear();
             MyMap.Children.Clear();
+            distance = 0;
+
+        }
+
+        private void MenuItemPointOrAdress(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (RadioButtonPoint.IsChecked == true)
+                {
+                    GroupBoxByAdress.Visibility = Visibility.Collapsed;
+                    GroupBoxByPoint.Visibility = Visibility.Visible;
+                }
+                if (RadioButtonAdress.IsChecked == true)
+                {
+                    GroupBoxByPoint.Visibility = Visibility.Collapsed;
+                    GroupBoxByAdress.Visibility = Visibility.Visible;
+                }
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message);
+            }
+            
+        }
+
+        private void GetRouteByAdress(object sender, RoutedEventArgs e)
+        {
+            searchByAdress.CalculateAndShowOnMap(MyMap,TextBoxFrom.Text,TextBoxTo.Text);
         }
     }
 }
