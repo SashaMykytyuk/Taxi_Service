@@ -36,20 +36,20 @@ namespace BingMapUI
                 {
                     Route route = r.ResourceSets[0].Resources[0] as Route;
 
-                    double[][] routePath = route.RoutePath.Line.Coordinates;
+                    double[][] routePath = route?.RoutePath.Line.Coordinates;
 
                     var locs = new LocationCollection();
 
                     //Create SqlGeography from route line points.
-                    SqlGeographyBuilder geomBuilder = new SqlGeographyBuilder();
+                    var geomBuilder = new SqlGeographyBuilder();
                     geomBuilder.SetSrid(4326);
                     geomBuilder.BeginGeography(OpenGisGeographyType.LineString);
                     geomBuilder.BeginFigure(routePath[0][0], routePath[0][1]);
 
-                    for (int i = 0; i < routePath.Length; i++)
+                    foreach (var t in routePath)
                     {
-                        locs.Add(new Microsoft.Maps.MapControl.WPF.Location(routePath[i][0], routePath[i][1]));
-                        geomBuilder.AddLine(routePath[i][0], routePath[i][1]);
+                        locs.Add(new Microsoft.Maps.MapControl.WPF.Location(t[0], t[1]));
+                        geomBuilder.AddLine(t[0], t[1]);
                     }
 
                     geomBuilder.EndFigure();
@@ -85,8 +85,8 @@ namespace BingMapUI
 
         private async Task<Response> CalculateRoute(string start, string end)
         {
-            var requestURI = new Uri(string.Format("https://dev.virtualearth.net/REST/V1/Routes/Driving?wp.0={0}&wp.1={1}&rpo=Points&key={2}",
-                                       Uri.EscapeDataString(start), Uri.EscapeDataString(end), sessionKey));
+            var requestURI = new Uri($"https://dev.virtualearth.net/REST/V1/Routes/Driving?" +
+                                     $"wp.0={Uri.EscapeDataString(start)}&wp.1={Uri.EscapeDataString(end)}&rpo=Points&key={sessionKey}");
 
             using (var stream = await GetStreamAsync(requestURI))
             {
