@@ -9,16 +9,35 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
-            <RowDefinition />
+            <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        <Menu FontSize="15" FontWeight="Bold">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.3*"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        
+        
+        <Menu FontSize="15" Grid.ColumnSpan="2" FontWeight="Bold">
             <MenuItem Header="Orders">
-                <MenuItem Header="Create order" Click="CreateOrder_Click" />
                 <MenuItem Header="All orders" Click="AllOrders_Click"/>
             </MenuItem>
             <MenuItem Header="Change info" Click="ChangeInfo_Click" />
             <MenuItem Header="Write to dispatcher" Click="WriteEmail_Click"/>
             <MenuItem Header="Log out" Click="LogOut_Click"/>
         </Menu>
+        
+        <StackPanel Grid.Row="1">
+            <Label Content="From: " FontSize="18" FontWeight="Medium" />
+            <TextBox x:Name="From"  FontSize="18" KeyDown="KeyDown" />
+            <Label Content="To"  FontSize="18" FontWeight="Medium" />
+            <TextBox x:Name="To" FontSize="18"  KeyDown="KeyDown"/>
+            <Label Content="Class of car: " FontSize="18" FontWeight="Medium"/>
+            <ComboBox x:Name="ClassOfCar" FontSize="18"  />
+            <Label Content="KM: " Margin="0,0,0,0" FontSize="18" FontWeight="Medium" />
+            <TextBox IsEnabled="False" x:Name="KM" FontSize="18" />
+            <Label Content="Price" FontSize="18" FontWeight="Medium"  />
+            <TextBox IsEnabled="False" x:Name="Price" FontSize="18" />
+            <Button Content="Create order" Margin="15"  FontSize="20" FontWeight="Bold" Click="Button_Click" />
+        </StackPanel>
     </Grid>
 </Window>
