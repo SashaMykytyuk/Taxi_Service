@@ -35,10 +35,10 @@ namespace WpfAppDriver
             car.Marka = Marka.Text;
             car.Volume = Int32.Parse(Volume.Text);
 
-            string str = MainWindow.driver.CreateCar(car);
-            if (str == "")
-                this.Close();
-            else MessageBox.Show(str);
+            //string str = MainWindow.driver.CreateCar(car);
+            //if (str == "")
+            //    this.Close();
+            //else MessageBox.Show(str);
         }
     }
 }

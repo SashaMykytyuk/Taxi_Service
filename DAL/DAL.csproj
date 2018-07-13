@@ -51,6 +51,11 @@
   <ItemGroup>
     <Compile Include="CustomInit.cs" />
     <Compile Include="DAL.cs" />
+    <Compile Include="Migrations\201807131534215_MyMigr.cs" />
+    <Compile Include="Migrations\201807131534215_MyMigr.Designer.cs">
+      <DependentUpon>201807131534215_MyMigr.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model.cs" />
     <Compile Include="Models\AbstractPerson.cs" />
     <Compile Include="Models\Client.cs" />
@@ -66,6 +71,11 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201807131534215_MyMigr.resx">
+      <DependentUpon>201807131534215_MyMigr.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -38,7 +38,7 @@ namespace WpfAppClient
             Show();
         }
 
-        void Show()
+        public void Show()
         {
             try
             {
