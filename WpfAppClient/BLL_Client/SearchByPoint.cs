@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Threading.Tasks;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using Microsoft.Maps.MapControl.WPF;
@@ -23,7 +24,7 @@ namespace WpfAppClient
             Pins = new List<DragPin>();
         }
 
-        private async void UpdateRoute(Location loc, DragPin StartPin, DragPin EndPin)
+        private async Task UpdateRoute(Location loc, DragPin StartPin, DragPin EndPin)
         {
             RouteLayer.Children.Clear();
             var startCoord = LocationToCoordinate(StartPin.Location);
@@ -105,20 +106,16 @@ namespace WpfAppClient
             MyMap.Children.Add(pin);
         }
 
-        public void MapGetRoud(Map MyMap)
+        public async Task MapGetRoudAsync(Map MyMap)
         {
-            MyMap.CredentialsProvider.GetCredentials((c) =>
+            Distance = 0;
+            RouteLayer = new MapLayer();
+            MyMap.Children.Add(RouteLayer);
+            for (int i = 0; i < Pins.Count - 1; i++)
             {
-                sessionKey = c.ApplicationId;
-                RouteLayer = new MapLayer();
-                MyMap.Children.Add(RouteLayer);
-                for (int i = 0; i < Pins.Count - 1; i++)
-                {
-                    UpdateRoute(null, Pins[i], Pins[i + 1]);
-                }
-            });
+                await UpdateRoute(null, Pins[i], Pins[i + 1]);
+            }
         }
-
         public void ClearMap(Map MyMap)
         {
             Pins.Clear();

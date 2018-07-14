@@ -80,44 +80,6 @@ namespace WpfAppClient
 
         ///////////////////////////   Left menu //////////////////////////
 
-
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            Order order = new Order();
-            order.ClassOfCar = (sender as ComboBox).SelectedItem.ToString() == "For4Person" ? ClassesOfCar.For4Person :
-                (sender as ComboBox).SelectedItem.ToString() == "For8Person" ? ClassesOfCar.For8Person : ClassesOfCar.ForVantazh;
-            order.KM = Double.Parse(KM.Text);
-            order.Money = Double.Parse(Price.Text);
-            order.LocationFrom = new Location() {Place = From.Text};
-            order.LocationTo = new Location() {Place = To.Text};
-
-            string str = MainWindow.client.CreateOrder(order);
-            if (str == "")
-            {
-                MessageBox.Show("Order is create");
-                this.Close();
-            }
-            else MessageBox.Show(str);
-
-            this.Close();
-        }
-
-        private void KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Enter && From.Text != "" && To.Text != "" && (sender as ComboBox).SelectedIndex != -1)
-            {
-                ClassesOfCar classesOfCar = (sender as ComboBox).SelectedItem.ToString() == "For4Person"
-                    ? ClassesOfCar.For4Person
-                    : (sender as ComboBox).SelectedItem.ToString() == "ForPerson"
-                        ? ClassesOfCar.For8Person
-                        : ClassesOfCar.ForVantazh;
-                Random r = new Random();
-                KM.Text = r.Next(1, 100).ToString();
-                Price.Text = MainWindow.client.GetPrice(Double.Parse(KM.Text), classesOfCar).ToString();
-            }
-        }
-
         private void MenuPointOrAdress(object sender, RoutedEventArgs e)
         {
             if (RadioButtonPoint.IsChecked == true)
@@ -142,7 +104,14 @@ namespace WpfAppClient
 
         private void ShowRouteByPoint(object sender, RoutedEventArgs e)
         {
-            searchByPoint.MapGetRoud(MyMap);
+            var t = searchByPoint.MapGetRoudAsync(MyMap).GetAwaiter();
+            t.OnCompleted(() =>
+            {
+                //MessageBox.Show(searchByPoint.Distance.ToString());
+                KM.Text = searchByPoint.Distance.ToString();
+            }
+            );
+            //searchByPoint.Distance = 0;
         }
 
         private void ClearAllOnMap(object sender, RoutedEventArgs e)
@@ -152,6 +121,11 @@ namespace WpfAppClient
         }
 
         private void SelectCar(object sender, SelectionChangedEventArgs e)
+        {
+            LabelMoney.Content = MainWindow.client.GetPrice(searchByPoint.Distance, (sender as ComboBox).SelectedItem.ToString() == "For4Person" ? ClassesOfCar.For4Person : (sender as ComboBox).SelectedItem.ToString() == "For8Person" ? ClassesOfCar.For8Person : ClassesOfCar.ForVantazh).ToString();
+        }
+
+        private void OrderByPoint(object sender, RoutedEventArgs e)
         {
             LabelMoney.Content = MainWindow.client.GetPrice(searchByPoint.Distance, (sender as ComboBox).SelectedItem.ToString() == "For4Person" ? ClassesOfCar.For4Person : (sender as ComboBox).SelectedItem.ToString() == "For8Person" ? ClassesOfCar.For8Person : ClassesOfCar.ForVantazh).ToString();
         }
