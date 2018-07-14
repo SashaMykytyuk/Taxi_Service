@@ -5,7 +5,25 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfAppClient"
         mc:Ignorable="d"
+        xmlns:wpf="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
         Title="MenuWindow" Height="316.387" Width="494.118">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Width" Value="150"></Setter>
+            <Setter Property="Height" Value="30"></Setter>
+            <Setter Property="Margin" Value="5"></Setter>
+            <Setter Property="FontSize" Value="18"></Setter>
+            <Setter Property="FontWeight" Value="Bold"></Setter>
+        </Style>
+        <Style TargetType="Label">
+            <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+            <Setter Property="Width" Value="150"></Setter>
+            <Setter Property="Height" Value="30"></Setter>
+            <Setter Property="Margin" Value="5"></Setter>
+            <Setter Property="FontSize" Value="18"></Setter>
+            <Setter Property="FontWeight" Value="Medium"></Setter>
+        </Style>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
@@ -15,29 +33,53 @@
             <ColumnDefinition Width="0.3*"></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        
-        
+
+        <wpf:Map Grid.Column="1" Grid.Row="1" Name="MyMap" MouseDoubleClick="MyMap_OnMouseDoubleClick" CredentialsProvider="Asf63QojxGRORzyVIbsUtSn6DxVR42K_FbNb-Gbsjtc34OWQBx9byU3WkCXtgqsC"
+                 Center="50.620972, 26.243343" ZoomLevel="13" />
+
+
         <Menu FontSize="15" Grid.ColumnSpan="2" FontWeight="Bold">
             <MenuItem Header="Orders">
                 <MenuItem Header="All orders" Click="AllOrders_Click"/>
+            </MenuItem>
+            <MenuItem Header="Search by">
+                <RadioButton Name="RadioButtonPoint" Content="Point" Checked="MenuPointOrAdress"></RadioButton>
+                <RadioButton Name="RadioButtonAdress" Content="Adress" Checked="MenuPointOrAdress"></RadioButton>
             </MenuItem>
             <MenuItem Header="Change info" Click="ChangeInfo_Click" />
             <MenuItem Header="Write to dispatcher" Click="WriteEmail_Click"/>
             <MenuItem Header="Log out" Click="LogOut_Click"/>
         </Menu>
-        
         <StackPanel Grid.Row="1">
-            <Label Content="From: " FontSize="18" FontWeight="Medium" />
-            <TextBox x:Name="From"  FontSize="18" KeyDown="KeyDown" />
-            <Label Content="To"  FontSize="18" FontWeight="Medium" />
-            <TextBox x:Name="To" FontSize="18"  KeyDown="KeyDown"/>
-            <Label Content="Class of car: " FontSize="18" FontWeight="Medium"/>
-            <ComboBox x:Name="ClassOfCar" FontSize="18"  />
-            <Label Content="KM: " Margin="0,0,0,0" FontSize="18" FontWeight="Medium" />
-            <TextBox IsEnabled="False" x:Name="KM" FontSize="18" />
-            <Label Content="Price" FontSize="18" FontWeight="Medium"  />
-            <TextBox IsEnabled="False" x:Name="Price" FontSize="18" />
-            <Button Content="Create order" Margin="15"  FontSize="20" FontWeight="Bold" Click="Button_Click" />
+            <GroupBox  Name="GroupBoxByPoints" Header="Search by point">
+                <StackPanel>
+                    <Button Content="Show Route" Click="ShowRouteByPoint"></Button>
+                    <Button Content="Clear all" Click="ClearAllOnMap"></Button>
+                    <Label Content="Class of car: "/>
+                    <ComboBox x:Name="ClassOfCarPoint" FontSize="18" Selected="SelectCar" />
+                    <Button IsEnabled="False"  Content="Order a taxi" Click="Button_Click" />
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Name="GroupBoxByAdress" Header="Search by adress">
+                <StackPanel>
+                    <Label Content="From: "/>
+                    <TextBox x:Name="From"  FontSize="18" KeyDown="KeyDown" />
+                    <Label Content="To"/>
+                    <TextBox x:Name="To" FontSize="18"  KeyDown="KeyDown"/>
+                    <Label Content="Class of car: "/>
+                    <ComboBox x:Name="ClassOfCarAdress" FontSize="18"  />
+                    <Button Content="Show Route"></Button>
+                    <Button Content="Order a taxi" Click="Button_Click" />
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Name="GroupBoxTotals" Header="Totals">
+                <StackPanel>
+                    <Label Content="KM: "/>
+                    <TextBox IsEnabled="False" x:Name="KM" FontSize="18" />
+                    <Label Content="Price"/ Name="LabelMoney">
+                    <TextBox IsEnabled="False" x:Name="Price" FontSize="18" />
+                </StackPanel>
+            </GroupBox>
         </StackPanel>
     </Grid>
 </Window>
