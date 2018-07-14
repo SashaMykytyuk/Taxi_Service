@@ -38,5 +38,7 @@ namespace WcfService
         ICollection<Report> AllReports();
         [OperationContract]
         string ChangeInfo(Changes changes, string param);
+        [OperationContract]
+        void LogOut();
     }
 }

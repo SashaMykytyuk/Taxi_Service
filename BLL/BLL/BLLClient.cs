@@ -110,6 +110,11 @@ namespace BLL
             if (drivers != null && drivers.Count > 0)
             {
                 order.Driver = drivers[0];
+                try
+                {
+                    _dal.Delete<Location>(drivers[0].Location);
+                }
+                catch { }
                 drivers[0].Location = null;
                 _dal.ChangeDriver(drivers[0].Id, drivers[0]);
             }

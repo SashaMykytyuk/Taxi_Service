@@ -18,6 +18,7 @@ namespace DAL
         void ChangeDispatcher(int IdDispatcher, Dispatcher dispatcher);
         void ChangeClient(int IdClient, Client client);
         void ChangeDriverLocation(int IdDriver, Driver driver);
+        void ChangePrice(ClassesOfCar classOfCar, double newPrice);
     }
 
 

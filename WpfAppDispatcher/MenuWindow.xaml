@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfAppDispatcher"
         mc:Ignorable="d"
-        Title="MenuWindow" Height="450" Width="800">
+        Title="MenuWindow" Height="450" Width="800" Closed="Window_Closed">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -18,14 +18,14 @@
             </MenuItem>
             <MenuItem Header="Orders and reports" >
                 <MenuItem Header="All orders" Click="AllOrders_Click"/>
-                <MenuItem Header="All reports" />
+                <MenuItem Header="All reports" Click="AllReports_Click" />
             </MenuItem>
             <MenuItem Header="Clients">
                 <MenuItem Header="All clients" Click="AllClients_Click" />
             </MenuItem>
             <MenuItem Header="Create car" Click="CreateCar_Click"/>
             <MenuItem Header="Change info" Click="ChangeInfo_Click" />
-            <MenuItem Header="Log out"/>
+            <MenuItem Header="Log out" Click="LogOut_Click"/>
         </Menu>
     </Grid>
 </Window>

@@ -16,27 +16,26 @@
             <RadioButton Content="Driver"  FontSize="13" FontWeight="Medium"/>
             <RadioButton Content="Money" FontSize="13" FontWeight="Medium" />
             <RadioButton Content="KM"  FontSize="13" FontWeight="Medium"/>
-            <Calendar Margin="15" />
+            <Calendar x:Name="calendar" Margin="15" SelectedDatesChanged="Calendar_SelectedDatesChanged" />
             <Expander Header="Drivers" FontSize="13" FontWeight="Medium">
                 <StackPanel x:Name="Drivers">
-
                 </StackPanel>
             </Expander>
         </StackPanel>
         <StackPanel Grid.Column="1" Margin="10">
             <Label Content="Driver:" FontSize="15" FontWeight="Black" />
-            <TextBox x:Name="Driver"/>
+            <TextBox x:Name="Driver" IsEnabled="False"/>
             <Label Content="KM: " FontSize="15" FontWeight="Black" />
-            <TextBox x:Name="KM" />
+            <TextBox x:Name="KM" IsEnabled="False"/>
             <Label Content="Money" FontSize="15" FontWeight="Black" />
-            <TextBox x:Name="Money" />
+            <TextBox x:Name="Money" IsEnabled="False"/>
             <Grid Margin="10,50">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
-                <Button Content="Previous" Margin="10" FontSize="25" FontWeight="Black" />
-                <Button Grid.Column="1" Content="Next" Margin="10"  FontSize="25" FontWeight="Black" />
+                <Button x:Name="Prev" Content="Previous" Margin="10" FontSize="25" FontWeight="Black" Click="Prev_Click" />
+                <Button x:Name="Next" Grid.Column="1" Content="Next" Margin="10"  FontSize="25" FontWeight="Black" Click="Next_Click" />
             </Grid>
         </StackPanel>
     </Grid>

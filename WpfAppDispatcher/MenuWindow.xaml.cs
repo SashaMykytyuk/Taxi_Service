@@ -66,5 +66,23 @@ namespace WpfAppDispatcher
             AllOrdersWindow window = new AllOrdersWindow();
             window.ShowDialog();
         }
+
+
+        private void LogOut_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow.dispatcher.LogOut();
+            this.Close();
+        }
+
+        private void AllReports_Click(object sender, RoutedEventArgs e)
+        {
+            AllReportsWindow window = new AllReportsWindow();
+            window.ShowDialog();
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            MainWindow.dispatcher.LogOut();
+        }
     }
 }

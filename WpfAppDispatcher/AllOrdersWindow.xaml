@@ -29,8 +29,7 @@
             <TextBox IsEnabled="False" x:Name="Price"  FontSize="15" FontWeight="Regular" />
             <Label Content="KM: "  FontSize="18" FontWeight="Medium" />
             <TextBox IsEnabled="False" x:Name="KM"  FontSize="15" FontWeight="Regular" />
-            <CheckBox Content="Done" Margin="10" x:Name="Done" FontSize="15"/>
-            <Button Content="Change order" FontSize="20" FontWeight="Bold" Margin="50,10"/>
+            <CheckBox Content="Done" Margin="10" x:Name="Done" FontSize="15" Checked="Done_Checked"/>
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />

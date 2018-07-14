@@ -20,14 +20,12 @@ namespace WpfAppDispatcher
     /// </summary>
     public partial class AllOrdersWindow : Window
     {
-        int? idDriver;
         List<Order> orders;
         int i = 0;
         public AllOrdersWindow()
         {
             InitializeComponent();
             orders = MainWindow.dispatcher.AllOrders().ToList();
-            idDriver = null;
             foreach(var elem in MainWindow.dispatcher.AllDrivers())
             {
                 Drivers.Items.Add(elem.FirstName + "  " + elem.SecondName);
@@ -35,12 +33,14 @@ namespace WpfAppDispatcher
 
             Show();
         }
-        public AllOrdersWindow(int idDriver) 
+        public AllOrdersWindow(int idPerson, bool isDriver) : this() 
         {
             try
             {
-                this.idDriver = idDriver;
-                orders = MainWindow.dispatcher.AllOrders().Where(elem => elem.Driver.Id == idDriver).ToList();
+                if(isDriver == true)
+                    orders = MainWindow.dispatcher.AllOrders().Where(elem => elem.Client.Id == idPerson).ToList();
+                else
+                    orders = MainWindow.dispatcher.AllOrders().Where(elem => elem.Driver.Id == idPerson).ToList();
                 Show();
             }
             catch(Exception ex)
@@ -78,18 +78,28 @@ namespace WpfAppDispatcher
 
         private void Drivers_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            string str = MainWindow.dispatcher.ChangeDriver(orders[i].Id, MainWindow.dispatcher.AllDrivers()[Drivers.SelectedIndex].Id);
-            if (str == "")
+            if (MessageBox.Show("Are you really want to change driver?", "Change order?" , MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
-                if(idDriver == null)
+                string str = MainWindow.dispatcher.ChangeDriver(orders[i].Id, MainWindow.dispatcher.AllDrivers()[Drivers.SelectedIndex].Id);
+                if (str == "")
                 {
-                    orders = MainWindow.dispatcher.AllOrders().ToList();
+                    MessageBox.Show("Driver is change");
                 }
-                else
-                    orders = MainWindow.dispatcher.AllOrders().Where(elem => elem.Driver.Id == idDriver).ToList();
-                MessageBox.Show("Driver is change");
+                else MessageBox.Show(str);
             }
-            else MessageBox.Show(str);
+        }
+
+        private void Done_Checked(object sender, RoutedEventArgs e)
+        {
+            if(Done.IsChecked == true)
+            {
+                if(MessageBox.Show("Is this order Done?", "Done", MessageBoxButton.YesNo, MessageBoxImage.Question)==MessageBoxResult.Yes)
+                {
+                    string str = MainWindow.dispatcher.OrderDone(orders[i].Id);
+                    if (str != "")
+                        MessageBox.Show(str);
+                }
+            }
         }
     }
 }

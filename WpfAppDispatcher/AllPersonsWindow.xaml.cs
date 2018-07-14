@@ -59,8 +59,20 @@ namespace WpfAppDispatcher
 
         private void ShowOrders_Click(object sender, RoutedEventArgs e)
         {
-            AllOrdersWindow window = new AllOrdersWindow(clients[i].Id);
-            window.ShowDialog();
+            try
+            {
+                AllOrdersWindow window = new AllOrdersWindow(clients[i].Id, false);
+                window.ShowDialog();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void FN_Checked(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

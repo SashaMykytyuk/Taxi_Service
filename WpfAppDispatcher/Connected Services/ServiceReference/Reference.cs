@@ -902,6 +902,12 @@ namespace WpfAppDispatcher.ServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceDispatcher/ChangeInfo", ReplyAction="http://tempuri.org/IServiceDispatcher/ChangeInfoResponse")]
         System.Threading.Tasks.Task<string> ChangeInfoAsync(WpfAppDispatcher.ServiceReference.Changes changes, string param);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceDispatcher/LogOut", ReplyAction="http://tempuri.org/IServiceDispatcher/LogOutResponse")]
+        void LogOut();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceDispatcher/LogOut", ReplyAction="http://tempuri.org/IServiceDispatcher/LogOutResponse")]
+        System.Threading.Tasks.Task LogOutAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1033,6 +1039,14 @@ namespace WpfAppDispatcher.ServiceReference {
         
         public System.Threading.Tasks.Task<string> ChangeInfoAsync(WpfAppDispatcher.ServiceReference.Changes changes, string param) {
             return base.Channel.ChangeInfoAsync(changes, param);
+        }
+        
+        public void LogOut() {
+            base.Channel.LogOut();
+        }
+        
+        public System.Threading.Tasks.Task LogOutAsync() {
+            return base.Channel.LogOutAsync();
         }
     }
 }

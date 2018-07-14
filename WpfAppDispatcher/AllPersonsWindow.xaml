@@ -14,7 +14,7 @@
         </Grid.ColumnDefinitions>
         <StackPanel>
             <Label Content="Sort by:" FontSize="18" FontWeight="Medium" />
-            <RadioButton Content="First Name" FontSize="18" />
+            <RadioButton Content="First Name" FontSize="18" Checked="FN_Checked"/>
             <RadioButton Content="Second Name"  FontSize="18" />
             <Label Content="Filter: " FontSize="18" FontWeight="Medium"/>
         </StackPanel>

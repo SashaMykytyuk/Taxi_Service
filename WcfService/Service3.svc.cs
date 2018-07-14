@@ -80,6 +80,11 @@ namespace WcfService
             return DispatcherBll.CreateDriver(driver, idCar);
         }
 
+        public void LogOut()
+        {
+            dispatcher = null;
+        }
+
         public string OrderDone(int idOrder)
         {
             return DispatcherBll.OrderDone(idOrder);

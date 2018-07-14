@@ -86,6 +86,12 @@
   <wsdl:message name="IServiceDispatcher_ChangeInfo_OutputMessage">
     <wsdl:part name="parameters" element="tns:ChangeInfoResponse" />
   </wsdl:message>
+  <wsdl:message name="IServiceDispatcher_LogOut_InputMessage">
+    <wsdl:part name="parameters" element="tns:LogOut" />
+  </wsdl:message>
+  <wsdl:message name="IServiceDispatcher_LogOut_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LogOutResponse" />
+  </wsdl:message>
   <wsdl:portType name="IServiceDispatcher">
     <wsdl:operation name="Authorization">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceDispatcher/Authorization" message="tns:IServiceDispatcher_Authorization_InputMessage" />
@@ -138,6 +144,10 @@
     <wsdl:operation name="ChangeInfo">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceDispatcher/ChangeInfo" message="tns:IServiceDispatcher_ChangeInfo_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServiceDispatcher/ChangeInfoResponse" message="tns:IServiceDispatcher_ChangeInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LogOut">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceDispatcher/LogOut" message="tns:IServiceDispatcher_LogOut_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceDispatcher/LogOutResponse" message="tns:IServiceDispatcher_LogOut_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IServiceDispatcher" type="tns:IServiceDispatcher">
@@ -252,6 +262,15 @@
     </wsdl:operation>
     <wsdl:operation name="ChangeInfo">
       <soap:operation soapAction="http://tempuri.org/IServiceDispatcher/ChangeInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LogOut">
+      <soap:operation soapAction="http://tempuri.org/IServiceDispatcher/LogOut" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

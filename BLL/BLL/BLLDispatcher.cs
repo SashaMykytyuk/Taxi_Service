@@ -176,11 +176,11 @@ namespace BLL
                     Done = elem.Done,
                     KM = elem.KM,
                     Money = elem.Money,
-                   // Client = new Client() { Id = elem.Id, FirstName = elem.Client.FirstName, SecondName = elem.Client.SecondName },
-                   // Driver = new Driver() { Id = elem.Id, FirstName = elem.Driver.FirstName, SecondName = elem.Driver.SecondName },
+                    Client = new Client() { Id = elem.Id, FirstName = elem.Client.FirstName, SecondName = elem.Client.SecondName },
+                    Driver = new Driver() { Id = elem.Id, FirstName = elem.Driver.FirstName, SecondName = elem.Driver.SecondName },
                     Id = elem.Id,
-                //    LocationFrom = new Location() { Lat = elem.LocationFrom.Lat, Lng = elem.LocationFrom.Lng, Place = elem.LocationFrom.Place },
-                //    LocationTo = new Location() { Lat = elem.LocationTo.Lat, Lng = elem.LocationTo.Lng, Place = elem.LocationTo.Place }
+                    LocationFrom = new Location() { Lat = elem.LocationFrom.Lat, Lng = elem.LocationFrom.Lng, Place = elem.LocationFrom.Place },
+                    LocationTo = new Location() { Lat = elem.LocationTo.Lat, Lng = elem.LocationTo.Lng, Place = elem.LocationTo.Place }
                 });
             }
             return orders;
@@ -201,9 +201,11 @@ namespace BLL
                 order.Money = GetPrice(order.KM, order.ClassOfCar);
             }
             order.Driver = driver;
-            driver.Location = null;
             try
             {
+                _dal.Delete<Location>(driver.Location);
+                driver.Location = null;
+
                 _dal.ChangeOrder(order.Id, order);
                 _dal.ChangeDriver(driver.Id, driver);
                 return "";
@@ -328,14 +330,21 @@ namespace BLL
                 return ex.Message;
             }
         }
-        public void ChangePrice(ClassesOfCar classOfCar, double newPrice)
+        public string ChangePrice(ClassesOfCar classOfCar, double newPrice)
         {
-            //_dal.ChangePrice()
+            if (newPrice <= 0)
+            {
+                return "Wrong new price";
+            }
+            else
+            {
+                _dal.ChangePrice(classOfCar, newPrice);
+                return "";
+            }
         }
         private double GetPrice(double km, ClassesOfCar classes)
         {
             return _dal.Get<Price>().FirstOrDefault(elem => elem.ClassOfCar == classes).Money * km;
         }
-
     }
 }

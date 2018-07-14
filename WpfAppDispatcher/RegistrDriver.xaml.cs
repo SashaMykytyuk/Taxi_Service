@@ -25,11 +25,28 @@ namespace WpfAppDispatcher
         {
             InitializeComponent();
             ListCars = MainWindow.dispatcher.AllCars().ToList();
-            foreach(var elem in ListCars)
+            CreateItemsInCars();
+        }
+
+        void CreateItemsInCars()
+        {
+            Button button = new Button();
+            button.Content = "Add car to list";
+            button.Click += Button_Click;
+            foreach (var elem in ListCars)
             {
                 Cars.Items.Add(elem.Marka + "\t" + elem.ClassOfCar.ToString());
             }
+            Cars.Items.Add(button);
+        }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            CreateCarWindow window = new CreateCarWindow();
+            window.ShowDialog();
+
+            Cars.Items.Clear();
+            CreateItemsInCars();
         }
 
         private void Save_Click(object sender, RoutedEventArgs e)

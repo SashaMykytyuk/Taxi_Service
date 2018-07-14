@@ -35,6 +35,11 @@ namespace WpfAppDispatcher
             ClassOfCar.SelectedItem = car.ClassOfCar.ToString();
             Marka.Text = car.Marka;
             Volume.Text = car.Volume.ToString();
+
+            Age.IsEnabled = false;
+            ClassOfCar.IsEnabled = false;
+            Marka.IsEnabled = false;
+            Volume.IsEnabled = false;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

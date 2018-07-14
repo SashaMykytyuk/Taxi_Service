@@ -66,14 +66,19 @@ namespace WpfAppDispatcher
 
         private void ShowOrders_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show(drivers[i].Id.ToString());
-            AllOrdersWindow window = new AllOrdersWindow(drivers[i].Id);
+            AllOrdersWindow window = new AllOrdersWindow(drivers[i].Id, true);
             window.Show();
         }
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
             CreateCarWindow window = new CreateCarWindow(drivers[i].Car.Id);
+            window.ShowDialog();
+        }
+
+        private void MenuItem_Click_1(object sender, RoutedEventArgs e)
+        {
+            AllReportsWindow window = new AllReportsWindow(drivers[i].Id);
             window.ShowDialog();
         }
     }
