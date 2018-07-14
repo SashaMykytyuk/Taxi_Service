@@ -20,12 +20,24 @@ namespace WpfAppClient
     /// </summary>
     public partial class MenuWindow : Window
     {
+        private SearchByPoint searchByPoint;
+        private SearchByAdress searchByAdress;
+        private string providerKey;
+        
         public MenuWindow()
         {
             InitializeComponent();
-            ClassOfCar.Items.Add("For4Person");
-            ClassOfCar.Items.Add("For8Person");
-            ClassOfCar.Items.Add("ForVantazh");
+            providerKey = "Asf63QojxGRORzyVIbsUtSn6DxVR42K_FbNb-Gbsjtc34OWQBx9byU3WkCXtgqsC";
+            searchByAdress = new SearchByAdress(providerKey);
+            searchByPoint = new SearchByPoint(providerKey);
+
+            ClassOfCarAdress.Items.Add("For4Person");
+            ClassOfCarAdress.Items.Add("For8Person");
+            ClassOfCarAdress.Items.Add("ForVantazh");
+
+            ClassOfCarPoint.Items.Add("For4Person");
+            ClassOfCarPoint.Items.Add("For8Person");
+            ClassOfCarPoint.Items.Add("ForVantazh");
         }
 
         private void ChangeInfo_Click(object sender, RoutedEventArgs e)
@@ -73,8 +85,8 @@ namespace WpfAppClient
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Order order = new Order();
-            order.ClassOfCar = ClassOfCar.SelectedItem.ToString() == "For4Person" ? ClassesOfCar.For4Person :
-                ClassOfCar.SelectedItem.ToString() == "For8Person" ? ClassesOfCar.For8Person : ClassesOfCar.ForVantazh;
+            order.ClassOfCar = (sender as ComboBox).SelectedItem.ToString() == "For4Person" ? ClassesOfCar.For4Person :
+                (sender as ComboBox).SelectedItem.ToString() == "For8Person" ? ClassesOfCar.For8Person : ClassesOfCar.ForVantazh;
             order.KM = Double.Parse(KM.Text);
             order.Money = Double.Parse(Price.Text);
             order.LocationFrom = new Location() {Place = From.Text};
@@ -93,17 +105,56 @@ namespace WpfAppClient
 
         private void KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.Enter && From.Text != "" && To.Text != "" && ClassOfCar.SelectedIndex != -1)
+            if (e.Key == Key.Enter && From.Text != "" && To.Text != "" && (sender as ComboBox).SelectedIndex != -1)
             {
-                ClassesOfCar classesOfCar = ClassOfCar.SelectedItem.ToString() == "For4Person"
+                ClassesOfCar classesOfCar = (sender as ComboBox).SelectedItem.ToString() == "For4Person"
                     ? ClassesOfCar.For4Person
-                    : ClassOfCar.SelectedItem.ToString() == "ForPerson"
+                    : (sender as ComboBox).SelectedItem.ToString() == "ForPerson"
                         ? ClassesOfCar.For8Person
                         : ClassesOfCar.ForVantazh;
                 Random r = new Random();
                 KM.Text = r.Next(1, 100).ToString();
                 Price.Text = MainWindow.client.GetPrice(Double.Parse(KM.Text), classesOfCar).ToString();
             }
+        }
+
+        private void MenuPointOrAdress(object sender, RoutedEventArgs e)
+        {
+            if (RadioButtonPoint.IsChecked == true)
+            {
+                GroupBoxByPoints.Visibility = Visibility.Visible;
+                GroupBoxByAdress.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                GroupBoxByPoints.Visibility = Visibility.Collapsed;
+                searchByPoint.ClearMap(MyMap);
+                GroupBoxByAdress.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void MyMap_OnMouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if(RadioButtonPoint.IsChecked == false)
+                return;
+            searchByPoint.OnMouseDoubleClick(MyMap,sender,e);
+        }
+
+        private void ShowRouteByPoint(object sender, RoutedEventArgs e)
+        {
+            searchByPoint.MapGetRoud(MyMap);
+        }
+
+        private void ClearAllOnMap(object sender, RoutedEventArgs e)
+        {
+            if(RadioButtonPoint.IsChecked == true)
+                searchByPoint.ClearMap(MyMap);
+        }
+
+        private void SelectCar(object sender, RoutedEventArgs e)
+        {
+        //    (sender as ComboBox).SelectedItem.ToString() == "For4Person" ? ClassesOfCar.For4Person : ClassOfCar.SelectedItem.ToString() == "For8Person" ? ClassesOfCar.For8Person : ClassesOfCar.ForVantazh;
+        //    LabelMoney.Content = MainWindow.client.GetPrice(searchByPoint.Distance,(sender as ComboBox).SelectedItem)
         }
     }
 }
