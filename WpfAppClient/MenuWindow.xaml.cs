@@ -151,10 +151,9 @@ namespace WpfAppClient
                 searchByPoint.ClearMap(MyMap);
         }
 
-        private void SelectCar(object sender, RoutedEventArgs e)
+        private void SelectCar(object sender, SelectionChangedEventArgs e)
         {
-        //    (sender as ComboBox).SelectedItem.ToString() == "For4Person" ? ClassesOfCar.For4Person : ClassOfCar.SelectedItem.ToString() == "For8Person" ? ClassesOfCar.For8Person : ClassesOfCar.ForVantazh;
-        //    LabelMoney.Content = MainWindow.client.GetPrice(searchByPoint.Distance,(sender as ComboBox).SelectedItem)
+            LabelMoney.Content = MainWindow.client.GetPrice(searchByPoint.Distance, (sender as ComboBox).SelectedItem.ToString() == "For4Person" ? ClassesOfCar.For4Person : (sender as ComboBox).SelectedItem.ToString() == "For8Person" ? ClassesOfCar.For8Person : ClassesOfCar.ForVantazh).ToString();
         }
     }
 }

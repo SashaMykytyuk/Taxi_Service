@@ -123,7 +123,7 @@ namespace WpfAppClient
         {
             Pins.Clear();
             MyMap.Children.Clear();
-            distance = 0;
+            Distance = 0;
         }
     }
 }

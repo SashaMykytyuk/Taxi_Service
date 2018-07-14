@@ -56,7 +56,7 @@
                     <Button Content="Show Route" Click="ShowRouteByPoint"></Button>
                     <Button Content="Clear all" Click="ClearAllOnMap"></Button>
                     <Label Content="Class of car: "/>
-                    <ComboBox x:Name="ClassOfCarPoint" FontSize="18" Selected="SelectCar" />
+                    <ComboBox x:Name="ClassOfCarPoint" FontSize="18"  SelectionChanged="SelectCar" />
                     <Button IsEnabled="False"  Content="Order a taxi" Click="Button_Click" />
                 </StackPanel>
             </GroupBox>
@@ -76,7 +76,7 @@
                 <StackPanel>
                     <Label Content="KM: "/>
                     <TextBox IsEnabled="False" x:Name="KM" FontSize="18" />
-                    <Label Content="Price"/ Name="LabelMoney">
+                    <Label Content="Price" Name="LabelMoney"/>
                     <TextBox IsEnabled="False" x:Name="Price" FontSize="18" />
                 </StackPanel>
             </GroupBox>
