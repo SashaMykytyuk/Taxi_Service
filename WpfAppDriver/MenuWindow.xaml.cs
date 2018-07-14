@@ -22,6 +22,8 @@ namespace WpfAppDriver
         public MenuWindow()
         {
             InitializeComponent();
+            if(MainWindow.driver.AboutDriver().Location != null)
+                MyStreet.Text = MainWindow.driver.AboutDriver().Location.Place;
         }
 
         private void ChangeInfo_Click(object sender, RoutedEventArgs e)
@@ -32,7 +34,10 @@ namespace WpfAppDriver
 
         private void GenerateReport_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Report is send");
+            string str = MainWindow.driver.CreateReport();
+            if (str == "")
+                MessageBox.Show("Report is send");
+            else MessageBox.Show(str);
         }
 
         private void AllOrders(object sender, RoutedEventArgs e)
@@ -47,15 +52,22 @@ namespace WpfAppDriver
             window.ShowDialog();
         }
 
-        private void CreateCar_Click(object sender, RoutedEventArgs e)
-        {
-            CreateCarWindow window = new CreateCarWindow();
-            window.ShowDialog();
-        }
-
         private void LogOut_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void AllReports(object sender, RoutedEventArgs e)
+        {
+            AllReportsWindow window = new AllReportsWindow();
+            window.ShowDialog();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+           string str = MainWindow.driver.MyPosition(new ServiceReference.Location() { Place = MyStreet.Text });
+            if (str != "")
+                MessageBox.Show(str);
         }
     }
 }

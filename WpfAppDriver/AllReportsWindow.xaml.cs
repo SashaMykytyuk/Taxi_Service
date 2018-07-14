@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WpfAppDriver.ServiceReference;
 
 namespace WpfAppDriver
 {
@@ -24,9 +25,19 @@ namespace WpfAppDriver
             InitializeComponent();
         }
 
-        private void Calendar_DisplayDateChanged(object sender, CalendarDateChangedEventArgs e)
+        private void Calendar_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            try
+            {
+                DateTime date = calendar.SelectedDate.Value;
+                Report report = MainWindow.driver.AllReports().First(elem => elem.Date == date);
+                KM.Text = report.KM.ToString();
+                Money.Text = report.Money.ToString();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

@@ -858,6 +858,30 @@ namespace WpfAppDriver.ServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceDriver/WriteToDispatcher", ReplyAction="http://tempuri.org/IServiceDriver/WriteToDispatcherResponse")]
         System.Threading.Tasks.Task<string> WriteToDispatcherAsync(string Title, string Message);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceDriver/ChangeCar", ReplyAction="http://tempuri.org/IServiceDriver/ChangeCarResponse")]
+        string ChangeCar(int idCar);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceDriver/ChangeCar", ReplyAction="http://tempuri.org/IServiceDriver/ChangeCarResponse")]
+        System.Threading.Tasks.Task<string> ChangeCarAsync(int idCar);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceDriver/CreateReport", ReplyAction="http://tempuri.org/IServiceDriver/CreateReportResponse")]
+        string CreateReport();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceDriver/CreateReport", ReplyAction="http://tempuri.org/IServiceDriver/CreateReportResponse")]
+        System.Threading.Tasks.Task<string> CreateReportAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceDriver/MyPosition", ReplyAction="http://tempuri.org/IServiceDriver/MyPositionResponse")]
+        string MyPosition(WpfAppDriver.ServiceReference.Location location);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceDriver/MyPosition", ReplyAction="http://tempuri.org/IServiceDriver/MyPositionResponse")]
+        System.Threading.Tasks.Task<string> MyPositionAsync(WpfAppDriver.ServiceReference.Location location);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceDriver/LogOut", ReplyAction="http://tempuri.org/IServiceDriver/LogOutResponse")]
+        void LogOut();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceDriver/LogOut", ReplyAction="http://tempuri.org/IServiceDriver/LogOutResponse")]
+        System.Threading.Tasks.Task LogOutAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -941,6 +965,38 @@ namespace WpfAppDriver.ServiceReference {
         
         public System.Threading.Tasks.Task<string> WriteToDispatcherAsync(string Title, string Message) {
             return base.Channel.WriteToDispatcherAsync(Title, Message);
+        }
+        
+        public string ChangeCar(int idCar) {
+            return base.Channel.ChangeCar(idCar);
+        }
+        
+        public System.Threading.Tasks.Task<string> ChangeCarAsync(int idCar) {
+            return base.Channel.ChangeCarAsync(idCar);
+        }
+        
+        public string CreateReport() {
+            return base.Channel.CreateReport();
+        }
+        
+        public System.Threading.Tasks.Task<string> CreateReportAsync() {
+            return base.Channel.CreateReportAsync();
+        }
+        
+        public string MyPosition(WpfAppDriver.ServiceReference.Location location) {
+            return base.Channel.MyPosition(location);
+        }
+        
+        public System.Threading.Tasks.Task<string> MyPositionAsync(WpfAppDriver.ServiceReference.Location location) {
+            return base.Channel.MyPositionAsync(location);
+        }
+        
+        public void LogOut() {
+            base.Channel.LogOut();
+        }
+        
+        public System.Threading.Tasks.Task LogOutAsync() {
+            return base.Channel.LogOutAsync();
         }
     }
 }

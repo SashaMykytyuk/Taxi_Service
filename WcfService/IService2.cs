@@ -27,5 +27,13 @@ namespace WcfService
         string ChangeInfo(Changes changes, string param);
         [OperationContract]
         string WriteToDispatcher(string Title, string Message);
+        [OperationContract]
+        string ChangeCar(int idCar);
+        [OperationContract]
+        string CreateReport();
+        [OperationContract]
+        string MyPosition(Location location);
+        [OperationContract]
+        void LogOut();
     }
 }

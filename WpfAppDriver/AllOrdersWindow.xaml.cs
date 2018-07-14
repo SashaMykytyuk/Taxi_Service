@@ -27,7 +27,12 @@ namespace WpfAppDriver
             {
                 InitializeComponent();
                 orders = MainWindow.driver.AllOrders().ToList();
-                Title = i + " from " + orders.Count;
+                if(orders.Count == 0)
+                {
+                    MessageBox.Show("Empty list");
+                }
+                else
+                Title = (i>0?i+1:i) + " from " + orders.Count;
             }
             catch(Exception ex)
             {
@@ -45,6 +50,7 @@ namespace WpfAppDriver
             if (i - 1 >= 0)
                 i--;
             Show();
+            Title = (i > 0 ? i + 1 : i) + " from " + orders.Count;
         }
 
         private void Next_Click(object sender, RoutedEventArgs e)
@@ -52,6 +58,7 @@ namespace WpfAppDriver
             if(i<orders.Count)
                 i++;
             Show();
+            Title = (i > 0 ? i + 1 : i) + " from " + orders.Count;
         }
     }
 }

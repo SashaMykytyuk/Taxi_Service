@@ -50,6 +50,30 @@
   <wsdl:message name="IServiceDriver_WriteToDispatcher_OutputMessage">
     <wsdl:part name="parameters" element="tns:WriteToDispatcherResponse" />
   </wsdl:message>
+  <wsdl:message name="IServiceDriver_ChangeCar_InputMessage">
+    <wsdl:part name="parameters" element="tns:ChangeCar" />
+  </wsdl:message>
+  <wsdl:message name="IServiceDriver_ChangeCar_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ChangeCarResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceDriver_CreateReport_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateReport" />
+  </wsdl:message>
+  <wsdl:message name="IServiceDriver_CreateReport_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateReportResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceDriver_MyPosition_InputMessage">
+    <wsdl:part name="parameters" element="tns:MyPosition" />
+  </wsdl:message>
+  <wsdl:message name="IServiceDriver_MyPosition_OutputMessage">
+    <wsdl:part name="parameters" element="tns:MyPositionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceDriver_LogOut_InputMessage">
+    <wsdl:part name="parameters" element="tns:LogOut" />
+  </wsdl:message>
+  <wsdl:message name="IServiceDriver_LogOut_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LogOutResponse" />
+  </wsdl:message>
   <wsdl:portType name="IServiceDriver">
     <wsdl:operation name="Authorization">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceDriver/Authorization" message="tns:IServiceDriver_Authorization_InputMessage" />
@@ -78,6 +102,22 @@
     <wsdl:operation name="WriteToDispatcher">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceDriver/WriteToDispatcher" message="tns:IServiceDriver_WriteToDispatcher_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServiceDriver/WriteToDispatcherResponse" message="tns:IServiceDriver_WriteToDispatcher_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangeCar">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceDriver/ChangeCar" message="tns:IServiceDriver_ChangeCar_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceDriver/ChangeCarResponse" message="tns:IServiceDriver_ChangeCar_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateReport">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceDriver/CreateReport" message="tns:IServiceDriver_CreateReport_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceDriver/CreateReportResponse" message="tns:IServiceDriver_CreateReport_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="MyPosition">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceDriver/MyPosition" message="tns:IServiceDriver_MyPosition_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceDriver/MyPositionResponse" message="tns:IServiceDriver_MyPosition_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LogOut">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceDriver/LogOut" message="tns:IServiceDriver_LogOut_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceDriver/LogOutResponse" message="tns:IServiceDriver_LogOut_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IServiceDriver" type="tns:IServiceDriver">
@@ -138,6 +178,42 @@
     </wsdl:operation>
     <wsdl:operation name="WriteToDispatcher">
       <soap:operation soapAction="http://tempuri.org/IServiceDriver/WriteToDispatcher" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeCar">
+      <soap:operation soapAction="http://tempuri.org/IServiceDriver/ChangeCar" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateReport">
+      <soap:operation soapAction="http://tempuri.org/IServiceDriver/CreateReport" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MyPosition">
+      <soap:operation soapAction="http://tempuri.org/IServiceDriver/MyPosition" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LogOut">
+      <soap:operation soapAction="http://tempuri.org/IServiceDriver/LogOut" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

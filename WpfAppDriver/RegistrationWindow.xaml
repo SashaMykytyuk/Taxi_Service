@@ -13,19 +13,19 @@
         </Grid.ColumnDefinitions>
         <StackPanel Margin="10">
             <Label Content="Email: " FontSize="20" FontWeight="Black"/>
-            <TextBox x:Name="Email" FontSize="15" FontWeight="Light"/>
+            <TextBox x:Name="Email" FontSize="15" FontWeight="Light" TextChanged="Email_Change"/>
             <Label Content="First Name: "  FontSize="20" FontWeight="Black"/>
-            <TextBox x:Name="FirstName" FontSize="15" FontWeight="Light" />
+            <TextBox x:Name="FirstName" FontSize="15" FontWeight="Light" TextChanged="FN_Change"/>
             <Label Content="Second Name: "  FontSize="20" FontWeight="Black"/>
-            <TextBox x:Name="SecondName" FontSize="15" FontWeight="Light"/>
+            <TextBox x:Name="SecondName" FontSize="15" FontWeight="Light" TextChanged="SN_Change"/>
             <Label Content="Password: "  FontSize="20" FontWeight="Black" />
-            <PasswordBox x:Name="Password" FontSize="15" FontWeight="Light"/>
+            <PasswordBox x:Name="Password" FontSize="15" FontWeight="Light" PasswordChanged="PSW_Change"/>
             <Button Content="Save" Margin="70,30" FontSize="30" FontWeight="Bold" Click="Save_Click" />
         </StackPanel>
 
         <StackPanel Grid.Column="1" Margin="10">
             <Label Content="Choose your car:" Margin="10,0" FontSize="20" FontWeight="Black"/>
-            <ComboBox x:Name="Cars" Margin="10"  FontSize="20" FontWeight="Black"/>
+            <ComboBox x:Name="Cars" Margin="10"  FontSize="20" FontWeight="Black" SelectionChanged="Cars_SelectionChanged"/>
             <Label Content="Class of car: " FontSize="15" FontWeight="Medium" />
             <TextBox IsEnabled="False" x:Name="ClassOfCar" FontSize="15" />
             <Label Content="Marka: "  FontSize="15" FontWeight="Medium"/>

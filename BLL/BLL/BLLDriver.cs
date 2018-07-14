@@ -65,37 +65,12 @@ namespace BLL
                 return ex.Message;
             }
         }
-        public string CreateCar(Car car)
-        {
-            try
-            {
-                car.Marka = GenericParams.SetName(car.Marka);
-            }
-            catch (ArgumentNullException)
-            {
-                return "Input marka of car";
-            }
-            if (car.Volume <= 0)
-                return "Input correct Volume";
-            if (car.Age < 0)
-                return "Input correct age of car";
-            try
-            {
-                _dal.Create<Car>(car);
-                return "";
-            }
-            catch (Exception ex)
-            {
-                return ex.Message;
-            }
-        }
         public string ChangeCar(int idDriver, int idCar)
         {
             try
             {
-                Driver driver = _dal.Get<Driver>().FirstOrDefault(elem => elem.Id == idDriver);
-                Car car = _dal.Get<Car>().FirstOrDefault(elem => elem.Id == idCar);
-                driver.Car = car;
+                Driver driver = _dal.Get<Driver>().FirstOrDefault(elem => elem.Id == idDriver);         
+                driver.Car = _dal.Get<Car>().FirstOrDefault(elem => elem.Id == idCar);
                 _dal.ChangeDriver(driver.Id, driver);
                 return "";
             }

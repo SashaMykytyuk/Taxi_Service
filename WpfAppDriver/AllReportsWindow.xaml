@@ -8,7 +8,7 @@
         Title="AllReportsWindow" Height="369.328" Width="370.588">
     <Grid>
         <StackPanel>
-            <Calendar DisplayDateChanged="Calendar_DisplayDateChanged" />
+            <Calendar x:Name="calendar" SelectedDatesChanged="Calendar_SelectedDatesChanged"/>
             <Label HorizontalContentAlignment="Center" Content="KM: " FontSize="20" FontWeight="Medium"/>
             <TextBox IsEnabled="False" x:Name="KM" HorizontalContentAlignment="Center" Margin="55,0" FontSize="20" FontWeight="Medium"/>
             <Label HorizontalContentAlignment="Center" Content="Money: " FontSize="20" FontWeight="Medium"/>

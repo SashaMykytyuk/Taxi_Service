@@ -24,6 +24,7 @@ namespace WcfService
                 Password = driver.Password,
                 Email = driver.Email,
                 FirstName = driver.FirstName,
+                Location = new Location() { Place = driver.Location.Place },
                 Car = new Car() { Id = driver.Car.Id, Age = driver.Car.Age, ClassOfCar = driver.Car.ClassOfCar, Marka = driver.Car.Marka, Volume = driver.Car.Volume }
             };
         }
@@ -51,9 +52,29 @@ namespace WcfService
             return "";
         }
 
+        public string ChangeCar(int idCar)
+        {
+            return DriverBll.ChangeCar(driver.Id, idCar);
+        }
+
         public string ChangeInfo(Changes changes, string param)
         {
             return DriverBll.ChangeInfo(driver.Id, changes, param);
+        }
+
+        public string CreateReport()
+        {
+            return DriverBll.CreateReport(driver.Id);
+        }
+
+        public void LogOut()
+        {
+            driver = null;
+        }
+
+        public string MyPosition(Location location)
+        {
+            return DriverBll.SetLocation(driver.Id, location);
         }
 
         public string WriteToDispatcher(string Title, string Message)

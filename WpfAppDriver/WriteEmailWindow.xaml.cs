@@ -23,6 +23,11 @@ namespace WpfAppDriver
         {
             InitializeComponent();
         }
+        public WriteEmailWindow(string Th, string Mess):this()
+        {
+            Theme.Text = Th;
+            Message.Text = Mess;
+        }
 
         private void Send_Click(object sender, RoutedEventArgs e)
         {
