@@ -123,9 +123,10 @@ namespace WpfAppClient
 
         private void SelectCarInPoint(object sender, SelectionChangedEventArgs e)
         {
+            orederPoint.IsEnabled = true;
             try
             {
-                LabelMoney.Content = MainWindow.client.GetPrice(searchByPoint.Distance, (sender as ComboBox).SelectedItem.ToString() == "For4Person" ? ClassesOfCar.For4Person : (sender as ComboBox).SelectedItem.ToString() == "For8Person" ? ClassesOfCar.For8Person : ClassesOfCar.ForVantazh).ToString();
+                Price.Text = MainWindow.client.GetPrice(searchByPoint.Distance, (sender as ComboBox).SelectedItem.ToString() == "For4Person" ? ClassesOfCar.For4Person : (sender as ComboBox).SelectedItem.ToString() == "For8Person" ? ClassesOfCar.For8Person : ClassesOfCar.ForVantazh).ToString();
             }
             catch (Exception ex)
             {
@@ -135,7 +136,7 @@ namespace WpfAppClient
 
         private void OrderByPoint(object sender, RoutedEventArgs e)
         {
-            LabelMoney.Content = MainWindow.client.GetPrice(searchByPoint.Distance, ClassOfCarPoint.SelectedItem.ToString() == "For4Person" ? ClassesOfCar.For4Person : (sender as ComboBox).SelectedItem.ToString() == "For8Person" ? ClassesOfCar.For8Person : ClassesOfCar.ForVantazh).ToString();
+            //Price.Text = MainWindow.client.GetPrice(searchByPoint.Distance, ClassOfCarPoint.SelectedItem.ToString() == "For4Person" ? ClassesOfCar.For4Person : (sender as ComboBox).SelectedItem.ToString() == "For8Person" ? ClassesOfCar.For8Person : ClassesOfCar.ForVantazh).ToString();
         }
         private void ShowRouteByAdress(object sender, RoutedEventArgs e)
         {
@@ -157,14 +158,12 @@ namespace WpfAppClient
 
         private void OrderByAdress(object sender, RoutedEventArgs e)
         {
-            LabelMoney.Content = MainWindow.client.GetPrice(searchByAdress.Distance, ClassOfCarAdress.SelectedItem.ToString() == "For4Person" ? ClassesOfCar.For4Person : (sender as ComboBox).SelectedItem.ToString() == "For8Person" ? ClassesOfCar.For8Person : ClassesOfCar.ForVantazh).ToString();
+            //Price.Text = MainWindow.client.GetPrice(searchByAdress.Distance, ClassOfCarAdress.SelectedItem.ToString() == "For4Person" ? ClassesOfCar.For4Person : (sender as ComboBox).SelectedItem.ToString() == "For8Person" ? ClassesOfCar.For8Person : ClassesOfCar.ForVantazh).ToString();
         }
         private void SelectCarInAdress(object sender, SelectionChangedEventArgs e)
         {
-            LabelMoney.Content = MainWindow.client.GetPrice(searchByAdress.Distance, (sender as ComboBox).SelectedItem.ToString() == "For4Person" ? ClassesOfCar.For4Person : (sender as ComboBox).SelectedItem.ToString() == "For8Person" ? ClassesOfCar.For8Person : ClassesOfCar.ForVantazh).ToString();
+            Price.Text = MainWindow.client.GetPrice(searchByAdress.Distance, (sender as ComboBox).SelectedItem.ToString() == "For4Person" ? ClassesOfCar.For4Person : (sender as ComboBox).SelectedItem.ToString() == "For8Person" ? ClassesOfCar.For8Person : ClassesOfCar.ForVantazh).ToString();
         }
-
-
     }
 }
 

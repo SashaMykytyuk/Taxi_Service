@@ -57,7 +57,7 @@
                     <Button Content="Clear all" Click="ClearAllOnMap"></Button>
                     <Label Content="Class of car: "/>
                     <ComboBox x:Name="ClassOfCarPoint" FontSize="18"  SelectionChanged="SelectCarInPoint" />
-                    <Button IsEnabled="False"  Content="Order a taxi" Click="OrderByPoint"/>
+                    <Button IsEnabled="False" Name="orederPoint" Content="Order a taxi" Click="OrderByPoint"/>
                 </StackPanel>
             </GroupBox>
             <GroupBox Visibility="Collapsed" Name="GroupBoxByAdress" Header="Search by adress">
@@ -67,7 +67,7 @@
                     <Label Content="To"/>
                     <TextBox x:Name="To" FontSize="18"/>
                     <Label Content="Class of car: "/>
-                    <ComboBox x:Name="ClassOfCarAdress" FontSize="18"  />
+                    <ComboBox x:Name="ClassOfCarAdress" FontSize="18" SelectionChanged="SelectCarInAdress" />
                     <Button Content="Show Route" Click="ShowRouteByAdress"></Button>
                     <Button Content="Clear all" Click="ClearAllAdress"></Button>
                     <Button Content="Order a taxi" Click="OrderByAdress"/>
@@ -77,7 +77,7 @@
                 <StackPanel>
                     <Label Content="KM: "/>
                     <TextBox IsEnabled="False" x:Name="KM" FontSize="18" />
-                    <Label Content="Price" Name="LabelMoney"/>
+                    <Label Content="Price" />
                     <TextBox IsEnabled="False" x:Name="Price" FontSize="18" />
                 </StackPanel>
             </GroupBox>
