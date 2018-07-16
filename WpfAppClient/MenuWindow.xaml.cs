@@ -23,7 +23,7 @@ namespace WpfAppClient
         private SearchByPoint searchByPoint;
         private SearchByAdress searchByAdress;
         private string providerKey;
-        
+
         public MenuWindow()
         {
             InitializeComponent();
@@ -97,14 +97,15 @@ namespace WpfAppClient
 
         private void MyMap_OnMouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            if(RadioButtonPoint.IsChecked == false)
+            if (RadioButtonPoint.IsChecked == false)
                 return;
-            searchByPoint.OnMouseDoubleClick(MyMap,sender,e);
+            searchByPoint.OnMouseDoubleClick(MyMap, sender, e);
         }
 
         private void ShowRouteByPoint(object sender, RoutedEventArgs e)
         {
             var t = searchByPoint.MapGetRoudAsync(MyMap).GetAwaiter();
+            //t.GetResult();
             t.OnCompleted(() =>
             {
                 //MessageBox.Show(searchByPoint.Distance.ToString());
@@ -116,7 +117,7 @@ namespace WpfAppClient
 
         private void ClearAllOnMap(object sender, RoutedEventArgs e)
         {
-            if(RadioButtonPoint.IsChecked == true)
+            if (RadioButtonPoint.IsChecked == true)
                 searchByPoint.ClearMap(MyMap);
         }
 
@@ -125,9 +126,24 @@ namespace WpfAppClient
             LabelMoney.Content = MainWindow.client.GetPrice(searchByPoint.Distance, (sender as ComboBox).SelectedItem.ToString() == "For4Person" ? ClassesOfCar.For4Person : (sender as ComboBox).SelectedItem.ToString() == "For8Person" ? ClassesOfCar.For8Person : ClassesOfCar.ForVantazh).ToString();
         }
 
-        private void OrderByPoint(object sender, RoutedEventArgs e)
+        private void OrderBy(object sender, RoutedEventArgs e)
         {
             LabelMoney.Content = MainWindow.client.GetPrice(searchByPoint.Distance, (sender as ComboBox).SelectedItem.ToString() == "For4Person" ? ClassesOfCar.For4Person : (sender as ComboBox).SelectedItem.ToString() == "For8Person" ? ClassesOfCar.For8Person : ClassesOfCar.ForVantazh).ToString();
+        }
+        private void ShowRouteByAdress(object sender, RoutedEventArgs e)
+        {
+            var t = searchByAdress.CalculateAndShowOnMap(MyMap, From.Text, To.Text).GetAwaiter();
+            t.OnCompleted(() =>
+            {
+                KM.Text = searchByAdress.Distance.ToString();
+            });
+            
+        }
+
+        private void ClearAllAdress(object sender, RoutedEventArgs e)
+        {
+            if (RadioButtonAdress.IsChecked == true)
+                searchByAdress.ClearMap(MyMap);
         }
     }
 }

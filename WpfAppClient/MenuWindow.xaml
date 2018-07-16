@@ -51,7 +51,7 @@
             <MenuItem Header="Log out" Click="LogOut_Click"/>
         </Menu>
         <StackPanel Grid.Row="1">
-            <GroupBox  Name="GroupBoxByPoints" Header="Search by point">
+            <GroupBox Visibility="Collapsed" Name="GroupBoxByPoints" Header="Search by point">
                 <StackPanel>
                     <Button Content="Show Route" Click="ShowRouteByPoint"></Button>
                     <Button Content="Clear all" Click="ClearAllOnMap"></Button>
@@ -60,7 +60,7 @@
                     <Button IsEnabled="False"  Content="Order a taxi" Click="OrderByPoint"/>
                 </StackPanel>
             </GroupBox>
-            <GroupBox Name="GroupBoxByAdress" Header="Search by adress">
+            <GroupBox Visibility="Collapsed" Name="GroupBoxByAdress" Header="Search by adress">
                 <StackPanel>
                     <Label Content="From: "/>
                     <TextBox x:Name="From"  FontSize="18" />
@@ -68,7 +68,8 @@
                     <TextBox x:Name="To" FontSize="18"/>
                     <Label Content="Class of car: "/>
                     <ComboBox x:Name="ClassOfCarAdress" FontSize="18"  />
-                    <Button Content="Show Route"></Button>
+                    <Button Content="Show Route" Click="ShowRouteByAdress"></Button>
+                    <Button Content="Clear all" Click="ClearAllAdress"></Button>
                     <Button Content="Order a taxi"/>
                 </StackPanel>
             </GroupBox>

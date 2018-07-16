@@ -15,13 +15,13 @@ namespace WpfAppClient
     public class SearchByAdress
     {
         private string sessionKey;
-
+        public double Distance {set;get;}
         public SearchByAdress(string keySessionKey)
         {
             sessionKey = "Asf63QojxGRORzyVIbsUtSn6DxVR42K_FbNb-Gbsjtc34OWQBx9byU3WkCXtgqsC";
         }
 
-        public async void CalculateAndShowOnMap(Map MyMap, string StartTbx, string EndTbx)
+        public async Task CalculateAndShowOnMap(Map MyMap, string StartTbx, string EndTbx)
         {
             MyMap.Children.Clear();
             try
@@ -58,8 +58,7 @@ namespace WpfAppClient
                     //Calculate distances in countries.
                     //var routeGeom = geomBuilder.ConstructedGeography;
 
-                    var sb = new StringBuilder();
-                    sb.AppendFormat("Total Driving Distance: {0} KM\r\n", route.TravelDistance);
+                    Distance = route.TravelDistance;
 
 
 
@@ -74,7 +73,7 @@ namespace WpfAppClient
                     MyMap.Children.Add(routeLine);
 
                     MyMap.SetView(locs, new Thickness(30), 0);
-                    MessageBox.Show(sb.ToString());
+                    //MessageBox.Show(sb.ToString());
                 }
             }
             catch (Exception ex)
@@ -118,6 +117,11 @@ namespace WpfAppClient
             }, request);
 
             return tcs.Task;
+        }
+        public void ClearMap(Map MyMap)
+        {
+            MyMap.Children.Clear();
+            Distance = 0;
         }
     }
 }
